@@ -1,0 +1,41 @@
+
+
+parse the map given as argument
+
+check if the map is correct
+	if not return error
+
+init the mlx
+depending on what you read on the map :
+	1 : render wall
+	0 : render floor
+	C : render collectible
+	E : render map exit
+	P : render player
+
+all of these will be paths in struct
+
+how do we render sprites ?
+
+-----------------------------------------------------
+
+render tests :
+
+init mlx
+
+try to render img
+how to deal with sets of sprites ?
+how do we read them ?
+also need to transform all png to xpm (hurgh)
+"xpm tp img" doesn't seem to make a difference between the tiles
+i will have to separate them all on my own
+
+so basically :
+if animation :
+	read the same file multiple time (defined number of times)
+	then change image and repeat
+if other :
+	simply read the image;
+
+so i have to separate images now ?
+fuck that sucks
