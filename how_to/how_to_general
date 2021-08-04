@@ -32,10 +32,38 @@ i will have to separate them all on my own
 
 so basically :
 if animation :
-	read the same file multiple time (defined number of times)
+	pre-read all images
+	play image for a set number of times
 	then change image and repeat
 if other :
 	simply read the image;
 
-so i have to separate images now ?
-fuck that sucks
+-----------------------------------------------------------
+
+check if map was recieved in param
+	if not return "ERROR"
+recieve map file in param
+check if map is closed
+	if not return "ERROR"
+
+init map-tiles struct
+	register tiles in init; (hard paths)
+register map in (char **) in struct
+
+init mlx
+load every tile texture
+read (char **) map
+	if 0 : floor tile
+	if 1 : wall texture
+		if 1 on right & bottom : left top corner wall
+		if 1 on right & top : left bottow corner wall
+		if 1 on left & top : right bottow corner wall
+		if 1 on left & bottom : right top corner wall
+		if 1 on right & left & something on top : bottom wall
+		if 1 on right & left & something on bottom : top wall
+		if 1 on right & left & something on left : right wall
+		if 1 on right & left & something on right : left wall
+	if C : collectible on top of floor ? (how do i do that ?)
+	if E : exit tile
+	if P : player on top of floor;
+loop on this
