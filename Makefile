@@ -16,13 +16,14 @@ GETFILE_DIR = ./Libs/Lib_get_file
 MLX_DIR = ./Libs/minilibx_opengl_20191021
 
 OPENGL = -lm -lbsd -lX11 -lXext
-LIBS = -L$(LIBFT_DIR) -lft -L$(GETFILE_DIR) -lgetfile -L$(MLX_DIR) -lmlx
+LIBS = -L$(LIBFT_DIR) -lft -L$(GETFILE_DIR) -lgetfile -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 INCLUDES = -I$(LIBFT_DIR)/Includes -I$(GETFILE_DIR)/Includes -I$(MLX_DIR) -I$(INC_DIR)
 
 vpath %.c $(foreach dir, $(SRCS_DIR), $(dir):)
 
 SRCS = main.c \
-	error_message.c
+	error_message.c init_struct.c \
+	init_mlx.c mlx_printer.c
 OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 
 all: Libs $(NAME)

@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:38:09 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/04 15:17:41 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/05 14:39:01 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int ac, char **av)
 	close(test);
 	//read file
 	test = ft_get_file(av[1], &map);
-	if (test == 0 || test == -1)
+	if (test == 0 || test == -1 || ft_tablen((const char **)map) == 1)
 	{
 		//if return of readfile is bad return ERROR
 		ft_freetab(map);
@@ -36,18 +36,24 @@ int	main(int ac, char **av)
 	}
 	//check if map is correct
 	if (map_check(map) == -1)
-	{
-		ft_freetab(map);
 		return (0);
-	}
 	//sent rest to global manager
 	main_manager(map);
 }
 
-void	main_manager(char **map)
+void	main_manager(char **map_good)
 {
-	printf("SUCCESS\n");
-	ft_print_tab(map);
+	t_map_info	*map_info;
+	t_mlx_vars	*my_mlx;
+
+	ft_print_tab(map_good);
+	//setup struct with map && textures
+	map_info = init_map_info();
+	map_info->map = map_good;
+	//init mlx
+	my_mlx = init_window();
+	//send both structs to the screen printer
+	mlx_print_window(map_info, my_mlx);
 }
 
 int		map_check(char **map)
@@ -61,10 +67,14 @@ int		map_check(char **map)
 	{
 		while (map[row][col] != '\0')
 		{
-			if (map[row][col] == '1'
-				&& (map[row][col--] < 0 || map[row][col++] == '\0'
-				|| row++ < 0 || map[row--] == NULL))
+			if ((map[row][col] == '0' || map[row][col] == 'C'
+				|| map[row][col] == 'E' || map[row][col] == 'P')
+				&& (col == 0 || col == ft_strlen((const char *)map[row])
+				|| row == 0 || row == ft_tablen((const char **)map)))
+			{
+				ft_freetab(map);
 				return (error_message("map is not closed"));
+			}
 			col++;
 		}
 		col = 0;

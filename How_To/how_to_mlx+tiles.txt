@@ -1,0 +1,39 @@
+
+so basically :
+
+load img with : mlx_xpm_tile_to_image;
+then print : mlx_put_image_to_window;
+
+(will have to calculate where to put map on window depending on size)
+(look at visualizer push_swap)
+
+basically :
+load map first :
+	load water tile -> print it everywhere;
+	load walls -> print it by reading map
+	load objs -> print it by reading map
+	load exit -> print it by reading map
+	load pj -> print it by reading map
+
+
+send all "map_info" && "mls_info" to function
+while (map[row] != NULL)
+{
+	while (map[row][collumn] != '\0')
+	{
+		img = floor tile
+		print img
+		if (map == 1)
+			img = //function that returns tile (depending on which side we are on)
+		else if (map == C)
+			img = sprite of obj
+		else if (map == E)
+			img = exit
+		else if (map == P)
+			img = pj
+		print img
+		collumn++;
+	}
+	collumn = 0;
+	row++;
+}
