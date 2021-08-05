@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 11:08:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/05 15:42:49 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/05 18:32:00 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_mlx_vars	*init_mlx_struct(void)
 	my_mlx->endian = 0;
 	my_mlx->pxl_x = 0;
 	my_mlx->pxl_y = 0;
-	my_mlx->width = 1920;
-	my_mlx->height = 1080;
+	my_mlx->width = 200;
+	my_mlx->height = 200;
 	return (my_mlx);
 }

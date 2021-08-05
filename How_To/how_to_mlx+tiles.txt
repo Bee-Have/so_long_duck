@@ -16,6 +16,11 @@ load map first :
 	load pj -> print it by reading map
 
 
+x_pxl_per_img = water_tile_width
+y_pxl_per_img = water_tile_height
+total_x_pxl = OFFSET_X
+total_y_pxl = OFFSET_Y
+
 send all "map_info" && "mls_info" to function
 while (map[row] != NULL)
 {
@@ -31,9 +36,30 @@ while (map[row] != NULL)
 			img = exit
 		else if (map == P)
 			img = pj
-		print img
+		print img with (total_x_pxl && total_y_pxl)
+		total_x_pxl += x_pxl_per_img
 		collumn++;
 	}
 	collumn = 0;
+	total_x_pxl = OFFSET_X
+	total_y_pxl += y_pxl_per_img
 	row++;
 }
+
+
+
+--------------------------------
+
+OFFSET Y :
+
+(middle_pxl_height * max_win_height) / middle_win_height
+middle_pxl_height = (tile_pxl_height * max_map_height) / 2
+max_win_height = 1080
+middle_win_height = height / 2
+
+OFFSET X :
+
+(middle_pxl_width * min_win_width) / middle_win_width
+middle_pxl_width = (tile_pxl_width * max_map_width) / 2
+min_win_width = 1
+middle_win_width = width / 2
