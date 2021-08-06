@@ -23,7 +23,7 @@ vpath %.c $(foreach dir, $(SRCS_DIR), $(dir):)
 
 SRCS = main.c \
 	error_message.c init_struct.c \
-	init_mlx.c mlx_printer.c
+	init_mlx.c mlx_printer.c mlx_print_utils.c
 OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 
 all: Libs $(NAME)

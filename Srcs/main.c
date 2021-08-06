@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:38:09 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/05 14:39:01 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/06 12:22:11 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	main_manager(char **map_good)
 	//init mlx
 	my_mlx = init_window();
 	//send both structs to the screen printer
+	mlx_xpm_file_to_image(my_mlx->mlx, map_info->floor, &map_info->x_pxl_img, &map_info->y_pxl_img);
 	mlx_print_window(map_info, my_mlx);
 }
 

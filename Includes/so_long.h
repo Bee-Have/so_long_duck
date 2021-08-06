@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/05 14:49:01 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/06 14:50:52 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct		s_map_info
 
 	char	*floor;
 
+	char	*wall;
 	char	*wall_n;
 	char	*wall_s;
 	char	*wall_e;
@@ -53,15 +54,23 @@ typedef struct		s_map_info
 	char	*obj;
 
 	char	*pj;
+
+	int		x_pxl_img;
+	int		y_pxl_img;
 }					t_map_info;
 
 //MAIN
 void		main_manager(char **map_good);
 int			map_check(char **map);
 
+//MAP PARSING UTILS
+int			calc_offset(int pxl, int max_map, int max_win, int window);
+char		*get_right_wall(t_map_info *map_info, int row, int col);
+
 //MLX
 t_mlx_vars	*init_window(void);
-void	mlx_print_window(t_map_info *map_info, t_mlx_vars *my_mlx);
+void		mlx_print_window(t_map_info *map_info, t_mlx_vars *my_mlx);
+void		print_map(t_map_info *mapinfo, t_mlx_vars *mlx, char **map);
 
 //STRUCTS MANAGMENT
 t_map_info	*init_map_info(void);

@@ -16,12 +16,12 @@ load map first :
 	load pj -> print it by reading map
 
 
+send all "map_info" && "mls_info" to function
 x_pxl_per_img = water_tile_width
 y_pxl_per_img = water_tile_height
 total_x_pxl = OFFSET_X
 total_y_pxl = OFFSET_Y
 
-send all "map_info" && "mls_info" to function
 while (map[row] != NULL)
 {
 	while (map[row][collumn] != '\0')
@@ -42,7 +42,7 @@ while (map[row] != NULL)
 	}
 	collumn = 0;
 	total_x_pxl = OFFSET_X
-	total_y_pxl += y_pxl_per_img
+	total_y_pxl -= y_pxl_per_img
 	row++;
 }
 
