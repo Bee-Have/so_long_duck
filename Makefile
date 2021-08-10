@@ -22,8 +22,10 @@ INCLUDES = -I$(LIBFT_DIR)/Includes -I$(GETFILE_DIR)/Includes -I$(MLX_DIR) -I$(IN
 vpath %.c $(foreach dir, $(SRCS_DIR), $(dir):)
 
 SRCS = main.c \
-	error_message.c init_struct.c \
-	init_mlx.c mlx_printer.c mlx_print_utils.c
+	map_parsing.c error_message.c \
+	init_struct.c init_mlx.c \
+	mlx_printer.c mlx_print_utils.c mlx_event_manager.c \
+	pj_move.c
 OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 
 all: Libs $(NAME)

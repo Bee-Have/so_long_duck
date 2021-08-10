@@ -6,21 +6,21 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 18:17:07 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/06 15:11:42 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/10 17:44:57 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/so_long.h"
 
-int	calc_offset(int pxl, int max_map, int max_win, int window)
+int	calc_offset(int pxl, int map_len, int max_win)
 {
 	int		offset;
-	int		midd_win;
+	int		max_pxl_win;
 	int		midd_pxl;
 
-	midd_win = max_win / 2;
-	midd_pxl = (pxl * max_map) / 2;
-	offset = (midd_pxl * window) / midd_win;
+	midd_pxl = (pxl * map_len) / 2;
+	max_pxl_win = pxl * map_len;
+	offset = (max_win - max_pxl_win) / 2;
 	return (offset);
 }
 
@@ -40,7 +40,7 @@ char	*get_right_wall(t_map_info *map_info, int row, int col)
 	else if (col > 0 &&  col < ft_strlen(map_info->map[row]) - 1
 		&& row == ft_tablen((const char **)map_info->map) - 1 )
 		return (map_info->wall_s);
-	else if (col == 0 && row > 0 && row < ft_tablen((const char **)map_info->map[row]) - 1)
+	else if (col == 0 && row > 0 && row < ft_tablen((const char **)map_info->map) - 1)
 		return (map_info->wall_w);
 	else if (col == ft_strlen(map_info->map[row]) - 1 && row > 0
 		&& row < ft_tablen((const char **)map_info->map) - 1)

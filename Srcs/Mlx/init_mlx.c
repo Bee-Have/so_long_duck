@@ -6,21 +6,38 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:17:06 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/05 14:50:02 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/10 16:17:45 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/so_long.h"
 
-t_mlx_vars	*init_window(void)
+void	init_window(t_mlx_vars *mlx)
 {
-	t_mlx_vars	*my_mlx;
+	mlx->mlx_win = mlx_new_window(mlx->mlx, mlx->width
+			, mlx->height, "so_long");
+	mlx->img = mlx_new_image(mlx->mlx, mlx->width, mlx->height);
+	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bits_pix,
+			&mlx->line_length, &mlx->endian);
+	return ;
+}
 
-	my_mlx = init_mlx_struct();
-	my_mlx->mlx_win = mlx_new_window(my_mlx->mlx, my_mlx->width
-			, my_mlx->height, "so_long");
-	my_mlx->img = mlx_new_image(my_mlx->mlx, my_mlx->width, my_mlx->height);
-	my_mlx->addr = mlx_get_data_addr(my_mlx->img, &my_mlx->bits_pix,
-			&my_mlx->line_length, &my_mlx->endian);
-	return (my_mlx);
+int	mlx_check_size_window(t_map_info *mapinfo, t_mlx_vars *mlx)
+{
+	int		changed;
+
+	changed = 0;
+	while ((mapinfo->pxl_img * ft_strlen((const char *)mapinfo->map[0]))
+		> mlx->width)
+	{
+		changed = 1;
+		mlx->width = mlx->width * 2;
+	}
+	while ((mapinfo->pxl_img * ft_tablen((const char **)mapinfo->map))
+		> mlx->height)
+	{
+		changed = 1;
+		mlx->height = mlx->height * 2;
+	}
+	return (changed);
 }

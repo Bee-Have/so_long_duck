@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 11:08:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/06 17:45:52 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/10 16:00:46 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_map_info	*init_map_info(void)
 	if (!map_info)
 		return (NULL);
 	map_info->map = NULL;
-	map_info->floor = "./Sprites/Floor_Tiles/water_tile_2.xpm";
+	map_info->floor = "./Sprites/Floor_Tiles/water_tile.xpm";
 	map_info->wall = "./Sprites/Walls/Pond/wall.xpm";
 	map_info->wall_n = "./Sprites/Walls/Pond/wall_n.xpm";
 	map_info->wall_s = "./Sprites/Walls/Pond/wall_s.xpm";
@@ -34,8 +34,7 @@ t_map_info	*init_map_info(void)
 	map_info->exit = "./Sprites/Exit/exit_0.xpm";
 	map_info->obj = "./Sprites/Objects/rocks.xpm";
 	map_info->pj = "./Sprites/Characters/Frog/Idle/0.xpm";
-	map_info->x_pxl_img = 0;
-	map_info->y_pxl_img = 0;
+	map_info->pxl_img = 0;
 	return (map_info);
 }
 
@@ -53,9 +52,7 @@ t_mlx_vars	*init_mlx_struct(void)
 	my_mlx->bits_pix = 0;
 	my_mlx->line_length = 0;
 	my_mlx->endian = 0;
-	my_mlx->pxl_x = 0;
-	my_mlx->pxl_y = 0;
-	my_mlx->width = 500;
-	my_mlx->height = 500;
+	my_mlx->width = 100;
+	my_mlx->height = 100;
 	return (my_mlx);
 }
