@@ -9,6 +9,7 @@ CFLAGS += -fsanitize=address -g3
 endif
 
 SRCS_DIR =  $(shell find Srcs -type d)
+
 OBJS_DIR = Objs
 INC_DIR = ./Includes/so_long
 LIBFT_DIR = ./Libs/libft_duck
@@ -23,7 +24,8 @@ vpath %.c $(foreach dir, $(SRCS_DIR), $(dir):)
 
 SRCS = main.c \
 	map_parsing.c error_message.c \
-	init_struct.c init_mlx.c \
+	init_struct.c lstnew_anim.c \
+	init_mlx.c \
 	mlx_printer.c mlx_print_utils.c mlx_event_manager.c \
 	pj_move.c
 OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))

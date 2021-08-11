@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 18:17:07 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/11 11:41:20 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/11 15:51:07 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,37 +24,40 @@ int	calc_offset(int pxl, int map_len, int max_win)
 	return (offset);
 }
 
-char	*get_wall(t_map_info *map_info, int row, int col)
+char	*get_wall(char **map, t_textures *textures, int row, int col)
 {
 	if (col == 0 && row == 0)
-		return (map_info->wall_corner_nw);
-	else if (col == ft_strlen(map_info->map[row]) - 1 && row == 0)
-		return (map_info->wall_corner_ne);
-	else if (col > 0 &&  col < ft_strlen(map_info->map[row]) - 1 && row == 0)
-		return (map_info->wall_n);
-	else if (col == 0 && row == ft_tablen((const char **)map_info->map) - 1)
-		return (map_info->wall_corner_sw);
-	else if (col == ft_strlen(map_info->map[row]) - 1
-		&& row == ft_tablen((const char **)map_info->map) - 1)
-		return (map_info->wall_corner_se);
-	else if (col > 0 &&  col < ft_strlen(map_info->map[row]) - 1
-		&& row == ft_tablen((const char **)map_info->map) - 1 )
-		return (map_info->wall_s);
-	else if (col == 0 && row > 0 && row < ft_tablen((const char **)map_info->map) - 1)
-		return (map_info->wall_w);
-	else if (col == ft_strlen(map_info->map[row]) - 1 && row > 0
-		&& row < ft_tablen((const char **)map_info->map) - 1)
-		return (map_info->wall_e);
-	return (map_info->wall);
+		return (textures->wall_corner_nw);
+	else if (col == ft_strlen(map[row]) - 1 && row == 0)
+		return (textures->wall_corner_ne);
+	else if (col > 0 &&  col < ft_strlen(map[row]) - 1 && row == 0)
+		return (textures->wall_n);
+	else if (col == 0 && row == ft_tablen((const char **)map) - 1)
+		return (textures->wall_corner_sw);
+	else if (col == ft_strlen(map[row]) - 1
+		&& row == ft_tablen((const char **)map) - 1)
+		return (textures->wall_corner_se);
+	else if (col > 0 && col < ft_strlen(map[row]) - 1
+		&& row == ft_tablen((const char **)map) - 1 )
+		return (textures->wall_s);
+	else if (col == 0 && row > 0 && row < ft_tablen((const char **)map) - 1)
+		return (textures->wall_w);
+	else if (col == ft_strlen(map[row]) - 1 && row > 0
+		&& row < ft_tablen((const char **)map) - 1)
+		return (textures->wall_e);
+	return (textures->wall);
 }
 
-char	*get_right_xpm(char current, t_map_info *mapinfo)
+char	*get_right_xpm(char current, t_textures *textures)
 {
 	if (current == 'C')
-		return (mapinfo->obj);
+		return (textures->obj);
 	else if (current == 'E')
-		return (mapinfo->exit);
-	else if (current = 'P')
-		return (mapinfo->pj);
+		return (textures->exit);
+	else if (current == 'P')
+	{
+		textures->pj_idle = textures->pj_idle->next;
+		return (textures->pj_idle->prev->img);
+	}
 	return (NULL);
 }

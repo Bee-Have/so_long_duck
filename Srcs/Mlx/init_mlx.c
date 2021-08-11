@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:17:06 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/10 16:17:45 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/11 14:45:05 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,18 @@ void	init_window(t_mlx_vars *mlx)
 	return ;
 }
 
-int	mlx_check_size_window(t_map_info *mapinfo, t_mlx_vars *mlx)
+int	mlx_check_size_window(t_mlx_vars *mlx)
 {
 	int		changed;
 
 	changed = 0;
-	while ((mapinfo->pxl_img * ft_strlen((const char *)mapinfo->map[0]))
+	while ((mlx->map->pxl_img * ft_strlen((const char *)mlx->map->map[0]))
 		> mlx->width)
 	{
 		changed = 1;
 		mlx->width = mlx->width * 2;
 	}
-	while ((mapinfo->pxl_img * ft_tablen((const char **)mapinfo->map))
+	while ((mlx->map->pxl_img * ft_tablen((const char **)mlx->map->map))
 		> mlx->height)
 	{
 		changed = 1;
