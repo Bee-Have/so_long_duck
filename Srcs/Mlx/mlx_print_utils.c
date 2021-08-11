@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 18:17:07 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/10 17:44:57 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/11 11:41:20 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	calc_offset(int pxl, int map_len, int max_win)
 	return (offset);
 }
 
-char	*get_right_wall(t_map_info *map_info, int row, int col)
+char	*get_wall(t_map_info *map_info, int row, int col)
 {
 	if (col == 0 && row == 0)
 		return (map_info->wall_corner_nw);
@@ -46,4 +46,15 @@ char	*get_right_wall(t_map_info *map_info, int row, int col)
 		&& row < ft_tablen((const char **)map_info->map) - 1)
 		return (map_info->wall_e);
 	return (map_info->wall);
+}
+
+char	*get_right_xpm(char current, t_map_info *mapinfo)
+{
+	if (current == 'C')
+		return (mapinfo->obj);
+	else if (current == 'E')
+		return (mapinfo->exit);
+	else if (current = 'P')
+		return (mapinfo->pj);
+	return (NULL);
 }

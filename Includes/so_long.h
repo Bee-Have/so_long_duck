@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/10 18:51:54 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/11 11:54:12 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,18 @@ typedef struct s_mlx_vars
 	int		endian;
 	int		width;
 	int		height;
-	
+
 	int		pj_pos[2];
 }				t_mlx_vars;
-
 
 typedef struct		s_map_info
 {
 	char	**map;
+	int		pxl_img;
+}					t_map_info;
 
+typedef struct		s_textures
+{
 	char	*floor;
 
 	char	*wall;
@@ -54,18 +57,17 @@ typedef struct		s_map_info
 	char	*obj;
 
 	char	*pj;
-
-	int		pxl_img;
-}					t_map_info;
+}					t_textures;
 
 //MAIN
 void		main_manager(char **map_good);
 int			map_open_check(char **map);
 
-//MAP PARSING
+//MLX PRINT UTILS
 int			calc_offset(int pxl, int max_map, int max_win);
-char		*get_right_wall(t_map_info *map_info, int row, int col);
+char		*get_wall(t_map_info *map_info, int row, int col);
 int			map_chars_check(char **map, t_mlx_vars *mlx);
+char		*get_right_xpm(char current, t_map_info *mapinfo);
 
 //MLX INIT
 void		init_window(t_mlx_vars *mlx);
@@ -73,7 +75,7 @@ int			mlx_check_size_window(t_map_info *mapinfo, t_mlx_vars *mlx);
 
 //MLX
 void		mlx_print_window(t_map_info *map_info, t_mlx_vars *my_mlx);
-void		print_map(t_map_info *mapinfo, t_mlx_vars *mlx, char **map);
+int			print_map(t_map_info *mapinfo, t_mlx_vars *mlx);
 
 //MLX EVENTS
 int			key_hook(int keycode, t_mlx_vars **mlx);
