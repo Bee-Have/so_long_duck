@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/11 18:39:08 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/12 16:05:40 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,24 +76,27 @@ int			map_open_check(char **map);
 
 //MLX PRINT UTILS
 int			calc_offset(int pxl, int max_map, int max_win);
-char		*get_wall(t_map_info *map_info, int row, int col);
+char		*get_wall(char **map, t_textures *textures, int row, int col);
 int			map_chars_check(char **map, t_mlx_vars *mlx);
-char		*get_right_xpm(char current, t_map_info *mapinfo);
+char		*get_right_xpm(t_mlx_vars *mlx, int row, int col);
 
 //MLX INIT
 void		init_window(t_mlx_vars *mlx);
 int			mlx_check_size_window(t_mlx_vars *mlx);
+t_map		*init_map(void);
+t_textures	*init_textures_paths(void);
+t_anim		*init_anim(int len, char *path);
 
 //MLX
 void		mlx_print_window(t_mlx_vars *mlx);
 int			print_map(t_mlx_vars *mlx);
 
 //MLX EVENTS
-int			key_hook(int keycode, t_mlx_vars **mlx);
-int			close_window(t_mlx_vars **mlx);
+int			key_hook(int keycode, t_mlx_vars *mlx);
+int			close_window(t_mlx_vars *mlx);
 
 //GAMEPLAY
-void		move_pj_map_pos(t_map_info *map_info, int *pos);
+void		move_pj_map_pos(t_mlx_vars *mlx, int *pos);
 
 //STRUCTS MANAGMENT
 t_mlx_vars	*init_mlx_struct(void);

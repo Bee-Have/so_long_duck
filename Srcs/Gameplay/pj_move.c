@@ -6,34 +6,42 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 18:33:28 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/10 18:52:49 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/12 17:26:58 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/so_long.h"
 
-void	move_pj_map_pos(t_map_info *map_info, int *pos)
+void	move_pj_map_pos(t_mlx_vars *mlx, int *pos)
 {
 	int		row;
 	int		col;
 
 	row = 0;
-	col = 0;
-	while (map_info->map[row] != NULL)
+	if (mlx->map->map[pos[0]][pos[1]] == 'P')
+		return ;
+	while (mlx->map->map[row] != NULL)
 	{
-		while (map_info->map[row][col] != '\0')
+		col = 0;
+		while (mlx->map->map[row][col] != '\0')
 		{
 			if (pos[0] == row && pos[1] == col)
 			{
-				if (map_info->map[row][col] == '1')
-					return ;
-				map_info->map[row][col] = 'P';
+				if (mlx->map->map[row][col] != '1')
+					mlx->map->map[row][col] = 'P';
 			}
-			else if (map_info->map[row][col] == 'P')
-				map_info->map[row][col] = 0;
+			else if (mlx->map->map[row][col] == 'P')
+			{
+				if (mlx->map->map[pos[0]][pos[1]] == '1')
+				{
+					mlx->map->pj_pos[0] = row;
+					mlx->map->pj_pos[1] = col;
+				}
+				else
+					mlx->map->map[row][col] = '0';
+			}
 			col++;
 		}
-		col = 0;
 		row++;
 	}
 }

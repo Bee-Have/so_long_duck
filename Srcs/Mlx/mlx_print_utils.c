@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 18:17:07 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/11 15:51:07 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/12 15:50:16 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,21 @@ char	*get_wall(char **map, t_textures *textures, int row, int col)
 	return (textures->wall);
 }
 
-char	*get_right_xpm(char current, t_textures *textures)
+char	*get_right_xpm(t_mlx_vars *mlx, int row, int col)
 {
-	if (current == 'C')
-		return (textures->obj);
-	else if (current == 'E')
-		return (textures->exit);
-	else if (current == 'P')
+	if (mlx->map->map[row][col] == '1')
+		return (get_wall(mlx->map->map, mlx->textures, row, col));
+	else if (mlx->map->map[row][col] == 'C')
+		return (mlx->textures->obj);
+	else if (mlx->map->map[row][col] == 'E')
 	{
-		textures->pj_idle = textures->pj_idle->next;
-		return (textures->pj_idle->prev->img);
+		mlx->textures->exit = mlx->textures->exit->next;
+		return (mlx->textures->exit->prev->img);
+	}
+	else if (mlx->map->map[row][col] == 'P')
+	{
+		mlx->textures->pj_idle = mlx->textures->pj_idle->next;
+		return (mlx->textures->pj_idle->prev->img);
 	}
 	return (NULL);
 }

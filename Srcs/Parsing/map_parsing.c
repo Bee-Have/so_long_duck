@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 17:50:24 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/10 18:27:20 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/12 15:09:21 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		map_open_check(char **map)
 
 int		map_chars_check(char **map, t_mlx_vars *mlx)
 {
-	char	mandatory[3];
+	char	mandatory[4];
 	int		row;
 	int		col;
 
@@ -59,8 +59,8 @@ int		map_chars_check(char **map, t_mlx_vars *mlx)
 			if (map[row][col] == 'P')
 			{
 				mandatory[2] = 'p';
-				mlx->pj_pos[0] = row;
-				mlx->pj_pos[1] = col;
+				mlx->map->pj_pos[0] = row;
+				mlx->map->pj_pos[1] = col;
 			}
 			col++;
 		}

@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:38:09 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/11 14:46:37 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/12 15:04:47 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	main_manager(char **map)
 
 	ft_print_tab(map);
 	mlx = init_mlx_struct();
+	init_window(mlx);
 	mlx->map->map = map;
 	if (map_open_check(map) == -1 || map_chars_check(map, mlx) == -1)
 	{
@@ -48,5 +49,5 @@ void	main_manager(char **map)
 	mlx_xpm_file_to_image(mlx->mlx, mlx->textures->floor, &mlx->map->pxl_img, &mlx->map->pxl_img);
 	if (mlx_check_size_window(mlx) == 1)
 		init_window(mlx);
-	mlx_print_window(map_info, mlx);
+	mlx_print_window(mlx);
 }

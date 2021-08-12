@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 11:08:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/11 14:41:57 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/12 14:39:20 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ t_textures	*init_textures_paths(void)
 	textures->wall_corner_sw = "./Sprites/Walls/Pond/wall_sw.xpm";
 	textures->obj = "./Sprites/Objects/flowers.xpm";
 
-	textures->exit = init_anim(2, "./Sprites/Exit/Typhoon/0.xpm");
-	textures->pj_idle = init_anim(5, "./Sprites/Characters/Frog/Idle/0.xpm");
-	textures->pj_walk = init_anim(8, "./Sprites/Characters/Frog/Walk/0.xpm");
+	textures->exit = init_anim(2, "./Sprites/Exit/Typhoon/");
+	textures->pj_idle = init_anim(5, "./Sprites/Characters/Frog/Idle/");
+	textures->pj_walk = init_anim(8, "./Sprites/Characters/Frog/Walk/");
 	
 	return (textures);
 }
@@ -81,20 +81,26 @@ t_anim	*init_anim(int len, char *path)
 	t_anim	*anim;
 	t_anim	*iterator;
 	t_anim	*previous;
+	char	*file;
 	int		i;
 	
 	i = 0;
-	anim = lstnew_anim(path);
+	file = ft_strdup("0.xpm");
+	anim = lstnew_anim(ft_strjoin(path, file));
 	i++;
 	iterator = anim;
 	previous = iterator;
 	while (i < len)
 	{
-		path = ft_substr(path, 1, ft_strlen(path) - 1);
-		iterator->next = lstnew_anim(ft_strjoin((char)i, path));
+		file = ft_substr(file, 1, ft_strlen(file) - 1);
+		file = ft_strjoin(ft_itoa(i), file);
+		iterator->next = lstnew_anim(ft_strjoin(path, file));
 		iterator = iterator->next;
 		iterator->prev = previous;
 		previous = previous->next;
+		i++;
 	}
+	previous->next = anim;
+	anim->prev = previous;
 	return (anim);
 }
