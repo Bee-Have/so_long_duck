@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/12 16:05:40 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/13 15:04:38 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,14 @@ typedef struct	s_mlx_vars
 	void				*mlx;
 	void				*mlx_win;
 
+	struct s_img		*img;
+
+	struct s_map		*map;
+	struct s_textures	*textures;
+}				t_mlx_vars;
+
+typedef struct	s_img
+{
 	void				*img;
 	char				*addr;
 	int					bits_pix;
@@ -65,10 +73,7 @@ typedef struct	s_mlx_vars
 	int					endian;
 	int					width;
 	int					height;
-
-	struct s_map		*map;
-	struct s_textures	*textures;
-}				t_mlx_vars;
+}				t_img;
 
 //MAIN
 void		main_manager(char **map_good);
@@ -83,13 +88,17 @@ char		*get_right_xpm(t_mlx_vars *mlx, int row, int col);
 //MLX INIT
 void		init_window(t_mlx_vars *mlx);
 int			mlx_check_size_window(t_mlx_vars *mlx);
+
+//STRUCT INIT
 t_map		*init_map(void);
 t_textures	*init_textures_paths(void);
 t_anim		*init_anim(int len, char *path);
+t_img		*init_img(void);
 
 //MLX
 void		mlx_print_window(t_mlx_vars *mlx);
 int			print_map(t_mlx_vars *mlx);
+void		sprite_to_img(t_mlx_vars *mlx, char *path, int tot_x, int tot_y);
 
 //MLX EVENTS
 int			key_hook(int keycode, t_mlx_vars *mlx);

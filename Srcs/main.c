@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:38:09 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/12 15:04:47 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/13 15:06:25 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int ac, char **av)
 	if (test < 0)
 		return (error_message("wrong path for map"));
 	close(test);
+	map = NULL;
 	test = ft_get_file(av[1], &map);
 	if (test == 0 || test == -1 || ft_tablen((const char **)map) == 1)
 	{
@@ -30,6 +31,7 @@ int	main(int ac, char **av)
 		return (error_message("map file is empty"));
 	}
 	main_manager(map);
+	return (0);
 }
 
 void	main_manager(char **map)
@@ -47,7 +49,9 @@ void	main_manager(char **map)
 		return ;
 	}
 	mlx_xpm_file_to_image(mlx->mlx, mlx->textures->floor, &mlx->map->pxl_img, &mlx->map->pxl_img);
+	printf("pxl_img-[%d]\n", mlx->map->pxl_img);
 	if (mlx_check_size_window(mlx) == 1)
 		init_window(mlx);
 	mlx_print_window(mlx);
+	free(map);
 }

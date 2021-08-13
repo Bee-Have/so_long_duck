@@ -1,0 +1,14 @@
+create original_img to print window
+get addr of window
+
+create sprite_image -> sprite 1
+while(map[row] != NULL)
+	while (map[row][col] != '\0')
+		get addr of sprite_img
+		set original_img[tot_x + tot_y] to addr of sprite_image
+		tot_x += pxl_per_img
+		col++
+	col = 0
+	tot_x = offset map->window
+	tot_y += pxl_per_img
+	row++;

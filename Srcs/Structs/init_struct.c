@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 11:08:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/12 14:39:20 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/13 15:01:51 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,27 @@ t_mlx_vars	*init_mlx_struct(void)
 		return (NULL);
 	my_mlx->mlx = mlx_init();
 	my_mlx->mlx_win = NULL;
-	my_mlx->img = NULL;
-	my_mlx->bits_pix = 0;
-	my_mlx->line_length = 0;
-	my_mlx->endian = 0;
-	my_mlx->width = 100;
-	my_mlx->height = 100;
-
+	my_mlx->img = init_img();
 	my_mlx->map = init_map();
 	my_mlx->textures = init_textures_paths();
 	return (my_mlx);
+}
+
+t_img	*init_img(void)
+{
+	t_img	*img;
+
+	img = NULL;
+	img = (t_img *)malloc(sizeof(t_img));
+	if (!img)
+		return (NULL);
+	img->img = NULL;
+	img->bits_pix = 0;
+	img->line_length = 0;
+	img->endian = 0;
+	img->width = 100;
+	img->height = 100;
+	return (img);
 }
 
 t_map	*init_map(void)
