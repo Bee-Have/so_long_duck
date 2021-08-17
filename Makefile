@@ -27,6 +27,7 @@ SRCS = main.c \
 	init_struct.c lstnew_anim.c \
 	init_mlx.c \
 	mlx_printer.c mlx_print_utils.c mlx_event_manager.c \
+	textures.c \
 	pj_move.c
 OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 

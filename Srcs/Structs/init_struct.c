@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 11:08:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/13 15:01:51 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/17 12:07:23 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,12 @@ t_img	*init_img(void)
 	if (!img)
 		return (NULL);
 	img->img = NULL;
-	img->bits_pix = 0;
+	img->addr = NULL;
+	img->bits_pxl = 0;
 	img->line_length = 0;
 	img->endian = 0;
-	img->width = 100;
-	img->height = 100;
+	img->width = 1920;
+	img->height = 1080;
 	return (img);
 }
 
@@ -56,6 +57,7 @@ t_map	*init_map(void)
 	map->map = NULL;
 	map->pj_pos[0] = -1;
 	map->pj_pos[1] = -1;
+	map->pj_moved = 0;
 	map->pxl_img = -1;
 	return (map);
 }

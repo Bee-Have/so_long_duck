@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:17:06 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/13 15:05:57 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/16 12:27:53 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_window(t_mlx_vars *mlx)
 	mlx->mlx_win = mlx_new_window(mlx->mlx, mlx->img->width
 			, mlx->img->height, "so_long");
 	mlx->img->img = mlx_new_image(mlx->mlx, mlx->img->width, mlx->img->height);
-	mlx->img->addr = mlx_get_data_addr(mlx->img->img, &mlx->img->bits_pix,
+	mlx->img->addr = mlx_get_data_addr(mlx->img->img, &mlx->img->bits_pxl,
 			&mlx->img->line_length, &mlx->img->endian);
 	return ;
 }
