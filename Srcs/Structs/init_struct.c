@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 11:08:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/17 12:07:23 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/17 17:09:58 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ t_textures	*init_textures_paths(void)
 	textures = (t_textures *)malloc(sizeof(t_textures));
 	if (!textures)
 		return (NULL);
-	textures->floor = "./Sprites/Floor_Tiles/water_tile.xpm";
 	textures->wall = "./Sprites/Walls/Pond/wall.xpm";
 	textures->wall_n = "./Sprites/Walls/Pond/wall_n.xpm";
 	textures->wall_s = "./Sprites/Walls/Pond/wall_s.xpm";
@@ -80,8 +79,9 @@ t_textures	*init_textures_paths(void)
 	textures->wall_corner_nw = "./Sprites/Walls/Pond/wall_nw.xpm";
 	textures->wall_corner_se = "./Sprites/Walls/Pond/wall_se.xpm";
 	textures->wall_corner_sw = "./Sprites/Walls/Pond/wall_sw.xpm";
-	textures->obj = "./Sprites/Objects/flowers.xpm";
 
+	textures->floor = init_anim(4, "./Sprites/Floor_Tiles/");
+	textures->obj = init_anim(4, "./Sprites/Objects/Flowers/");
 	textures->exit = init_anim(2, "./Sprites/Exit/Typhoon/");
 	textures->pj_idle = init_anim(5, "./Sprites/Characters/Frog/Idle/");
 	textures->pj_walk = init_anim(8, "./Sprites/Characters/Frog/Walk/");

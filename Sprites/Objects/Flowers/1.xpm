@@ -1,5 +1,5 @@
 /* XPM */
-static char *result[] = {
+static char *ot8x2_pcrda[] = {
 /* columns rows colors chars-per-pixel */
 "36 36 6 1 ",
 "  c #62143C",

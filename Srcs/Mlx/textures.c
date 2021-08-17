@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 12:29:57 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/17 12:34:48 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/17 18:20:31 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,33 +41,22 @@ char	*get_right_xpm(t_mlx_vars *mlx, int row, int col)
 	if (mlx->map->map[row][col] == '1')
 		return (get_wall(mlx->map->map, mlx->textures, row, col));
 	else if (mlx->map->map[row][col] == 'C')
-		return (mlx->textures->obj);
+		return (get_animation(&mlx->textures->obj, 1));
 	else if (mlx->map->map[row][col] == 'E')
-	{
-		if (mlx->textures->exit->played == 4)
-		{
-			mlx->textures->exit->played = 0;
-			mlx->textures->exit = mlx->textures->exit->next;
-		}
-		else
-			mlx->textures->exit->played++;
-		return (mlx->textures->exit->prev->img);
-	}
+		return (get_animation(&mlx->textures->exit, 2));
 	else if (mlx->map->map[row][col] == 'P')
-	{
-		if (mlx->textures->pj_idle->played == 2)
-		{
-			mlx->textures->pj_idle->played = 0;
-			mlx->textures->pj_idle = mlx->textures->pj_idle->next;
-		}
-		else
-			mlx->textures->pj_idle->played++;
-		return (mlx->textures->pj_idle->prev->img);
-	}
+		return (get_animation(&mlx->textures->pj_idle, 0));
 	return (NULL);
 }
 
-char	*get_animation(t_mlx_vars *mlx, int row, int col)
+char	*get_animation(t_anim **anim, int play_time)
 {
-	
+	if ((*anim)->played >= play_time)
+	{
+		(*anim)->played = 0;
+		(*anim) = (*anim)->next;
+	}
+	else
+		(*anim)->played++;
+	return ((*anim)->img);
 }

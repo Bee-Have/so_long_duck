@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:32:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/17 12:23:50 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/17 18:20:26 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,42 +19,24 @@ void	mlx_print_window(t_mlx_vars *mlx)
 
 	mlx_hook(mlx->mlx_win, 17, 1L<<17, close_window, mlx);
 	mlx_hook(mlx->mlx_win, 2, 1, key_hook, mlx);
-	mlx_loop_hook(mlx->mlx, print_map, mlx);
+	mlx_loop_hook(mlx->mlx, print_all, mlx);
 	mlx_loop(mlx->mlx);
 	// free(mlx->map);
 	// free(mlx);
 }
 
-int	print_map(t_mlx_vars *mlx)
+int	print_all(t_mlx_vars *mlx)
 {
-	int		row;
-	int		col;
-	int		tot_x;
-	int		tot_y;
-
-	row = 0;
-	tot_y = calc_offset(mlx->map->pxl_img, ft_tablen((const char **)mlx->map->map), mlx->img->height);
 	if (mlx->map->pj_moved == 1)
 		move_pj_map_pos(mlx, mlx->map->pj_pos);
-	while (mlx->map->map[row] != NULL)
-	{
-		col = 0;
-		tot_x = calc_offset(mlx->map->pxl_img, ft_strlen(mlx->map->map[0]), mlx->img->width);
-		while (mlx->map->map[row][col] != '\0')
-		{
-			sprite_to_img(mlx, mlx->textures->floor, tot_x, tot_y);
-			tot_x += mlx->map->pxl_img;
-			col++;
-		}
-		tot_y += mlx->map->pxl_img;
-		row++;
-	}
+	print_map(mlx, 1);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img->img, 0, 0);
-	print_sprites(mlx);
+	print_map(mlx, 0);
+	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img->img, 0, 0);
 	return (1);
 }
 
-int	print_sprites(t_mlx_vars *mlx)
+void	print_map(t_mlx_vars *mlx, int floor)
 {
 	int		row;
 	int		col;
@@ -62,14 +44,18 @@ int	print_sprites(t_mlx_vars *mlx)
 	int		tot_y;
 
 	row = 0;
-	tot_y = calc_offset(mlx->map->pxl_img, ft_tablen((const char **)mlx->map->map), mlx->img->height);
+	tot_y = calc_offset(mlx->map->pxl_img,
+		ft_tablen((const char **)mlx->map->map), mlx->img->height);
 	while (mlx->map->map[row] != NULL)
 	{
 		col = 0;
-		tot_x = calc_offset(mlx->map->pxl_img, ft_strlen(mlx->map->map[0]), mlx->img->width);
+		tot_x = calc_offset(mlx->map->pxl_img,
+			ft_strlen(mlx->map->map[0]), mlx->img->width);
 		while (mlx->map->map[row][col] != '\0')
 		{
-			if (get_right_xpm(mlx, row, col))
+			if (floor == 1)
+				sprite_to_img(mlx, get_animation(&mlx->textures->floor, 150), tot_x, tot_y);
+			else if (floor == 0 && mlx->map->map[row][col] != '0')
 				sprite_to_img(mlx, get_right_xpm(mlx, row, col), tot_x, tot_y);
 			tot_x += mlx->map->pxl_img;
 			col++;
@@ -77,8 +63,6 @@ int	print_sprites(t_mlx_vars *mlx)
 		tot_y += mlx->map->pxl_img;
 		row++;
 	}
-	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img->img, 0, 0);
-	return (1);
 }
 
 void	sprite_to_img(t_mlx_vars *mlx, char *path, int tot_x, int tot_y)
