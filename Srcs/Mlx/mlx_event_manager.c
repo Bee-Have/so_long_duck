@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 12:25:35 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/19 12:30:01 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/19 15:45:03 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	key_hook(int keycode, t_mlx_vars *mlx)
 
 int	close_window(t_mlx_vars *mlx)
 {
+	mlx_destroy_image(mlx->mlx, mlx->img->img);
 	mlx_destroy_window(mlx->mlx, mlx->mlx_win);
 	exit(1);
 	return (1);

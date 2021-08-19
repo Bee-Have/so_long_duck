@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:32:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/19 13:25:45 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/19 15:42:11 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,5 @@ void	add_img(t_mlx_vars *mlx, char *path, int tot_x, int tot_y)
 		}
 		++tot_y;
 	}
-	free(tmp);
+	mlx_destroy_image(mlx->mlx, tmp);
 }

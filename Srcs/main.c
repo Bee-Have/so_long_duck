@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:38:09 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/19 13:36:48 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/19 15:41:46 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,5 @@ void	main_manager(char **map)
 		init_window(mlx);
 	find_player(mlx);
 	mlx_print_window(mlx);
-	free(map);
+	ft_freetab(map);
 }
