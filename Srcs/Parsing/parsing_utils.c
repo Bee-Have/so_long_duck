@@ -1,49 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_print_utils.c                                  :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/05 18:17:07 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/19 13:02:31 by amarini-         ###   ########.fr       */
+/*   Created: 2021/08/19 12:07:32 by amarini-          #+#    #+#             */
+/*   Updated: 2021/08/19 12:11:33 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/so_long.h"
 
-int	offset(int pxl, int map_len, int max_win)
+void	find_player(t_mlx_vars *mlx)
 {
-	int		offset;
-	int		max_pxl_win;
-	int		midd_pxl;
+	int		row;
+	int		col;
 
-	midd_pxl = (pxl * map_len) / 2;
-	max_pxl_win = pxl * map_len;
-	offset = (max_win - max_pxl_win) / 2;
-	return (offset);
-}
-
-void	black_to_transparency(char *addr, size_t len)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	while (i < len)
+	row = 0;
+	while (mlx->map->map[row])
 	{
-		j = 0;
-		while (j < 3)
+		col = 0;
+		while (mlx->map->map[row][col] != '\0')
 		{
-			if (addr[i + j] == 0)
-				++j;
-			else
-				break ;
+			if (mlx->map->map[row][col] == 'P')
+			{
+				mlx->map->pj_pos[0] = row;
+				mlx->map->pj_pos[1] = col;
+				return ;
+			}
+			col++;
 		}
-		if (j == 3)
-		{
-			addr[i] = -127;
-		}
-		i += 4;
+		row++;
 	}
 }

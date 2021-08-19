@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 12:25:35 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/17 12:10:42 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/19 12:30:01 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	key_hook(int keycode, t_mlx_vars *mlx)
 {
 	if (keycode == 53)
 	{
-		ft_putstr("exiting window\n");
 		close_window(mlx);
 		return (-1);
 	}

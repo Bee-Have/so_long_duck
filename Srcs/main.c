@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:38:09 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/17 17:03:58 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/19 13:36:48 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	main_manager(char **map)
 {
 	t_mlx_vars	*mlx;
 
-	ft_print_tab(map);
 	mlx = init_mlx_struct();
 	init_window(mlx);
 	mlx->map->map = map;
@@ -48,9 +47,11 @@ void	main_manager(char **map)
 		ft_freetab(map);
 		return ;
 	}
-	mlx_xpm_file_to_image(mlx->mlx, mlx->textures->floor->img, &mlx->map->pxl_img, &mlx->map->pxl_img);
+	mlx_xpm_file_to_image(mlx->mlx, mlx->ref->tile->img, &mlx->map->pxl_img,
+		&mlx->map->pxl_img);
 	if (mlx_check_size_window(mlx) == 1)
 		init_window(mlx);
+	find_player(mlx);
 	mlx_print_window(mlx);
 	free(map);
 }

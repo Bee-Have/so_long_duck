@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 11:08:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/17 17:09:58 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/19 13:31:47 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_mlx_vars	*init_mlx_struct(void)
 	my_mlx->mlx_win = NULL;
 	my_mlx->img = init_img();
 	my_mlx->map = init_map();
-	my_mlx->textures = init_textures_paths();
+	my_mlx->ref = init_refs_paths();
 	return (my_mlx);
 }
 
@@ -39,10 +39,10 @@ t_img	*init_img(void)
 	img->img = NULL;
 	img->addr = NULL;
 	img->bits_pxl = 0;
-	img->line_length = 0;
+	img->line_len = 0;
 	img->endian = 0;
-	img->width = 1920;
-	img->height = 1080;
+	img->width = 100;
+	img->height = 100;
 	return (img);
 }
 
@@ -55,38 +55,36 @@ t_map	*init_map(void)
 	if (!map)
 		return (NULL);
 	map->map = NULL;
+	map->moves = 0;
+	map->pj_moved = 0;
 	map->pj_pos[0] = -1;
 	map->pj_pos[1] = -1;
-	map->pj_moved = 0;
 	map->pxl_img = -1;
 	return (map);
 }
 
-t_textures	*init_textures_paths(void)
+t_refs	*init_refs_paths(void)
 {
-	t_textures	*textures;
-	
-	textures = NULL;
-	textures = (t_textures *)malloc(sizeof(t_textures));
-	if (!textures)
-		return (NULL);
-	textures->wall = "./Sprites/Walls/Pond/wall.xpm";
-	textures->wall_n = "./Sprites/Walls/Pond/wall_n.xpm";
-	textures->wall_s = "./Sprites/Walls/Pond/wall_s.xpm";
-	textures->wall_e = "./Sprites/Walls/Pond/wall_e.xpm";
-	textures->wall_w = "./Sprites/Walls/Pond/wall_w.xpm";
-	textures->wall_corner_ne = "./Sprites/Walls/Pond/wall_ne.xpm";
-	textures->wall_corner_nw = "./Sprites/Walls/Pond/wall_nw.xpm";
-	textures->wall_corner_se = "./Sprites/Walls/Pond/wall_se.xpm";
-	textures->wall_corner_sw = "./Sprites/Walls/Pond/wall_sw.xpm";
+	t_refs	*ref;
 
-	textures->floor = init_anim(4, "./Sprites/Floor_Tiles/");
-	textures->obj = init_anim(4, "./Sprites/Objects/Flowers/");
-	textures->exit = init_anim(2, "./Sprites/Exit/Typhoon/");
-	textures->pj_idle = init_anim(5, "./Sprites/Characters/Frog/Idle/");
-	textures->pj_walk = init_anim(8, "./Sprites/Characters/Frog/Walk/");
-	
-	return (textures);
+	ref = NULL;
+	ref = (t_refs *)malloc(sizeof(t_refs));
+	if (!ref)
+		return (NULL);
+	ref->wall = "./Sprites/Walls/Pond/wall.xpm";
+	ref->wall_n = "./Sprites/Walls/Pond/wall_n.xpm";
+	ref->wall_s = "./Sprites/Walls/Pond/wall_s.xpm";
+	ref->wall_e = "./Sprites/Walls/Pond/wall_e.xpm";
+	ref->wall_w = "./Sprites/Walls/Pond/wall_w.xpm";
+	ref->wall_corner_ne = "./Sprites/Walls/Pond/wall_ne.xpm";
+	ref->wall_corner_nw = "./Sprites/Walls/Pond/wall_nw.xpm";
+	ref->wall_corner_se = "./Sprites/Walls/Pond/wall_se.xpm";
+	ref->wall_corner_sw = "./Sprites/Walls/Pond/wall_sw.xpm";
+	ref->tile = init_anim(4, "./Sprites/Floor_Tiles/");
+	ref->obj = init_anim(4, "./Sprites/Objects/Flowers/");
+	ref->exit = init_anim(2, "./Sprites/Exit/Typhoon/");
+	ref->pj_idle = init_anim(5, "./Sprites/Characters/Frog/Idle/");
+	return (ref);
 }
 
 t_anim	*init_anim(int len, char *path)
@@ -96,7 +94,7 @@ t_anim	*init_anim(int len, char *path)
 	t_anim	*previous;
 	char	*file;
 	int		i;
-	
+
 	i = 0;
 	file = ft_strdup("0.xpm");
 	anim = lstnew_anim(ft_strjoin(path, file));
