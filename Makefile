@@ -14,16 +14,18 @@ OBJS_DIR = Objs
 INC_DIR = ./Includes/so_long
 LIBFT_DIR = ./Libs/libft_duck
 GETFILE_DIR = ./Libs/Lib_get_file
-MLX_DIR = ./Libs/minilibx_opengl_20191021
+# MLX_DIR = ./Libs/minilibx-mac
+MLX_DIR = ./Libs/minilibx-linux
 
 OPENGL = -lm -lbsd -lX11 -lXext
-LIBS = -L$(LIBFT_DIR) -lft -L$(GETFILE_DIR) -lgetfile -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+# LIBS = -L$(LIBFT_DIR) -lft -L$(GETFILE_DIR) -lgetfile -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+LIBS = -L$(LIBFT_DIR) -lft -L$(GETFILE_DIR) -lgetfile -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lz
 INCLUDES = -I$(LIBFT_DIR)/Includes -I$(GETFILE_DIR)/Includes -I$(MLX_DIR) -I$(INC_DIR)
 
 vpath %.c $(foreach dir, $(SRCS_DIR), $(dir):)
 
 SRCS = main.c \
-	error_message.c \
+	error_message.c End.c \
 	map_parsing.c parsing_utils.c \
 	mlx_event_manager.c \
 	init_struct.c lstnew_anim.c \
