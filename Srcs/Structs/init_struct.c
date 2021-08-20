@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 11:08:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/19 13:31:47 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/20 14:41:08 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,18 +93,19 @@ t_anim	*init_anim(int len, char *path)
 	t_anim	*iterator;
 	t_anim	*previous;
 	char	*file;
+	char	*tmp;
 	int		i;
 
 	i = 0;
 	file = ft_strdup("0.xpm");
-	anim = lstnew_anim(ft_strjoin(path, file));
-	i++;
+	tmp = ft_strjoin(path, file);
+	anim = lstnew_anim(tmp);
+	++i;
 	iterator = anim;
 	previous = iterator;
 	while (i < len)
 	{
-		file = ft_substr(file, 1, ft_strlen(file) - 1);
-		file = ft_strjoin(ft_itoa(i), file);
+		anim_name_managment(&file, i);
 		iterator->next = lstnew_anim(ft_strjoin(path, file));
 		iterator = iterator->next;
 		iterator->prev = previous;

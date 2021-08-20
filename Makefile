@@ -14,12 +14,20 @@ OBJS_DIR = Objs
 INC_DIR = ./Includes/so_long
 LIBFT_DIR = ./Libs/libft_duck
 GETFILE_DIR = ./Libs/Lib_get_file
-# MLX_DIR = ./Libs/minilibx-mac
+
+OS = $(shell uname)
+ifeq ($(OS), Linux)
 MLX_DIR = ./Libs/minilibx-linux
+else
+MLX_DIR = ./Libs/minilibx-mac
+endif
 
 OPENGL = -lm -lbsd -lX11 -lXext
-# LIBS = -L$(LIBFT_DIR) -lft -L$(GETFILE_DIR) -lgetfile -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+ifeq ($(OS), Linux)
 LIBS = -L$(LIBFT_DIR) -lft -L$(GETFILE_DIR) -lgetfile -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lz
+else
+LIBS = -L$(LIBFT_DIR) -lft -L$(GETFILE_DIR) -lgetfile -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+endif
 INCLUDES = -I$(LIBFT_DIR)/Includes -I$(GETFILE_DIR)/Includes -I$(MLX_DIR) -I$(INC_DIR)
 
 vpath %.c $(foreach dir, $(SRCS_DIR), $(dir):)

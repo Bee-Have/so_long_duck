@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 12:29:57 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/19 13:31:24 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/20 11:02:39 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*get_right_xpm(t_mlx_vars *mlx, int row, int col)
 	else if (mlx->map->map[row][col] == 'E')
 		return (get_anim(&mlx->ref->exit, 2));
 	else if (mlx->map->map[row][col] == 'P')
-		return (get_anim(&mlx->ref->pj_idle, 0));
+		return (get_anim(&mlx->ref->pj_idle, 1));
 	return (NULL);
 }
 

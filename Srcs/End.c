@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 15:28:25 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/19 15:37:14 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/20 14:42:57 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,20 @@ void	free_manager(t_mlx_vars *mlx)
 
 void	free_anim(t_anim **stack)
 {
-	t_anim	*iterator;
+	t_anim	*it;
 
-	iterator->prev->prev->next = NULL;
-	free(iterator->prev);
-	while (*stack)
+	it = (*stack)->prev;
+	it->prev->next = NULL;
+	free(it->img);
+	free(it);
+	while ((*stack)->next)
 	{
-		iterator = *stack;
+		it = *stack;
 		*stack = (*stack)->next;
-		free(iterator);
-		iterator = NULL;
+		free(it->img);
+		free(it);
+		it = NULL;
 	}
+	free((*stack)->img);
 	free(*stack);
 }

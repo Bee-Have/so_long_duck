@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:38:09 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/19 15:41:46 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/20 12:28:34 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,7 @@ void	main_manager(char **map)
 	mlx->map->map = map;
 	if (map_open_check(map) == -1 || map_chars_check(map, mlx) == -1)
 	{
-		free(mlx);
-		ft_freetab(map);
+		free_manager(mlx);
 		return ;
 	}
 	mlx_xpm_file_to_image(mlx->mlx, mlx->ref->tile->img, &mlx->map->pxl_img,
