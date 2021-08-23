@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:38:09 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/23 17:16:00 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/23 20:34:44 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	main_manager(char **map)
 		free_manager(mlx);
 		return ;
 	}
+	
 	mlx_xpm_file_to_image(mlx->mlx, mlx->ref->tile->img, &mlx->map->pxl_img,
 		&mlx->map->pxl_img);
 	if (mlx_check_size_window(mlx) == 1)
