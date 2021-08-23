@@ -33,6 +33,7 @@ INCLUDES = -I$(LIBFT_DIR)/Includes -I$(GETFILE_DIR)/Includes -I$(MLX_DIR) -I$(IN
 vpath %.c $(foreach dir, $(SRCS_DIR), $(dir):)
 
 SRCS = main.c \
+	debug.c \
 	error_message.c End.c \
 	map_parsing.c parsing_utils.c \
 	mlx_event_manager.c \

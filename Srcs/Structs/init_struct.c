@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 11:08:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/20 14:41:08 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/23 12:33:42 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ t_anim	*init_anim(int len, char *path)
 	previous = iterator;
 	while (i < len)
 	{
-		anim_name_managment(&file, i);
+		file = anim_name_managment(file, i);
 		iterator->next = lstnew_anim(ft_strjoin(path, file));
 		iterator = iterator->next;
 		iterator->prev = previous;
@@ -114,5 +114,8 @@ t_anim	*init_anim(int len, char *path)
 	}
 	previous->next = anim;
 	anim->prev = previous;
+	iterator = anim;
+	while (ft_strcmp(iterator->img, anim->prev->img))
+		iterator = iterator->next;
 	return (anim);
 }
