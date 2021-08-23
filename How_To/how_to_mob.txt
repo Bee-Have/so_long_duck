@@ -1,0 +1,58 @@
+
+first : generate mobs
+
+mark them on the map
+	upon printing, do like pj to generate
+
+subject did say "patroling enemies"
+so basically they go one way, then the other ?
+
+every enemy will go either up down, or right left
+struct enemy : position, wait time, anim, direction to go
+then :
+	wait for specific duration
+	go in decided direction
+	upon doing it same time as wait time
+		wait for : time / 2
+	invert direction
+	repeat
+
+create linked list of length (how many mobs found on map)
+for each mob
+	wait = longest dist to wall (x or y)
+
+int	check_max(char c, int cmp, int pos, int *i, int max)
+{
+	if (c == '1')
+	{
+		if (cmp > pos && cmp - pos > max)
+		{
+			max = cmp - pos;
+			*i = -1;
+		}
+		else if (pos - cmp > max)
+		{
+			max = pos - cmp;
+			*i = 0;
+		}
+	}
+	return (max);
+}
+
+
+while (map[row])
+{
+	max = find_max(map[row][col], row, pos[0], &i, max);
+	if (i == 0)
+		break;
+	row += i;
+}
+row = pos[0]
+while (map[row][col] != '\0')
+{
+	max = find_max(map[row][col], col, pos[1], &i, max);
+	if (i == 0)
+		break;
+	col += i;
+}
+return (max);

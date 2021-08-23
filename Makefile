@@ -37,7 +37,7 @@ SRCS = main.c \
 	error_message.c End.c \
 	map_parsing.c parsing_utils.c \
 	mlx_event_manager.c \
-	init_struct.c lstnew_anim.c \
+	init_struct.c init_anim.c \
 	init_mlx.c \
 	mlx_printer.c mlx_print_utils.c mlx_event_manager.c \
 	textures.c \

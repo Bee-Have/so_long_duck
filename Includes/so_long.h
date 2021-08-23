@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/23 11:50:21 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/23 17:46:52 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,15 @@ typedef struct ts_refs
 	struct s_anim	*exit;
 	struct s_anim	*pj_idle;
 }				t_refs;
+
+typedef struct s_mob
+{
+	int				direction;
+	int				*pos;
+	int				wait;
+	struct s_anim	*anim;
+	struct s_mob	*next;
+}				t_mob;
 
 typedef struct s_anim
 {
