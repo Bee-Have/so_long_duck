@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/19 15:35:19 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/23 11:50:21 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,12 +120,16 @@ void		move_pj_map_pos(t_mlx_vars *mlx, int *pos);
 //STRUCTS MANAGMENT
 t_mlx_vars	*init_mlx_struct(void);
 t_anim		*lstnew_anim(char *content);
+char		*anim_name_managment(char *file, int denominator);
 
 //FREE
 void		free_manager(t_mlx_vars *mlx);
-void		free_anim(t_anim **stack);
+void		free_anim(t_anim **stack, int len);
 
 //ERROR
 int			error_message(char *msg);
+
+//DEBUG
+void		print_anim(t_anim *stack, int len);
 
 #endif

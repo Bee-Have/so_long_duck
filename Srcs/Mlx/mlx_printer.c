@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:32:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/19 15:42:11 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/20 15:48:07 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	mlx_print_window(t_mlx_vars *mlx)
 
 	mlx->map->pj_moved = 0;
 	find_player(mlx);
-	mlx_hook(mlx->mlx_win, 17, 1L << 17, close_window, mlx);
-	mlx_hook(mlx->mlx_win, 2, 1, key_hook, mlx);
 	mlx_loop_hook(mlx->mlx, print_all, mlx);
+	mlx_hook(mlx->mlx_win, 17, 1L<<17, close_window, mlx);
+	mlx_hook(mlx->mlx_win, 2, 1, key_hook, mlx);
 	mlx_loop(mlx->mlx);
 }
 
@@ -29,6 +29,7 @@ int	print_all(t_mlx_vars *mlx)
 {
 	int		txt_x;
 	int		txt_y;
+	char	*moves;
 
 	if (mlx->map->pj_moved > 0)
 		move_pj_map_pos(mlx, mlx->map->pj_pos);
@@ -40,8 +41,9 @@ int	print_all(t_mlx_vars *mlx)
 	txt_x = mlx->img->width / 2;
 	txt_y = offset(mlx->map->pxl_img,
 			ft_tablen((const char **)mlx->map->map) + 1, mlx->img->height);
-	mlx_string_put(mlx->mlx, mlx->mlx_win, txt_x, txt_y,
-		0x00F8FFFA, ft_itoa(mlx->map->moves));
+	moves = ft_itoa(mlx->map->moves);
+	mlx_string_put(mlx->mlx, mlx->mlx_win, txt_x, txt_y, 0x00F8FFFA, moves);
+	free(moves);
 	return (1);
 }
 
@@ -100,5 +102,6 @@ void	add_img(t_mlx_vars *mlx, char *path, int tot_x, int tot_y)
 		}
 		++tot_y;
 	}
-	mlx_destroy_image(mlx->mlx, tmp);
+	mlx_destroy_image(mlx->mlx, tmp->img);
+	free(tmp);
 }

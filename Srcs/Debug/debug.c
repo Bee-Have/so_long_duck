@@ -1,45 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   End.c                                              :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/19 15:28:25 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/23 11:55:35 by amarini-         ###   ########.fr       */
+/*   Created: 2021/08/23 11:47:29 by amarini-          #+#    #+#             */
+/*   Updated: 2021/08/23 11:56:00 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/so_long.h"
 
-void	free_manager(t_mlx_vars *mlx)
+void	print_anim(t_anim *stack, int len)
 {
-	free(mlx->img);
-	ft_freetab(mlx->map->map);
-	free(mlx->map);
-	free_anim(&mlx->ref->tile, 4);
-	free_anim(&mlx->ref->obj, 4);
-	free_anim(&mlx->ref->exit, 2);
-	free_anim(&mlx->ref->pj_idle, 5);
-	free(mlx->ref);
-	free(mlx);
-	exit(1);
-	return ;
-}
-
-void	free_anim(t_anim **stack, int len)
-{
-	t_anim	*it;
 	int		i;
+	char	*tmp;
+	char	*tmp_tmp;
 
 	i = 0;
 	while (i < len)
 	{
-		it = *stack;
-		*stack = (*stack)->next;
-		// printf("img-[%s]\n", it->img);
-		free(it->img);
-		free(it);
+		tmp_tmp = stack->img;
+		tmp = ft_strdup(tmp_tmp);
+		tmp_tmp = ft_strjoin("[", tmp);
+		free(tmp);
+		tmp = ft_strjoin(tmp_tmp, "]");
+		free(tmp_tmp);
+		write(1, tmp, ft_strlen(tmp));
+		stack = stack->next;
+		free(tmp);
 		i++;
 	}
+	write(1, "\n", 1);
+	write(1, "\n", 1);
+	return ;
 }
