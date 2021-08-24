@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:32:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/20 15:48:07 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/24 14:18:02 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	print_all(t_mlx_vars *mlx)
 	int		txt_y;
 	char	*moves;
 
+	move_mob_manager(mlx);
 	if (mlx->map->pj_moved > 0)
 		move_pj_map_pos(mlx, mlx->map->pj_pos);
 	find_player(mlx);

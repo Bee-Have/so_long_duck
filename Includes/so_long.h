@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/23 17:46:52 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/24 15:23:12 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct s_mlx_vars
 	struct s_img	*img;
 
 	struct s_map	*map;
+	int				mobs_count;
+	struct s_mob	*mobs;
 	struct ts_refs	*ref;
 }				t_mlx_vars;
 
@@ -72,8 +74,9 @@ typedef struct ts_refs
 
 typedef struct s_mob
 {
-	int				direction;
-	int				*pos;
+	int				pos[2];
+	int				dir[2];
+	int				moves;
 	int				wait;
 	struct s_anim	*anim;
 	struct s_mob	*next;
@@ -96,6 +99,7 @@ int			offset(int pxl, int max_map, int max_win);
 char		*get_wall(char **map, t_refs *textures, int row, int col);
 int			map_chars_check(char **map, t_mlx_vars *mlx);
 void		find_player(t_mlx_vars *mlx);
+void		find_mobs(t_mlx_vars *mlx);
 
 //TEXTURES
 char		*get_right_xpm(t_mlx_vars *mlx, int row, int col);
@@ -125,11 +129,20 @@ int			close_window(t_mlx_vars *mlx);
 
 //GAMEPLAY
 void		move_pj_map_pos(t_mlx_vars *mlx, int *pos);
+char		*get_mob(int play_time, int x, int y, t_mob *mobs);
+void		move_mob_manager(t_mlx_vars *mlx);
 
 //STRUCTS MANAGMENT
 t_mlx_vars	*init_mlx_struct(void);
 t_anim		*lstnew_anim(char *content);
 char		*anim_name_managment(char *file, int denominator);
+
+//MOBS INIT
+t_mob		*init_mobs(t_mob *mobs, char **map, int *pos, int mobs_count);
+t_mob		*new_mob(char **map, int *pos);
+void		find_direction(char **map, int *pos, int (*dir)[2], int *max);
+void		find_max_x(char **map, int *pos, int (*dir)[2], int *max, int col);
+void		find_max_y(char **map, int *pos, int (*dir)[2], int *max, int row);
 
 //FREE
 void		free_manager(t_mlx_vars *mlx);

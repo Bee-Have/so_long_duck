@@ -21,38 +21,74 @@ create linked list of length (how many mobs found on map)
 for each mob
 	wait = longest dist to wall (x or y)
 
-int	check_max(char c, int cmp, int pos, int *i, int max)
+iterate through both the same way
+
+i = 1;
+while (map[pos[0]][col] != '\0')
 {
-	if (c == '1')
+	if (map[pos[0]][col] == '1')
 	{
-		if (cmp > pos && cmp - pos > max)
+		dir[0] = 0
+		if (col > pos[1])
 		{
-			max = cmp - pos;
-			*i = -1;
+			if (col - pos[1] > max)
+			{
+				max = col - pos[1]
+				dir[1] = 1;
+			}
+			i = -1;
 		}
-		else if (pos - cmp > max)
+		else
 		{
-			max = pos - cmp;
-			*i = 0;
+			if (pos[1] - col > max)
+			{
+				max = pos[1] - col;
+				dir[1] = -1;
+			}
+			i = 0;
 		}
 	}
-	return (max);
-}
-
-
-while (map[row])
-{
-	max = find_max(map[row][col], row, pos[0], &i, max);
 	if (i == 0)
-		break;
-	row += i;
-}
-row = pos[0]
-while (map[row][col] != '\0')
-{
-	max = find_max(map[row][col], col, pos[1], &i, max);
-	if (i == 0)
-		break;
+		break ;
 	col += i;
 }
-return (max);
+
+int	*find_max(char **map, int *pos, int *max)
+{
+	int		max_x;
+	int		max_y;
+	int		dir_x[2];
+	int		dir_y[2];
+
+	max_x = function_for_mx_x(map, pos, &dir_x);
+	max_y = function_for_mx_y(map, pos, &dir_y);
+	if (max_x > max_y)
+	{
+		*max = max_x;
+		return (dir_x);
+	}
+	else
+	{
+		*max = max_y;
+		return (dir_y);
+	}
+	return (NULL);
+}
+
+
+-------------------------------------------------------
+
+for each 'M' found, find it's struct, then play it's anim
+
+get pos of 'M'
+find mob at said pos
+if anim has been played then ->
+	add direction to pos
+else keep playing anim
+play next anim
+
+NO
+
+---------------------------------------------------------
+
+

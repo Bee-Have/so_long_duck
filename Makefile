@@ -38,10 +38,11 @@ SRCS = main.c \
 	map_parsing.c parsing_utils.c \
 	mlx_event_manager.c \
 	init_struct.c init_anim.c \
+	init_mobs.c init_mobs_utils.c \
 	init_mlx.c \
 	mlx_printer.c mlx_print_utils.c mlx_event_manager.c \
 	textures.c \
-	pj_move.c
+	pj_move.c mob_move.c
 OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 
 all: Libs $(NAME)
