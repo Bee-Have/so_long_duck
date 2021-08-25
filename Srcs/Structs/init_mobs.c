@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 17:20:23 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/24 15:29:52 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/25 13:20:12 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,18 @@ t_mob	*init_mobs(t_mob *mobs, char **map, int *pos, int mobs_count)
 	int		i;
 
 	i = 0;
-	printf("pos[0][%d]\n", pos[0]);
-	printf("pos[1][%d]\n", pos[1]);
 	if (!mobs)
 	{
-		new_mob(map, pos);
-		printf("first_mob-[%s]\n", mobs->anim->img);
+		mobs = new_mob(map, pos);
+		mobs->next = mobs;
 		return (mobs);
 	}
 	it = mobs;
-	while (i < mobs_count)
+	while (i < mobs_count - 1)
+	{
 		it = it->next;
+		i++;
+	}
 	it->next = NULL;
 	it->next = new_mob(map, pos);
 	it->next->next = mobs;
@@ -66,8 +67,8 @@ void	find_direction(char **map, int *pos, int (*dir)[2], int *max)
 	dir_x[1] = 0;
 	dir_y[0] = 0;
 	dir_y[1] = 0;
+	find_max_y(map, pos, &dir_y, &max_y, pos[0]);
 	find_max_x(map, pos, &dir_x, &max_x, pos[1]);
-	find_max_y(map, pos, &dir_y, &max_y, pos[1]);
 	if (max_x > max_y)
 	{
 		*max = max_x;

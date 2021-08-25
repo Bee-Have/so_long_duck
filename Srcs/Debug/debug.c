@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 11:47:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/23 11:56:00 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/25 12:48:11 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,19 @@ void	print_anim(t_anim *stack, int len)
 	}
 	write(1, "\n", 1);
 	write(1, "\n", 1);
+	return ;
+}
+
+void	print_mobs(t_mob *mobs, int len)
+{
+	int		i;
+
+	i = 0;
+	while (i < len)
+	{
+		printf("MOB->pos[%d][%d]\n", mobs->pos[0], mobs->pos[1]);
+		mobs = mobs->next;
+		i++;
+	}
 	return ;
 }

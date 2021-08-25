@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/24 15:23:12 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/25 12:43:19 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,5 +153,6 @@ int			error_message(char *msg);
 
 //DEBUG
 void		print_anim(t_anim *stack, int len);
+void		print_mobs(t_mob *mobs, int len);
 
 #endif
