@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/25 12:43:19 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/25 15:17:09 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ int			close_window(t_mlx_vars *mlx);
 
 //GAMEPLAY
 void		move_pj_map_pos(t_mlx_vars *mlx, int *pos);
-char		*get_mob(int play_time, int x, int y, t_mob *mobs);
+char		*get_mob(int play_time, int x, int y, t_mlx_vars *mlx);
 void		move_mob_manager(t_mlx_vars *mlx);
 
 //STRUCTS MANAGMENT

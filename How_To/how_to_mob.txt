@@ -93,4 +93,12 @@ NO
 
 actually move mob
 
+move position of mob every x frames
+every frame check if the position has changed
+if it has -> find old position (position - direction)
+register new position on map
+erase old position on map
 
+once per frame :
+upon call of print
+change mobs position every X times :
