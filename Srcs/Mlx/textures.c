@@ -6,13 +6,13 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 12:29:57 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/25 15:47:48 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/25 19:07:38 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/so_long.h"
 
-char	*get_wall(char **map, t_refs *textures, int row, int col)
+t_img	*get_wall(char **map, t_refs *textures, int row, int col)
 {
 	if (col == 0 && row == 0)
 		return (textures->wall_corner_nw);
@@ -36,7 +36,7 @@ char	*get_wall(char **map, t_refs *textures, int row, int col)
 	return (textures->wall);
 }
 
-char	*get_right_xpm(t_mlx_vars *mlx, int row, int col)
+t_img	*get_right_xpm(t_mlx_vars *mlx, int row, int col)
 {
 	if (mlx->map->map[row][col] == '1')
 		return (get_wall(mlx->map->map, mlx->ref, row, col));
@@ -51,7 +51,7 @@ char	*get_right_xpm(t_mlx_vars *mlx, int row, int col)
 	return (NULL);
 }
 
-char	*get_anim(t_anim **anim, int play_time)
+t_img	*get_anim(t_anim **anim, int play_time)
 {
 	if ((*anim)->played >= play_time)
 	{

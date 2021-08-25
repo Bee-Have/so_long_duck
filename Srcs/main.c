@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:38:09 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/25 18:28:15 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/25 19:04:04 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ void	main_manager(char **map)
 		free_manager(mlx);
 		return ;
 	}
-	mlx_xpm_file_to_image(mlx->mlx, mlx->ref->tile->img, &mlx->map->pxl_img,
-		&mlx->map->pxl_img);
 	if (mlx_check_size_window(mlx) == 1)
 	{
 		mlx_destroy_image(mlx->mlx, mlx->img->img);

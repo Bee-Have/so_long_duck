@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 14:11:48 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/25 18:29:45 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/25 19:03:44 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_anim	*init_anim(t_mlx_vars *mlx, int len, char *path)
 	previous->next = anim;
 	anim->prev = previous;
 	iterator = anim;
-	while (ft_strcmp(iterator->img, anim->prev->img))
+	while (ft_strcmp(iterator->img->addr, anim->prev->img->addr))
 		iterator = iterator->next;
 	return (anim);
 }
@@ -69,7 +69,7 @@ t_anim	*lstnew_anim(t_mlx_vars *mlx, char *content)
 	head = (t_anim *)malloc(sizeof(t_anim));
 	if (!head)
 		return (NULL);
-	head->img = get_addr(mlx, content);
+	head->img = make_img(mlx, content);
 	head->played = 0;
 	head->next = NULL;
 	head->prev = NULL;
