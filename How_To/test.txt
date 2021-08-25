@@ -1,0 +1,17 @@
+pre_load every type of img ?
+	less calls of mlx_xpm_file_to_img
+how to store them ?
+struct
+or -> stock every type of addr to char **
+each line is a addr
+just have to remember which line is which
+
+
+so
+
+OR ?!
+
+instead of stocking paths into char*-img
+store the addr
+	that might do it yeah
+(one call of xpm_to_img per img at the begining and BAM, easy)

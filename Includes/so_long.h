@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/25 15:33:14 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/25 18:42:30 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_img
 	void	*img;
 	char	*addr;
 	int		bits_pxl;
+	int		img_len;
 	int		line_len;
 	int		endian;
 	int		width;
@@ -112,16 +113,17 @@ int			mlx_check_size_window(t_mlx_vars *mlx);
 
 //STRUCT INIT
 t_map		*init_map(void);
-t_refs		*init_refs_paths(void);
-t_anim		*init_anim(int len, char *path);
+t_refs		*init_refs_paths(t_mlx_vars *mlx);
+t_anim		*init_anim(t_mlx_vars *mlx, int len, char *path);
 t_img		*init_img(void);
+char		*get_addr(t_mlx_vars *mlx,  char *path);
 
 //MLX
 void		mlx_print_window(t_mlx_vars *mlx);
 int			print_all(t_mlx_vars *mlx);
 void		print_map(t_mlx_vars *mlx, int floor);
 void		print_sprites(t_mlx_vars *mlx);
-void		add_img(t_mlx_vars *mlx, char *path, int tot_x, int tot_y);
+void		add_img(t_mlx_vars *mlx, char *addr, int tot_x, int tot_y);
 
 //MLX EVENTS
 int			key_hook(int keycode, t_mlx_vars *mlx);
@@ -134,12 +136,12 @@ void		move_mob_manager(t_mlx_vars *mlx);
 
 //STRUCTS MANAGMENT
 t_mlx_vars	*init_mlx_struct(void);
-t_anim		*lstnew_anim(char *content);
+t_anim		*lstnew_anim(t_mlx_vars *mlx, char *content);
 char		*anim_name_managment(char *file, int denominator);
 
 //MOBS INIT
-t_mob		*init_mobs(t_mob *mobs, char **map, int *pos, int mobs_count);
-t_mob		*new_mob(char **map, int *pos);
+t_mob		*init_mobs(t_mlx_vars *mlx, char **map, int *pos, int mobs_count);
+t_mob		*new_mob(t_mlx_vars *mlx, char **map, int *pos);
 void		find_direction(char **map, int *pos, int (*dir)[2], int *max);
 void		find_max_x(char **map, int *pos, int (*dir)[2], int *max, int col);
 void		find_max_y(char **map, int *pos, int (*dir)[2], int *max, int row);

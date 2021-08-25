@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 11:08:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/25 13:19:26 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/25 18:27:35 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_mlx_vars	*init_mlx_struct(void)
 	my_mlx->map = init_map();
 	my_mlx->mobs_count = -1;
 	my_mlx->mobs = NULL;
-	my_mlx->ref = init_refs_paths();
+	my_mlx->ref = NULL;
 	return (my_mlx);
 }
 
@@ -65,7 +65,7 @@ t_map	*init_map(void)
 	return (map);
 }
 
-t_refs	*init_refs_paths(void)
+t_refs	*init_refs_paths(t_mlx_vars *mlx)
 {
 	t_refs	*ref;
 
@@ -73,18 +73,18 @@ t_refs	*init_refs_paths(void)
 	ref = (t_refs *)malloc(sizeof(t_refs));
 	if (!ref)
 		return (NULL);
-	ref->wall = "./Sprites/Walls/Pond/wall.xpm";
-	ref->wall_n = "./Sprites/Walls/Pond/wall_n.xpm";
-	ref->wall_s = "./Sprites/Walls/Pond/wall_s.xpm";
-	ref->wall_e = "./Sprites/Walls/Pond/wall_e.xpm";
-	ref->wall_w = "./Sprites/Walls/Pond/wall_w.xpm";
-	ref->wall_corner_ne = "./Sprites/Walls/Pond/wall_ne.xpm";
-	ref->wall_corner_nw = "./Sprites/Walls/Pond/wall_nw.xpm";
-	ref->wall_corner_se = "./Sprites/Walls/Pond/wall_se.xpm";
-	ref->wall_corner_sw = "./Sprites/Walls/Pond/wall_sw.xpm";
-	ref->tile = init_anim(4, "./Sprites/Floor_Tiles/");
-	ref->obj = init_anim(4, "./Sprites/Objects/Flowers/");
-	ref->exit = init_anim(2, "./Sprites/Exit/Typhoon/");
-	ref->pj_idle = init_anim(5, "./Sprites/Characters/Frog/Idle/");
+	ref->wall = get_addr(mlx, "./Sprites/Walls/Pond/wall.xpm");
+	ref->wall_n = get_addr(mlx, "./Sprites/Walls/Pond/wall_n.xpm");
+	ref->wall_s = get_addr(mlx, "./Sprites/Walls/Pond/wall_s.xpm");
+	ref->wall_e = get_addr(mlx, "./Sprites/Walls/Pond/wall_e.xpm");
+	ref->wall_w = get_addr(mlx, "./Sprites/Walls/Pond/wall_w.xpm");
+	ref->wall_corner_ne = get_addr(mlx, "./Sprites/Walls/Pond/wall_ne.xpm");
+	ref->wall_corner_nw = get_addr(mlx, "./Sprites/Walls/Pond/wall_nw.xpm");
+	ref->wall_corner_se = get_addr(mlx, "./Sprites/Walls/Pond/wall_se.xpm");
+	ref->wall_corner_sw = get_addr(mlx, "./Sprites/Walls/Pond/wall_sw.xpm");
+	ref->tile = init_anim(mlx, 4, "./Sprites/Floor_Tiles/");
+	ref->obj = init_anim(mlx, 4, "./Sprites/Objects/Flowers/");
+	ref->exit = init_anim(mlx, 2, "./Sprites/Exit/Typhoon/");
+	ref->pj_idle = init_anim(mlx, 5, "./Sprites/Characters/Frog/Idle/");
 	return (ref);
 }

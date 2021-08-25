@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 12:07:32 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/25 15:36:07 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/25 18:32:50 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	find_mobs(t_mlx_vars *mlx)
 				++mlx->mobs_count;
 				pos[0] = row;
 				pos[1] = col;
-				mlx->mobs = init_mobs(mlx->mobs, mlx->map->map, pos, mlx->mobs_count);
+				mlx->mobs = init_mobs(mlx, mlx->map->map, pos, mlx->mobs_count);
 			}
 			++col;
 		}

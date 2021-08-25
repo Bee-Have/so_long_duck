@@ -6,37 +6,37 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 17:20:23 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/25 13:20:12 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/25 18:32:30 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/so_long.h"
 
-t_mob	*init_mobs(t_mob *mobs, char **map, int *pos, int mobs_count)
+t_mob	*init_mobs(t_mlx_vars *mlx, char **map, int *pos, int mobs_count)
 {
 	t_mob	*it;
 	int		i;
 
 	i = 0;
-	if (!mobs)
+	if (!mlx->mobs)
 	{
-		mobs = new_mob(map, pos);
-		mobs->next = mobs;
-		return (mobs);
+		mlx->mobs = new_mob(mlx, map, pos);
+		mlx->mobs->next = mlx->mobs;
+		return (mlx->mobs);
 	}
-	it = mobs;
+	it = mlx->mobs;
 	while (i < mobs_count - 1)
 	{
 		it = it->next;
 		i++;
 	}
 	it->next = NULL;
-	it->next = new_mob(map, pos);
-	it->next->next = mobs;
-	return (mobs);
+	it->next = new_mob(mlx, map, pos);
+	it->next->next = mlx->mobs;
+	return (mlx->mobs);
 }
 
-t_mob	*new_mob(char **map, int *pos)
+t_mob	*new_mob(t_mlx_vars *mlx, char **map, int *pos)
 {
 	t_mob	*mob;
 
@@ -49,7 +49,7 @@ t_mob	*new_mob(char **map, int *pos)
 	mob->wait = 0;
 	find_direction(map, pos, &mob->dir, &mob->wait);
 	mob->moves = 0;
-	mob->anim = init_anim(8, "./Sprites/Characters/Slime/");
+	mob->anim = init_anim(mlx, 8, "./Sprites/Characters/Slime/");
 	mob->next = NULL;
 	return (mob);
 }

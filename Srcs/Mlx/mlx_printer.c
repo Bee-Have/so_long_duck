@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:32:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/25 12:06:45 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/25 18:37:00 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,30 +79,33 @@ void	print_map(t_mlx_vars *mlx, int floor)
 
 void	add_img(t_mlx_vars *mlx, char *path, int tot_x, int tot_y)
 {
-	t_img	*tmp;
+	// t_img	*tmp;
 	int		i;
 	int		size;
 	int		j;
 
 	i = 0;
-	tmp = init_img();
-	tmp->img = mlx_xpm_file_to_image(mlx->mlx, path, &size, &size);
-	tmp->addr = mlx_get_data_addr(tmp->img, &tmp->bits_pxl,
-			&tmp->line_len, &tmp->endian);
-	size = tmp->line_len * 36;
-	black_to_transparency(tmp->addr, size);
+	// tmp = init_img();
+	// tmp->img = mlx_xpm_file_to_image(mlx->mlx, path, &size, &size);
+	// tmp->addr = mlx_get_data_addr(tmp->img, &tmp->bits_pxl,
+			// &tmp->line_len, &tmp->endian);
+	// size = tmp->line_len * 36;
+	size = mlx->img->img_len * 36;
+	// black_to_transparency(path, size);
 	while (i < size)
 	{
 		j = 0;
-		while (j < tmp->line_len)
+		// while (j < tmp->line_len)
+		while (j < mlx->img->img_len)
 		{
 			mlx->img->addr[(tot_y * mlx->img->line_len) + tot_x + j]
-				= tmp->addr[i];
+				= path[i];
+				// = tmp->addr[i];
 			++j;
 			++i;
 		}
 		++tot_y;
 	}
-	mlx_destroy_image(mlx->mlx, tmp->img);
-	free(tmp);
+	// mlx_destroy_image(mlx->mlx, tmp->img);
+	// free(tmp);
 }
