@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 12:07:32 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/25 13:21:00 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/25 15:36:07 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,4 @@ void	find_mobs(t_mlx_vars *mlx)
 		++row;
 	}
 	mlx->mobs_count++;
-	print_mobs(mlx->mobs, mlx->mobs_count);
 }
