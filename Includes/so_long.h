@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/25 19:11:29 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/26 19:30:18 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,51 +92,33 @@ typedef struct s_anim
 
 //MAIN
 void		main_manager(char **map_good);
+
+//PARSING
 int			map_open_check(char **map);
-
-//MLX PRINT UTILS
-int			offset(int pxl, int max_map, int max_win);
-t_img		*get_wall(char **map, t_refs *textures, int row, int col);
 int			map_chars_check(char **map, t_mlx_vars *mlx);
-void		find_player(t_mlx_vars *mlx);
-void		find_mobs(t_mlx_vars *mlx);
-
-//TEXTURES
-t_img		*get_right_xpm(t_mlx_vars *mlx, int row, int col);
-void		black_to_transparency(char *addr, size_t len);
-
-//MLX INIT
-t_img		*get_anim(t_anim **anim, int play_time);
-void		init_window(t_mlx_vars *mlx);
-int			mlx_check_size_window(t_mlx_vars *mlx);
 
 //STRUCT INIT
 t_map		*init_map(void);
-t_refs		*init_refs_paths(t_mlx_vars *mlx);
-t_anim		*init_anim(t_mlx_vars *mlx, int len, char *path);
 t_img		*init_img(void);
-t_img		*make_img(t_mlx_vars *mlx,  char *path);
 
-//MLX
-void		mlx_print_window(t_mlx_vars *mlx);
-int			print_all(t_mlx_vars *mlx);
-void		print_map(t_mlx_vars *mlx, int floor);
-void		print_sprites(t_mlx_vars *mlx);
-void		add_img(t_mlx_vars *mlx, t_img *addr, int tot_x, int tot_y);
-
-//MLX EVENTS
-int			key_hook(int keycode, t_mlx_vars *mlx);
-int			close_window(t_mlx_vars *mlx);
-
-//GAMEPLAY
-void		move_pj_map_pos(t_mlx_vars *mlx, int *pos);
-t_img		*get_mob(int play_time, int x, int y, t_mob *mobs);
-void		move_mob_manager(t_mlx_vars *mlx);
-
-//STRUCTS MANAGMENT
+//INIT MLX
 t_mlx_vars	*init_mlx_struct(void);
+void		init_window(t_mlx_vars *mlx);
+int			mlx_check_size_window(t_mlx_vars *mlx);
+
+//INIT ANIMS
+t_anim		*init_anim(t_mlx_vars *mlx, int len, char *path);
 t_anim		*lstnew_anim(t_mlx_vars *mlx, char *content);
 char		*anim_name_managment(char *file, int denominator);
+
+//INIT SPRITES
+t_refs		*init_refs_paths(t_mlx_vars *mlx);
+t_img		*make_img(t_mlx_vars *mlx,  char *path);
+void		black_to_transparency(char *addr, size_t len);
+
+//INIT GAMEPLAY
+void		find_player(t_mlx_vars *mlx);
+void		find_mobs(t_mlx_vars *mlx);
 
 //MOBS INIT
 t_mob		*init_mobs(t_mlx_vars *mlx, char **map, int *pos, int mobs_count);
@@ -145,9 +127,37 @@ void		find_direction(char **map, int *pos, int (*dir)[2], int *max);
 void		find_max_x(char **map, int *pos, int (*dir)[2], int *max, int col);
 void		find_max_y(char **map, int *pos, int (*dir)[2], int *max, int row);
 
+//GAMEPLAY
+void		move_pj_map_pos(t_mlx_vars *mlx, int *pos);
+t_img		*get_mob(int play_time, int x, int y, t_mob *mobs);
+void		move_mob_manager(t_mlx_vars *mlx);
+
+//PRINTING
+void		mlx_print_window(t_mlx_vars *mlx);
+int			print_all(t_mlx_vars *mlx);
+void		print_map(t_mlx_vars *mlx, int floor);
+void		print_sprites(t_mlx_vars *mlx);
+void		add_img(t_mlx_vars *mlx, t_img *addr, int tot_x, int tot_y);
+
+//MLX PRINT UTILS
+int			offset(int pxl, int max_map, int max_win);
+
+//GET IMGS TO PRINT
+t_img		*get_wall(char **map, t_refs *textures, int row, int col);
+t_img		*get_right_xpm(t_mlx_vars *mlx, int row, int col);
+t_img		*get_anim(t_anim **anim, int play_time);
+
+//MLX EVENTS
+int			key_hook(int keycode, t_mlx_vars *mlx);
+int			close_window(t_mlx_vars *mlx);
+
 //FREE
 void		free_manager(t_mlx_vars *mlx);
-void		free_anim(t_anim **stack, int len);
+void		free_mobs(t_mlx_vars *mlx);
+void		free_sprites(t_mlx_vars *mlx);
+void		free_anim(t_mlx_vars *mlx, t_anim **stack, int len);
+void		free_img(t_mlx_vars *mlx, t_img *img);
+
 
 //ERROR
 int			error_message(char *msg);
