@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:17:06 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/25 18:27:27 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/27 15:47:44 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	init_window(t_mlx_vars *mlx)
 {
+	if (mlx->ref)
+		free_sprites(mlx);
 	mlx->mlx_win = mlx_new_window(mlx->mlx, mlx->img->width,
 			mlx->img->height, "so_long");
 	mlx->img->img = mlx_new_image(mlx->mlx, mlx->img->width, mlx->img->height);

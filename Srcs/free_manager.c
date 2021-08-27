@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 15:28:25 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/27 12:03:37 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/27 15:47:34 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,14 @@
 
 void	free_manager(t_mlx_vars *mlx)
 {
-	free_img(mlx, mlx->img);
+	free_img(mlx, &mlx->img);
 	ft_freetab(mlx->map->map);
 	free(mlx->map);
 	free_sprites(mlx);
-	free(mlx->ref);
 	free_mobs(mlx);
+	mlx_destroy_window(mlx->mlx, mlx->mlx_win);
 	free(mlx);
 	exit(1);
-	return ;
 }
 
 void	free_mobs(t_mlx_vars *mlx)
@@ -44,19 +43,20 @@ void	free_mobs(t_mlx_vars *mlx)
 
 void	free_sprites(t_mlx_vars *mlx)
 {
-	free_img(mlx, mlx->ref->wall);
-	free_img(mlx, mlx->ref->wall_n);
-	free_img(mlx, mlx->ref->wall_s);
-	free_img(mlx, mlx->ref->wall_e);
-	free_img(mlx, mlx->ref->wall_w);
-	free_img(mlx, mlx->ref->wall_corner_ne);
-	free_img(mlx, mlx->ref->wall_corner_nw);
-	free_img(mlx, mlx->ref->wall_corner_se);
-	free_img(mlx, mlx->ref->wall_corner_sw);
+	free_img(mlx, &mlx->ref->wall);
+	free_img(mlx, &mlx->ref->wall_n);
+	free_img(mlx, &mlx->ref->wall_s);
+	free_img(mlx, &mlx->ref->wall_e);
+	free_img(mlx, &mlx->ref->wall_w);
+	free_img(mlx, &mlx->ref->wall_corner_ne);
+	free_img(mlx, &mlx->ref->wall_corner_nw);
+	free_img(mlx, &mlx->ref->wall_corner_se);
+	free_img(mlx, &mlx->ref->wall_corner_sw);
 	free_anim(mlx, &mlx->ref->tile, 4);
 	free_anim(mlx, &mlx->ref->obj, 4);
 	free_anim(mlx, &mlx->ref->exit, 2);
 	free_anim(mlx, &mlx->ref->pj_idle, 5);
+	free(mlx->ref);
 }
 
 void	free_anim(t_mlx_vars *mlx, t_anim **stack, int len)
@@ -69,17 +69,18 @@ void	free_anim(t_mlx_vars *mlx, t_anim **stack, int len)
 	{
 		it = *stack;
 		*stack = (*stack)->next;
-		free_img(mlx, it->img);
+		it->next = NULL;
+		free_img(mlx, &it->img);
 		free(it);
 		i++;
 	}
-	free_img(mlx, (*stack)->img);
-	free(*stack);
+	// free_img(mlx, (*stack)->img);
+	// free(*stack);
 }
 
-void	free_img(t_mlx_vars *mlx, t_img *img)
+void	free_img(t_mlx_vars *mlx, t_img **img)
 {
-	mlx_destroy_image(mlx->mlx, img->img);
-	free(img);
+	mlx_destroy_image(mlx->mlx, (*img)->img);
+	free(*img);
 	return ;
 }

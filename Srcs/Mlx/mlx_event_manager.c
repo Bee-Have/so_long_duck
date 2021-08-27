@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_event_manager.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 12:25:35 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/26 19:15:01 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/27 15:32:38 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,5 @@ int	key_hook(int keycode, t_mlx_vars *mlx)
 
 int	close_window(t_mlx_vars *mlx)
 {
-	mlx_destroy_window(mlx->mlx, mlx->mlx_win);
 	free_manager(mlx);
-	exit(1);
 }

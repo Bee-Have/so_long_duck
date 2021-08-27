@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/27 11:51:27 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/27 15:30:58 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_mlx_vars
 	struct s_map	*map;
 	int				mobs_count;
 	struct s_mob	*mobs;
-	struct ts_refs	*ref;
+	struct s_refs	*ref;
 }				t_mlx_vars;
 
 typedef struct s_img
@@ -54,7 +54,7 @@ typedef struct s_map
 	int		pxl_img;
 }				t_map;
 
-typedef struct ts_refs
+typedef struct s_refs
 {
 	struct s_img	*wall;
 	struct s_img	*wall_n;
@@ -156,7 +156,7 @@ void		free_manager(t_mlx_vars *mlx);
 void		free_mobs(t_mlx_vars *mlx);
 void		free_sprites(t_mlx_vars *mlx);
 void		free_anim(t_mlx_vars *mlx, t_anim **stack, int len);
-void		free_img(t_mlx_vars *mlx, t_img *img);
+void		free_img(t_mlx_vars *mlx, t_img **img);
 
 
 //ERROR

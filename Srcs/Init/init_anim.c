@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 14:11:48 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/27 11:53:41 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/27 15:09:45 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ t_anim	*lstnew_anim(t_mlx_vars *mlx, char *content)
 	head = (t_anim *)malloc(sizeof(t_anim));
 	if (!head)
 		return (NULL);
+	head->prev = NULL;
 	head->img = make_img(mlx, content);
 	head->played = 0;
 	head->next = NULL;
-	head->prev = NULL;
 	free(content);
 	return (head);
 }
