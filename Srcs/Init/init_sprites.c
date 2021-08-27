@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 16:47:30 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/27 15:14:05 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/27 16:04:52 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ t_img	*make_img(t_mlx_vars *mlx, char *path)
 	sprite->img = mlx_xpm_file_to_image(mlx->mlx, path, &size, &size);
 	if (mlx->map->pxl_img == -1)
 		mlx->map->pxl_img = size;
-	sprite->addr = mlx_get_data_addr(sprite->img, &sprite->bits_pxl, &sprite->line_len
-		, &sprite->endian);
+	sprite->addr = mlx_get_data_addr(sprite->img, &sprite->bits_pxl,
+			&sprite->line_len, &sprite->endian);
 	size = sprite->line_len * 36;
 	black_to_transparency(sprite->addr, size);
 	return (sprite);

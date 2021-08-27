@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:32:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/25 19:05:39 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/27 16:06:26 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	mlx_print_window(t_mlx_vars *mlx)
 	mlx->map->pj_moved = 0;
 	find_player(mlx);
 	mlx_loop_hook(mlx->mlx, print_all, mlx);
-	mlx_hook(mlx->mlx_win, 17, 1L<<17, close_window, mlx);
+	mlx_hook(mlx->mlx_win, 17, 1L << 17, close_window, mlx);
 	mlx_hook(mlx->mlx_win, 2, 1, key_hook, mlx);
 	mlx_loop(mlx->mlx);
 }
@@ -33,7 +33,7 @@ int	print_all(t_mlx_vars *mlx)
 
 	move_mob_manager(mlx);
 	if (mlx->map->pj_moved > 0)
-		move_pj_map_pos(mlx, mlx->map->pj_pos);
+		move_pj_map_pos(mlx, mlx->map, mlx->map->pj_pos);
 	find_player(mlx);
 	print_map(mlx, 1);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img->img, 0, 0);

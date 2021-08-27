@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/27 15:30:58 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/27 16:02:42 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ typedef struct s_mob
 
 typedef struct s_anim
 {
-	struct s_anim	*prev;
 	struct s_img	*img;
 	int				played;
 	struct s_anim	*next;
@@ -113,7 +112,7 @@ void		anim_name_managment(char **file, int denominator);
 
 //INIT SPRITES
 t_refs		*init_refs_paths(t_mlx_vars *mlx);
-t_img		*make_img(t_mlx_vars *mlx,  char *path);
+t_img		*make_img(t_mlx_vars *mlx, char *path);
 void		black_to_transparency(char *addr, size_t len);
 
 //INIT GAMEPLAY
@@ -128,7 +127,7 @@ void		find_max_x(char **map, int *pos, int (*dir)[2], int *max, int col);
 void		find_max_y(char **map, int *pos, int (*dir)[2], int *max, int row);
 
 //GAMEPLAY
-void		move_pj_map_pos(t_mlx_vars *mlx, int *pos);
+void		move_pj_map_pos(t_mlx_vars *mlx, t_map *map, int *pos);
 t_img		*get_mob(int play_time, int x, int y, t_mob *mobs);
 void		move_mob_manager(t_mlx_vars *mlx);
 
@@ -157,7 +156,6 @@ void		free_mobs(t_mlx_vars *mlx);
 void		free_sprites(t_mlx_vars *mlx);
 void		free_anim(t_mlx_vars *mlx, t_anim **stack, int len);
 void		free_img(t_mlx_vars *mlx, t_img **img);
-
 
 //ERROR
 int			error_message(char *msg);

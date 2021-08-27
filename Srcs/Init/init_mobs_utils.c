@@ -6,12 +6,11 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 11:32:07 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/25 13:21:12 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/27 16:04:01 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/so_long.h"
-
 
 void	find_max_x(char **map, int *pos, int (*dir)[2], int *max, int col)
 {
