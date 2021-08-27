@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   End.c                                              :+:      :+:    :+:   */
+/*   free_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 15:28:25 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/26 19:33:58 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/27 12:03:37 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	free_anim(t_mlx_vars *mlx, t_anim **stack, int len)
 	int		i;
 
 	i = 0;
-	while (i < len)
+	while (i < len && (*stack)->next)
 	{
 		it = *stack;
 		*stack = (*stack)->next;
@@ -73,6 +73,8 @@ void	free_anim(t_mlx_vars *mlx, t_anim **stack, int len)
 		free(it);
 		i++;
 	}
+	free_img(mlx, (*stack)->img);
+	free(*stack);
 }
 
 void	free_img(t_mlx_vars *mlx, t_img *img)

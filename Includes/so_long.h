@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/26 19:30:18 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/27 11:51:27 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int			mlx_check_size_window(t_mlx_vars *mlx);
 //INIT ANIMS
 t_anim		*init_anim(t_mlx_vars *mlx, int len, char *path);
 t_anim		*lstnew_anim(t_mlx_vars *mlx, char *content);
-char		*anim_name_managment(char *file, int denominator);
+void		anim_name_managment(char **file, int denominator);
 
 //INIT SPRITES
 t_refs		*init_refs_paths(t_mlx_vars *mlx);

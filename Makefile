@@ -34,7 +34,7 @@ vpath %.c $(foreach dir, $(SRCS_DIR), $(dir):)
 
 SRCS = main.c \
 	debug.c \
-	error_message.c End.c \
+	error_message.c free_manager.c \
 	map_parsing.c \
 	init_struct.c init_mlx.c \
 	init_anim.c init_sprites.c \

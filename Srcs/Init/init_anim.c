@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 14:11:48 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/25 19:03:44 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/27 11:53:41 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_anim	*init_anim(t_mlx_vars *mlx, int len, char *path)
 	previous = iterator;
 	while (i < len)
 	{
-		file = anim_name_managment(file, i);
+		anim_name_managment(&file, i);
 		tmp = ft_strjoin(path, file);
 		iterator->next = lstnew_anim(mlx, tmp);
 		iterator = iterator->next;
@@ -38,6 +38,7 @@ t_anim	*init_anim(t_mlx_vars *mlx, int len, char *path)
 		previous = previous->next;
 		i++;
 	}
+	free(file);
 	previous->next = anim;
 	anim->prev = previous;
 	iterator = anim;
@@ -46,19 +47,19 @@ t_anim	*init_anim(t_mlx_vars *mlx, int len, char *path)
 	return (anim);
 }
 
-char	*anim_name_managment(char *file, int denominator)
+void	anim_name_managment(char **file, int denominator)
 {
 	char	*sufix;
 	char	*prefix;
 	char	*result;
 	
-	sufix = ft_substr(file, 1, ft_strlen(file) - 1);
-	free(file);
+	sufix = ft_substr(*file, 1, ft_strlen(*file) - 1);
+	free(*file);
 	prefix = ft_itoa(denominator);
-	result = ft_strjoin(prefix, sufix);
+	*file = ft_strjoin(prefix, sufix);
 	free(prefix);
 	free(sufix);
-	return (result);
+	return ;
 }
 
 t_anim	*lstnew_anim(t_mlx_vars *mlx, char *content)
@@ -73,5 +74,6 @@ t_anim	*lstnew_anim(t_mlx_vars *mlx, char *content)
 	head->played = 0;
 	head->next = NULL;
 	head->prev = NULL;
+	free(content);
 	return (head);
 }
