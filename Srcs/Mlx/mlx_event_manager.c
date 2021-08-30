@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 12:25:35 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/27 16:09:51 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/27 16:42:53 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	key_hook(int keycode, t_mlx_vars *mlx)
 {
 	if (keycode == g_ESC)
 	{
-		close_g_windog_w(mlx);
+		close_window(mlx);
 		return (-1);
 	}
 	if (mlx->map->pj_moved == 0)
@@ -50,7 +50,7 @@ int	key_hook(int keycode, t_mlx_vars *mlx)
 	return (0);
 }
 
-int	close_g_windog_w(t_mlx_vars *mlx)
+int	close_window(t_mlx_vars *mlx)
 {
 	free_manager(mlx);
 	return (1);

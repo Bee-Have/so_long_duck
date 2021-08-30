@@ -93,12 +93,7 @@ NO
 
 actually move mob
 
-move position of mob every x frames
-every frame check if the position has changed
-if it has -> find old position (position - direction)
-register new position on map
-erase old position on map
-
-once per frame :
-upon call of print
-change mobs position every X times :
+every x times the mob will move
+so : every frame (on printing time) check "timer"
+once said timer is finished -> restart it
+change pos of mob

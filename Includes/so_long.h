@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/27 16:02:42 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/30 12:38:26 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,10 @@ void		find_max_y(char **map, int *pos, int (*dir)[2], int *max, int row);
 
 //GAMEPLAY
 void		move_pj_map_pos(t_mlx_vars *mlx, t_map *map, int *pos);
-t_img		*get_mob(int play_time, int x, int y, t_mob *mobs);
 void		move_mob_manager(t_mlx_vars *mlx);
+void		move_mob(t_mob *mob, char **map);
+void		change_mob_dir(t_mob *mob, char **map);
+void		get_mob_old_pos(t_mob *mob, char **map, int (*old_pos)[2]);
 
 //PRINTING
 void		mlx_print_window(t_mlx_vars *mlx);
@@ -144,6 +146,7 @@ int			offset(int pxl, int max_map, int max_win);
 //GET IMGS TO PRINT
 t_img		*get_wall(char **map, t_refs *textures, int row, int col);
 t_img		*get_right_xpm(t_mlx_vars *mlx, int row, int col);
+t_img		*get_mob(int play_time, int x, int y, t_mob *mobs);
 t_img		*get_anim(t_anim **anim, int play_time);
 
 //MLX EVENTS

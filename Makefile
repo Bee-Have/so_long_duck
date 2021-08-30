@@ -42,7 +42,7 @@ SRCS = main.c \
 	init_gameplay.c \
 	pj_move.c mob_move.c \
 	mlx_printer.c mlx_print_utils.c mlx_event_manager.c \
-	textures.c
+	get_sprites.c
 OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 
 all: Libs $(NAME)
