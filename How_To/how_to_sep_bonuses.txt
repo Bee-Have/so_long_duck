@@ -1,0 +1,8 @@
+MANDATORY :
+no anims
+no enemies
+return upon finding enemies on map
+
+BONUSES :
+anims
+enemies
