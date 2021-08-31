@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 17:50:24 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/31 12:34:41 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/31 15:21:02 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,7 @@ int	map_check_mobs(char **map)
 		while (map[row][col] != '\0')
 		{
 			if (map[row][col] == 'M')
-				return (error_message(
-					"MAP contains ENEMIES but isn't compiled with BONUSES"));
+				return (error_message("ENEMIES on MAP without BONUSES"));
 			col++;
 		}
 		row++;
