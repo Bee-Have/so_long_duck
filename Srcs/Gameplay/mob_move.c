@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 20:37:26 by user42            #+#    #+#             */
-/*   Updated: 2021/08/31 12:17:03 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/31 14:49:08 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,13 @@ void	move_mob(t_mob *mob, char **map)
 {
 	int		row;
 	int		col;
-	int		old_pos[2];
 
 	row = 0;
 	if (map[mob->pos[0]][mob->pos[1]] == '1'
 		|| map[mob->pos[0]][mob->pos[1]] == 'E')
 		change_mob_dir(mob, map);
 	else
-	{
-		get_mob_old_pos(mob, map, &old_pos);
-		if (map[old_pos[0]][old_pos[1]] != '1'
-			&& map[old_pos[0]][old_pos[1]] != 'P')
-			map[old_pos[0]][old_pos[1]] = '0';
-	}
+		erase_old_pos(mob, map);
 	while (map[row])
 	{
 		col = 0;
@@ -75,10 +69,15 @@ void	change_mob_dir(t_mob *mob, char **map)
 	mob->pos[1] += mob->dir[1];
 }
 
-void	get_mob_old_pos(t_mob *mob, char **map, int (*old_pos)[2])
+void	erase_old_pos(t_mob *mob, char **map)
 {
-	(*old_pos)[0] = mob->pos[0];
-	(*old_pos)[1] = mob->pos[1];
-	(*old_pos)[0] = mob->pos[0] - mob->dir[0];
-	(*old_pos)[1] = mob->pos[1] - mob->dir[1];
+	int		old_pos[2];
+
+	old_pos[0] = mob->pos[0];
+	old_pos[1] = mob->pos[1];
+	old_pos[0] = mob->pos[0] - mob->dir[0];
+	old_pos[1] = mob->pos[1] - mob->dir[1];
+	if (map[old_pos[0]][old_pos[1]] != '1'
+		&& map[old_pos[0]][old_pos[1]] != 'P')
+		map[old_pos[0]][old_pos[1]] = '0';
 }

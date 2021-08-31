@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:32:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/31 13:17:11 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/31 14:44:07 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,11 @@ int	print_all(t_mlx_vars *mlx)
 	char	*moves;
 
 	move_mob_manager(mlx);
-	if (mlx->mobs_count == -1 && mlx->map->pj_moved > 0)
-		print_moves(mlx->map->moves);
 	if (mlx->map->pj_moved > 0)
+	{
+		mlx->map->pj_moved = 0;
 		move_pj_map_pos(mlx, mlx->map, mlx->map->pj_pos);
+	}
 	find_player(mlx);
 	print_map(mlx, 1);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img->img, 0, 0);
@@ -69,7 +70,7 @@ void	print_map(t_mlx_vars *mlx, int floor)
 		while (mlx->map->map[row][col] != '\0')
 		{
 			if (floor == 1)
-				add_img(mlx, get_anim(&mlx->ref->tile, 150), tot_x * 4, tot_y);
+				add_img(mlx, get_anim(&mlx->ref->tile, 800), tot_x * 4, tot_y);
 			else if (floor == 0 && mlx->map->map[row][col] != '0')
 				add_img(mlx, get_right_xpm(mlx, row, col), tot_x * 4, tot_y);
 			tot_x += mlx->map->pxl_img;

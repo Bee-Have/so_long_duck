@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 12:29:57 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/31 12:15:54 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/31 15:10:22 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ t_img	*get_right_xpm(t_mlx_vars *mlx, int row, int col)
 	if (mlx->map->map[row][col] == '1')
 		return (get_wall(mlx->map->map, mlx->ref, row, col));
 	else if (mlx->map->map[row][col] == 'C')
-		return (get_anim(&mlx->ref->obj, 2));
+		return (get_anim(&mlx->ref->obj, 15));
 	else if (mlx->map->map[row][col] == 'E')
-		return (get_anim(&mlx->ref->exit, 2));
+		return (get_anim(&mlx->ref->exit, 15));
 	else if (mlx->map->map[row][col] == 'P')
-		return (get_anim(&mlx->ref->pj_idle, 1));
+		return (get_anim(&mlx->ref->pj_idle, 5));
 	else if (mlx->map->map[row][col] == 'M')
-		return (get_mob(5, col, row, mlx->mobs));
+		return (get_mob(50, col, row, mlx->mobs));
 	return (NULL);
 }
 

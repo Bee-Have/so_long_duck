@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:38:09 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/31 13:05:11 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/31 14:37:57 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	main_manager(char **map)
 	t_mlx_vars	*mlx;
 
 	mlx = init_mlx_struct();
-	init_window(mlx);
+	init_window(mlx, 0);
 	mlx->map->map = map;
 	if (map_open_check(map) == -1 || map_chars_check(map) == -1
 		|| map_check_mobs(map))
@@ -52,9 +52,9 @@ void	main_manager(char **map)
 	{
 		mlx_destroy_image(mlx->mlx, mlx->img->img);
 		mlx_destroy_window(mlx->mlx, mlx->mlx_win);
-		init_window(mlx);
+		init_window(mlx, 0);
 	}
-	// print_moves("0");
+	print_moves(0);
 	mlx_print_window(mlx);
 	free_manager(mlx);
 }

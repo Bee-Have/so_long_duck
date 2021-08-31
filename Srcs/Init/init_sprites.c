@@ -6,13 +6,13 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 16:47:30 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/27 16:04:52 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/31 14:41:58 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/so_long.h"
 
-t_refs	*init_refs_paths(t_mlx_vars *mlx)
+t_refs	*init_refs_paths(t_mlx_vars *mlx, int bonus)
 {
 	t_refs	*ref;
 
@@ -29,11 +29,27 @@ t_refs	*init_refs_paths(t_mlx_vars *mlx)
 	ref->wall_corner_nw = make_img(mlx, "./Sprites/Walls/Pond/wall_nw.xpm");
 	ref->wall_corner_se = make_img(mlx, "./Sprites/Walls/Pond/wall_se.xpm");
 	ref->wall_corner_sw = make_img(mlx, "./Sprites/Walls/Pond/wall_sw.xpm");
-	ref->tile = init_anim(mlx, 4, "./Sprites/Floor_Tiles/");
-	ref->obj = init_anim(mlx, 4, "./Sprites/Objects/Flowers/");
-	ref->exit = init_anim(mlx, 2, "./Sprites/Exit/Typhoon/");
-	ref->pj_idle = init_anim(mlx, 5, "./Sprites/Characters/Frog/Idle/");
+	init_refs_anims(mlx, &ref, bonus);
 	return (ref);
+}
+
+void	init_refs_anims(t_mlx_vars *mlx, t_refs **ref, int bonus)
+{
+	if (bonus == 1)
+	{
+		(*ref)->tile = init_anim(mlx, 4, "./Sprites/Floor_Tiles/");
+		(*ref)->obj = init_anim(mlx, 4, "./Sprites/Objects/Flowers/");
+		(*ref)->exit = init_anim(mlx, 2, "./Sprites/Exit/Typhoon/");
+		(*ref)->pj_idle = init_anim(mlx, 5, "./Sprites/Characters/Frog/Idle/");
+	}
+	else
+	{
+		(*ref)->tile = init_anim(mlx, 0, "./Sprites/Floor_Tiles/");
+		(*ref)->obj = init_anim(mlx, 0, "./Sprites/Objects/Flowers/");
+		(*ref)->exit = init_anim(mlx, 0, "./Sprites/Exit/Typhoon/");
+		(*ref)->pj_idle = init_anim(mlx, 0, "./Sprites/Characters/Frog/Idle/");
+	}
+	return ;
 }
 
 t_img	*make_img(t_mlx_vars *mlx, char *path)

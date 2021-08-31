@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/31 12:59:46 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/31 15:14:03 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ t_img		*init_img(void);
 
 //INIT MLX
 t_mlx_vars	*init_mlx_struct(void);
-void		init_window(t_mlx_vars *mlx);
+void		init_window(t_mlx_vars *mlx, int bonus);
 int			mlx_check_size_window(t_mlx_vars *mlx);
 
 //INIT ANIMS
@@ -112,13 +112,14 @@ t_anim		*lstnew_anim(t_mlx_vars *mlx, char *content);
 void		anim_name_managment(char **file, int denominator);
 
 //INIT SPRITES
-t_refs		*init_refs_paths(t_mlx_vars *mlx);
+t_refs		*init_refs_paths(t_mlx_vars *mlx, int bonus);
+void		init_refs_anims(t_mlx_vars *mlx, t_refs **ref, int bonus);
 t_img		*make_img(t_mlx_vars *mlx, char *path);
 void		black_to_transparency(char *addr, size_t len);
 
 //INIT GAMEPLAY
 void		find_player(t_mlx_vars *mlx);
-void		find_mobs(t_mlx_vars *mlx);
+void		find_mobs(t_mlx_vars *mlx, char **map);
 
 //MOBS INIT
 t_mob		*init_mobs(t_mlx_vars *mlx, char **map, int *pos, int mobs_count);
@@ -132,7 +133,7 @@ void		move_pj_map_pos(t_mlx_vars *mlx, t_map *map, int *pos);
 void		move_mob_manager(t_mlx_vars *mlx);
 void		move_mob(t_mob *mob, char **map);
 void		change_mob_dir(t_mob *mob, char **map);
-void		get_mob_old_pos(t_mob *mob, char **map, int (*old_pos)[2]);
+void		erase_old_pos(t_mob *mob, char **map);
 
 //PRINTING
 void		mlx_print_window(t_mlx_vars *mlx);
@@ -162,7 +163,7 @@ void		free_anim(t_mlx_vars *mlx, t_anim **stack, int len);
 void		free_img(t_mlx_vars *mlx, t_img **img);
 
 //PRINT MOVES
-void		print_moves(char *moves);
+void		print_moves(int moves);
 
 //ERROR
 int			error_message(char *msg);

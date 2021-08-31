@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 15:28:25 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/31 12:52:02 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/31 14:40:25 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,22 @@ void	free_sprites(t_mlx_vars *mlx)
 	free_img(mlx, &mlx->ref->wall_corner_nw);
 	free_img(mlx, &mlx->ref->wall_corner_se);
 	free_img(mlx, &mlx->ref->wall_corner_sw);
-	free_anim(mlx, &mlx->ref->tile, 4);
-	free_anim(mlx, &mlx->ref->obj, 4);
-	free_anim(mlx, &mlx->ref->exit, 2);
-	free_anim(mlx, &mlx->ref->pj_idle, 5);
-	free(mlx->ref);
+	if (mlx->mobs_count == -1)
+	{
+		free_anim(mlx, &mlx->ref->tile, 1);
+		free_anim(mlx, &mlx->ref->obj, 1);
+		free_anim(mlx, &mlx->ref->exit, 1);
+		free_anim(mlx, &mlx->ref->pj_idle, 1);
+		free(mlx->ref);
+	}
+	else
+	{
+		free_anim(mlx, &mlx->ref->tile, 4);
+		free_anim(mlx, &mlx->ref->obj, 4);
+		free_anim(mlx, &mlx->ref->exit, 2);
+		free_anim(mlx, &mlx->ref->pj_idle, 5);
+		free(mlx->ref);
+	}
 }
 
 void	free_anim(t_mlx_vars *mlx, t_anim **stack, int len)

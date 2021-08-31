@@ -47,13 +47,12 @@ SRCS = main.c \
 	pj_move.c mob_move.c \
 	mlx_printer.c mlx_print_utils.c mlx_event_manager.c \
 	get_sprites.c
-
-OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 endif
 
 ifdef BONUS
-SRCS_BONUS = main_bonus.c \
+SRCS = main_bonus.c \
 	debug.c \
+	print_moves.c \
 	error_message.c free_manager.c \
 	map_parsing.c \
 	init_struct.c init_mlx.c \
@@ -63,10 +62,9 @@ SRCS_BONUS = main_bonus.c \
 	pj_move.c mob_move.c \
 	mlx_printer.c mlx_print_utils.c mlx_event_manager.c \
 	get_sprites.c
-
-OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS_BONUS:.c=.o))
 endif
 
+OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 
 all: Libs $(NAME)
 
