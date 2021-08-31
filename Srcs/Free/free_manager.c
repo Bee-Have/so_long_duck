@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 15:28:25 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/31 14:40:25 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/31 15:54:42 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	free_manager(t_mlx_vars *mlx)
 	free_sprites(mlx);
 	free_mobs(mlx);
 	mlx_destroy_window(mlx->mlx, mlx->mlx_win);
+	free(mlx->mlx);
 	free(mlx);
 	exit(1);
 }
@@ -91,7 +92,8 @@ void	free_anim(t_mlx_vars *mlx, t_anim **stack, int len)
 
 void	free_img(t_mlx_vars *mlx, t_img **img)
 {
-	mlx_destroy_image(mlx->mlx, (*img)->img);
+	if ((*img)->img)
+		mlx_destroy_image(mlx->mlx, (*img)->img);
 	free(*img);
 	return ;
 }
