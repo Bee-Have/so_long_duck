@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 18:17:07 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/25 18:37:17 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/31 16:38:17 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,7 @@ void	black_to_transparency(char *addr, size_t len)
 				break ;
 		}
 		if (j == 3)
-		{
-			addr[i] = -127;
-		}
+			addr[i] = -1;
 		i += 4;
 	}
 }
