@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:38:09 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/31 13:05:11 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/31 12:33:14 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,19 @@ void	main_manager(char **map)
 	mlx = init_mlx_struct();
 	init_window(mlx);
 	mlx->map->map = map;
-	if (map_open_check(map) == -1 || map_chars_check(map) == -1
-		|| map_check_mobs(map))
+	if (map_open_check(map) == -1 || map_chars_check(map) == -1)
 	{
 		free_manager(mlx);
 		return ;
 	}
 	find_player(mlx);
+	find_mobs(mlx);
 	if (mlx_check_size_window(mlx) == 1)
 	{
 		mlx_destroy_image(mlx->mlx, mlx->img->img);
 		mlx_destroy_window(mlx->mlx, mlx->mlx_win);
 		init_window(mlx);
 	}
-	// print_moves("0");
 	mlx_print_window(mlx);
 	free_manager(mlx);
 }

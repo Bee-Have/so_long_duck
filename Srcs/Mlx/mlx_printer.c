@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:32:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/30 14:28:39 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/31 13:17:11 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	print_all(t_mlx_vars *mlx)
 	char	*moves;
 
 	move_mob_manager(mlx);
+	if (mlx->mobs_count == -1 && mlx->map->pj_moved > 0)
+		print_moves(mlx->map->moves);
 	if (mlx->map->pj_moved > 0)
 		move_pj_map_pos(mlx, mlx->map, mlx->map->pj_pos);
 	find_player(mlx);
@@ -43,7 +45,8 @@ int	print_all(t_mlx_vars *mlx)
 	txt_y = offset(mlx->map->pxl_img,
 			ft_tablen((const char **)mlx->map->map) + 1, mlx->img->height);
 	moves = ft_itoa(mlx->map->moves);
-	mlx_string_put(mlx->mlx, mlx->mlx_win, txt_x, txt_y, 0x00F8FFFA, moves);
+	if (mlx->mobs_count > 0)
+		mlx_string_put(mlx->mlx, mlx->mlx_win, txt_x, txt_y, 0x00F8FFFA, moves);
 	free(moves);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 20:37:26 by user42            #+#    #+#             */
-/*   Updated: 2021/08/30 17:35:37 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/31 12:17:03 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	move_mob_manager(t_mlx_vars *mlx)
 	t_mob	*it;
 	int		i;
 
+	if (!mlx->mobs)
+		return ;
 	it = mlx->mobs;
 	i = 0;
 	while (i < mlx->mobs_count)

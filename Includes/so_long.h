@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/30 17:20:39 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/31 12:59:46 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,8 @@ void		main_manager(char **map_good);
 
 //PARSING
 int			map_open_check(char **map);
-int			map_chars_check(char **map, t_mlx_vars *mlx);
+int			map_chars_check(char **map);
+int			map_check_mobs(char **map);
 
 //STRUCT INIT
 t_map		*init_map(void);
@@ -159,6 +160,9 @@ void		free_mobs(t_mlx_vars *mlx);
 void		free_sprites(t_mlx_vars *mlx);
 void		free_anim(t_mlx_vars *mlx, t_anim **stack, int len);
 void		free_img(t_mlx_vars *mlx, t_img **img);
+
+//PRINT MOVES
+void		print_moves(char *moves);
 
 //ERROR
 int			error_message(char *msg);

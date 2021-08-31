@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_utils.c                                    :+:      :+:    :+:   */
+/*   init_gameplay.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 12:07:32 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/25 18:32:50 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/31 13:12:55 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,6 @@ void	find_mobs(t_mlx_vars *mlx)
 		++row;
 	}
 	mlx->mobs_count++;
+	if (mlx->mobs == NULL)
+		mlx->mobs = init_mobs(mlx, mlx->map->map, pos, ++mlx->mobs_count);
 }

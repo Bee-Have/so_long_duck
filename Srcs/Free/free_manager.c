@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 15:28:25 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/27 16:06:42 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/31 12:52:02 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	free_mobs(t_mlx_vars *mlx)
 	int		i;
 
 	i = 0;
+	if (!mlx->mobs)
+		return ;
 	while (i < mlx->mobs_count)
 	{
 		it = mlx->mobs;

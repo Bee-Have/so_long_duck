@@ -8,6 +8,8 @@ ifdef DEBUG
 CFLAGS += -fsanitize=address -g3
 endif
 
+BONUS =
+
 SRCS_DIR =  $(shell find Srcs -type d)
 
 OBJS_DIR = Objs
@@ -32,7 +34,25 @@ INCLUDES = -I$(LIBFT_DIR)/Includes -I$(GETFILE_DIR)/Includes -I$(MLX_DIR) -I$(IN
 
 vpath %.c $(foreach dir, $(SRCS_DIR), $(dir):)
 
+ifndef BONUS
 SRCS = main.c \
+	debug.c \
+	print_moves.c \
+	error_message.c free_manager.c \
+	map_parsing.c \
+	init_struct.c init_mlx.c \
+	init_anim.c init_sprites.c \
+	init_mobs.c init_mobs_utils.c \
+	init_gameplay.c \
+	pj_move.c mob_move.c \
+	mlx_printer.c mlx_print_utils.c mlx_event_manager.c \
+	get_sprites.c
+
+OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
+endif
+
+ifdef BONUS
+SRCS_BONUS = main_bonus.c \
 	debug.c \
 	error_message.c free_manager.c \
 	map_parsing.c \
@@ -43,7 +63,10 @@ SRCS = main.c \
 	pj_move.c mob_move.c \
 	mlx_printer.c mlx_print_utils.c mlx_event_manager.c \
 	get_sprites.c
-OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
+
+OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS_BONUS:.c=.o))
+endif
+
 
 all: Libs $(NAME)
 

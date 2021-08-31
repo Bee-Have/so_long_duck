@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 17:50:24 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/23 17:11:36 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/31 12:34:41 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	map_open_check(char **map)
 				|| row == 0 || row == ft_tablen((const char **)map)))
 			{
 				ft_freetab(map);
-				return (error_message("map is not closed"));
+				return (error_message("MAP is not CLOSED"));
 			}
 			col++;
 		}
@@ -40,7 +40,7 @@ int	map_open_check(char **map)
 	return (0);
 }
 
-int	map_chars_check(char **map, t_mlx_vars *mlx)
+int	map_chars_check(char **map)
 {
 	char	mandatory[4];
 	int		row;
@@ -64,6 +64,27 @@ int	map_chars_check(char **map, t_mlx_vars *mlx)
 		row++;
 	}
 	if (ft_strncmp(mandatory, "ecp", 4) != 0)
-		return (error_message("map does not contain : 'E', 'C' or 'P'"));
+		return (error_message("MAP does not contain : 'E', 'C' or 'P'"));
+	return (0);
+}
+
+int	map_check_mobs(char **map)
+{
+	int		row;
+	int		col;
+
+	row = 0;
+	while (map[row])
+	{
+		col = 0;
+		while (map[row][col] != '\0')
+		{
+			if (map[row][col] == 'M')
+				return (error_message(
+					"MAP contains ENEMIES but isn't compiled with BONUSES"));
+			col++;
+		}
+		row++;
+	}
 	return (0);
 }
