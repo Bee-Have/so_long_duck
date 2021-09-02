@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:32:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/31 14:44:07 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/08/31 16:33:30 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	print_all(t_mlx_vars *mlx)
 		move_pj_map_pos(mlx, mlx->map, mlx->map->pj_pos);
 	}
 	find_player(mlx);
+	ft_memset(mlx->img->addr, 0, (mlx->img->width * mlx->img->height) * 4);
 	print_map(mlx, 1);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img->img, 0, 0);
 	print_map(mlx, 0);
@@ -94,8 +95,11 @@ void	add_img(t_mlx_vars *mlx, t_img *sprite, int tot_x, int tot_y)
 		j = 0;
 		while (j < sprite->line_len)
 		{
-			mlx->img->addr[(tot_y * mlx->img->line_len) + tot_x + j]
-				= sprite->addr[i];
+			if (sprite->addr[i] != 0x00)
+			{
+				mlx->img->addr[(tot_y * mlx->img->line_len) + tot_x + j]
+					= sprite->addr[i];
+			}
 			++j;
 			++i;
 		}

@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 20:37:26 by user42            #+#    #+#             */
-/*   Updated: 2021/08/31 14:49:08 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/02 12:02:19 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void	move_mob_manager(t_mlx_vars *mlx)
 	i = 0;
 	while (i < mlx->mobs_count)
 	{
-		move_mob(it, mlx->map->map);
+		move_mob(mlx, it, mlx->map->map);
 		it = it->next;
 		++i;
 	}
 	return ;
 }
 
-void	move_mob(t_mob *mob, char **map)
+void	move_mob(t_mlx_vars *mlx, t_mob *mob, char **map)
 {
 	int		row;
 	int		col;
@@ -48,7 +48,11 @@ void	move_mob(t_mob *mob, char **map)
 		{
 			if (mob->pos[0] == row && mob->pos[1] == col
 				&& map[row][col] != '1')
+			{
+				if (map[row][col] == 'P')
+					free_manager(mlx);
 				map[row][col] = 'M';
+			}
 			++col;
 		}
 		++row;
