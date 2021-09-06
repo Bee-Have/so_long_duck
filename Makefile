@@ -10,7 +10,7 @@ endif
 
 BONUS =
 
-SRCS_DIR =  $(shell find Srcs -type d)
+SRCS_DIR = $(shell find Srcs -type d)
 
 OBJS_DIR = Objs
 INC_DIR = ./Includes/so_long
@@ -36,7 +36,6 @@ vpath %.c $(foreach dir, $(SRCS_DIR), $(dir):)
 
 ifndef BONUS
 SRCS = main.c \
-	debug.c \
 	print_moves.c \
 	error_message.c free_manager.c \
 	map_parsing.c \
@@ -51,7 +50,6 @@ endif
 
 ifdef BONUS
 SRCS = main_bonus.c \
-	debug.c \
 	print_moves.c \
 	error_message.c free_manager.c \
 	map_parsing.c \

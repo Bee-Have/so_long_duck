@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:38:09 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/31 15:55:13 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/06 14:47:45 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	main_manager(char **map)
 	init_window(mlx, 0);
 	mlx->map->map = map;
 	if (map_open_check(map) == -1 || map_chars_check(map) == -1
-		|| map_check_mobs(map))
+		|| map_check_mobs(map) == -1)
 	{
 		free_manager(mlx);
 		return ;

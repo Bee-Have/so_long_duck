@@ -1,0 +1,27 @@
+Makefile
+Libs :
+	libft
+	lib_getfile
+	mlx-mac
+	mlx-linux
+includes :
+	so_long.h
+Maps :
+	empty
+	simple
+	rectangle
+	maze
+	maze_mob
+Sprites :
+	all
+Srcs :
+	Error
+	Free
+	Gameplay
+	Init
+	mlx
+	Parsing
+	Print
+	main
+	main_bonus
+

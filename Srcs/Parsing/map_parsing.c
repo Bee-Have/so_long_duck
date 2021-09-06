@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 17:50:24 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/31 15:49:59 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/06 14:50:15 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,19 @@ int	map_open_check(char **map)
 	int	col;
 
 	row = 0;
-	col = 0;
 	while (map[row] != NULL)
 	{
+		col = 0;
 		while (map[row][col] != '\0')
 		{
 			if ((map[row][col] == '0' || map[row][col] == 'C'
 				|| map[row][col] == 'E' || map[row][col] == 'P'
 				|| map[row][col] == 'M')
-				&& (col == 0 || col == ft_strlen((const char *)map[row])
-				|| row == 0 || row == ft_tablen((const char **)map)))
-			{
-				ft_freetab(map);
+				&& (col == 0 || col == ft_strlen((const char *)map[row]) - 1
+				|| row == 0 || row == ft_tablen((const char **)map) - 1))
 				return (error_message("MAP is not CLOSED"));
-			}
 			col++;
 		}
-		col = 0;
 		row++;
 	}
 	return (0);

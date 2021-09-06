@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/02 11:59:08 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/02 12:36:53 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,9 +167,5 @@ void		print_moves(int moves);
 
 //ERROR
 int			error_message(char *msg);
-
-//DEBUG
-void		print_anim(t_anim *stack, int len);
-void		print_mobs(t_mob *mobs, int len);
 
 #endif
