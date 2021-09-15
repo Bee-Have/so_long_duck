@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/02 12:36:53 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/15 12:41:42 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void		main_manager(char **map_good);
 int			map_open_check(char **map);
 int			map_chars_check(char **map);
 int			map_check_mobs(char **map);
+int			map_rectangle_check(char **map);
 
 //STRUCT INIT
 t_map		*init_map(void);
@@ -118,7 +119,7 @@ t_img		*make_img(t_mlx_vars *mlx, char *path);
 void		black_to_transparency(char *addr, size_t len);
 
 //INIT GAMEPLAY
-void		find_player(t_mlx_vars *mlx);
+int			find_player(t_mlx_vars *mlx);
 void		find_mobs(t_mlx_vars *mlx, char **map);
 
 //MOBS INIT

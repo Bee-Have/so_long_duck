@@ -3,21 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   init_gameplay.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/19 12:07:32 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/31 15:15:09 by amarini-         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2021/09/15 12:30:32 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/so_long.h"
 
-void	find_player(t_mlx_vars *mlx)
+int	find_player(t_mlx_vars *mlx)
 {
 	int		row;
 	int		col;
+	int		check;
 
 	row = 0;
+	check = 0;
 	while (mlx->map->map[row])
 	{
 		col = 0;
@@ -25,14 +27,17 @@ void	find_player(t_mlx_vars *mlx)
 		{
 			if (mlx->map->map[row][col] == 'P')
 			{
+				++check;
 				mlx->map->pj_pos[0] = row;
 				mlx->map->pj_pos[1] = col;
-				return ;
 			}
-			col++;
+			++col;
 		}
-		row++;
+		++row;
 	}
+	if (check > 1)
+		return (error_message("MAP contains more than ONE PLAYER"));
+	return (0);
 }
 
 void	find_mobs(t_mlx_vars *mlx, char **map)

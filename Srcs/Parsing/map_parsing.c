@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 17:50:24 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/06 14:50:15 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/15 12:40:48 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,22 @@ int	map_check_mobs(char **map)
 			col++;
 		}
 		row++;
+	}
+	return (0);
+}
+
+int	map_rectangle_check(char **map)
+{
+	int		row;
+	int		len;
+
+	row = 1;
+	while (map[row])
+	{
+		len = ft_strlen(map[row - 1]);
+		if (len != ft_strlen(map[row]))
+			return (error_message("MAP is NOT RECTANGULAR"));
+		++row;
 	}
 	return (0);
 }

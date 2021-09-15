@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:38:09 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/06 14:47:45 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/15 12:42:33 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ int	main(int ac, char **av)
 		ft_freetab(map);
 		return (error_message("MAP file is EMPTY"));
 	}
+	if (map_rectangle_check(map) == -1)
+	{
+		ft_freetab(map);
+		return (0);
+	}
 	main_manager(map);
 	return (0);
 }
@@ -42,12 +47,11 @@ void	main_manager(char **map)
 	init_window(mlx, 0);
 	mlx->map->map = map;
 	if (map_open_check(map) == -1 || map_chars_check(map) == -1
-		|| map_check_mobs(map) == -1)
+		|| map_check_mobs(map) == -1 || find_player(mlx) == -1)
 	{
 		free_manager(mlx);
 		return ;
 	}
-	find_player(mlx);
 	if (mlx_check_size_window(mlx) == 1)
 	{
 		mlx_destroy_image(mlx->mlx, mlx->img->img);
