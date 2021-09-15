@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 17:50:24 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/15 12:40:48 by user42           ###   ########.fr       */
+/*   Updated: 2021/09/15 16:24:03 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ int	map_chars_check(char **map)
 			mandatory[1] = 'c';
 		while (map[row][col] != '\0')
 		{
+			if (map[row][col] != 'P' && map[row][col] != 'E'
+				&& map[row][col] != 'C' && map[row][col] != '0'
+				&& map[row][col] != '1' && map[row][col] != 'M')
+				return (error_message("WRONG CHARACTER in MAP"));
 			if (map[row][col] == 'P')
 				mandatory[2] = 'p';
 			col++;

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/15 12:41:42 by user42           ###   ########.fr       */
+/*   Updated: 2021/09/15 16:45:21 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_mlx_vars
 	struct s_map	*map;
 	int				mobs_count;
 	struct s_mob	*mobs;
+	int				c_count;
 	struct s_refs	*ref;
 }				t_mlx_vars;
 

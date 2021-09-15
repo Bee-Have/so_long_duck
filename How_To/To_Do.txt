@@ -1,7 +1,7 @@
 OK - change bottom wall so people don't think you can go through it
 OK - check map if rectangle :
 	OK - check if all lines of map are equals
-- check if other character at start of lines
+OK - check if other character at start of lines
 OK - reject if multiple players are found
 OK - use '\r' instead of '\n'
 - exit check :
@@ -9,6 +9,6 @@ OK - use '\r' instead of '\n'
 	- print message saying "3/5" || "you still have 2 collectibles to collect"
 - have "Game Over screen when killed my enemies"
 - print : "well done" when finishing bonus game
-- handdle big resolution (bigger then screen)
+OK - handdle big resolution (bigger then screen)
 OK - remove '-lz' from makefile for linux build
 - sometimes walls at bottom aren't the right walls

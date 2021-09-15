@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 11:08:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/31 18:11:15 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/15 16:38:55 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_mlx_vars	*init_mlx_struct(void)
 	my_mlx->map = init_map();
 	my_mlx->mobs_count = -1;
 	my_mlx->mobs = NULL;
+	my_mlx->c_count = -1;
 	my_mlx->ref = NULL;
 	return (my_mlx);
 }

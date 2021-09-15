@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2021/09/15 12:30:32 by user42           ###   ########.fr       */
+/*   Updated: 2021/09/15 16:40:35 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	find_player(t_mlx_vars *mlx)
 				mlx->map->pj_pos[0] = row;
 				mlx->map->pj_pos[1] = col;
 			}
+			else if (mlx->map->map[row][col] == 'C')
+				++mlx->c_count;
 			++col;
 		}
 		++row;

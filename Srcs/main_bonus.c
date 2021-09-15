@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:38:09 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/15 12:42:53 by user42           ###   ########.fr       */
+/*   Updated: 2021/09/15 16:39:30 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,17 @@ void	main_manager(char **map)
 	find_mobs(mlx, map);
 	if (map_open_check(map) == -1 || map_chars_check(map) == -1
 		|| find_player(mlx) == -1)
-	{
 		free_manager(mlx);
-		return ;
-	}
 	if (mlx_check_size_window(mlx) == 1)
 	{
 		mlx_destroy_image(mlx->mlx, mlx->img->img);
 		mlx_destroy_window(mlx->mlx, mlx->mlx_win);
 		init_window(mlx, 1);
+	}
+	else if (mlx_check_size_window(mlx) == -1)
+	{
+		error_message("MAP is BIGGER then SCREEN SIZE");
+		free_manager(mlx);
 	}
 	mlx_print_window(mlx);
 	free_manager(mlx);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:17:06 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/31 15:46:56 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/15 16:36:12 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,13 @@ void	init_window(t_mlx_vars *mlx, int bonus)
 int	mlx_check_size_window(t_mlx_vars *mlx)
 {
 	int		changed;
+	int		screen_x;
+	int		screen_y;
 
 	changed = 0;
+	mlx_get_screen_size(mlx->mlx, &screen_x, &screen_y);
+	if (mlx->map->pxl_img * ft_strlen((const char *)mlx->map->map[0]) > screen_x)
+		return (-1);
 	while ((mlx->map->pxl_img * ft_strlen((const char *)mlx->map->map[0]))
 		> mlx->img->width)
 	{
