@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 11:08:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/15 16:38:55 by user42           ###   ########.fr       */
+/*   Updated: 2021/09/20 12:32:10 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ t_map	*init_map(void)
 	map->pj_moved = 0;
 	map->pj_pos[0] = -1;
 	map->pj_pos[1] = -1;
+	map->exits = 0;
 	map->pxl_img = -1;
 	return (map);
 }

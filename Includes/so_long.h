@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/15 16:45:21 by user42           ###   ########.fr       */
+/*   Updated: 2021/09/20 12:43:20 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef struct s_map
 	int		moves;
 	int		pj_moved;
 	int		pj_pos[2];
+	int		exits;
+	int		exit_pos[100][2];
 	int		pxl_img;
 }				t_map;
 
@@ -122,6 +124,7 @@ void		black_to_transparency(char *addr, size_t len);
 //INIT GAMEPLAY
 int			find_player(t_mlx_vars *mlx);
 void		find_mobs(t_mlx_vars *mlx, char **map);
+void		find_exits(t_mlx_vars *mlx, char **map);
 
 //MOBS INIT
 t_mob		*init_mobs(t_mlx_vars *mlx, char **map, int *pos, int mobs_count);
@@ -136,6 +139,7 @@ void		move_mob_manager(t_mlx_vars *mlx);
 void		move_mob(t_mlx_vars *mlx, t_mob *mob, char **map);
 void		change_mob_dir(t_mob *mob, char **map);
 void		erase_old_pos(t_mob *mob, char **map);
+void		update_exits(t_mlx_vars *mlx);
 
 //PRINTING
 void		mlx_print_window(t_mlx_vars *mlx);
@@ -164,8 +168,9 @@ void		free_sprites(t_mlx_vars *mlx);
 void		free_anim(t_mlx_vars *mlx, t_anim **stack, int len);
 void		free_img(t_mlx_vars *mlx, t_img **img);
 
-//PRINT MOVES
+//PRINTS
 void		print_moves(int moves);
+void		print_collectibles_left(int collectibles);
 
 //ERROR
 int			error_message(char *msg);

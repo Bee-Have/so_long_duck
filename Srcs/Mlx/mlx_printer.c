@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:32:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/31 16:33:30 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/20 12:47:05 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	print_all(t_mlx_vars *mlx)
 	char	*moves;
 
 	move_mob_manager(mlx);
+	update_exits(mlx);
 	if (mlx->map->pj_moved > 0)
 	{
 		mlx->map->pj_moved = 0;

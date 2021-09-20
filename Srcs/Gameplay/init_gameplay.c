@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_gameplay.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2021/09/15 16:40:35 by user42           ###   ########.fr       */
+/*   Updated: 2021/09/20 12:34:04 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,28 @@ void	find_mobs(t_mlx_vars *mlx, char **map)
 	mlx->mobs_count++;
 	if (mlx->mobs == NULL)
 		mlx->mobs = init_mobs(mlx, map, pos, ++mlx->mobs_count);
+}
+
+void	find_exits(t_mlx_vars *mlx, char **map)
+{
+	int		row;
+	int		col;
+
+	row = 0;
+	while (map[row])
+	{
+		col = 0;
+		while (map[row][col] != '\0')
+		{
+			if (map[row][col] == 'E')
+			{
+				mlx->map->exit_pos[mlx->map->exits][0] = row;
+				mlx->map->exit_pos[mlx->map->exits][1] = col;
+				++mlx->map->exits;
+			}
+			++col;
+		}
+		++row;
+	}
+	return ;
 }

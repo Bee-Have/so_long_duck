@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pj_move.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 18:33:28 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/15 16:43:25 by user42           ###   ########.fr       */
+/*   Updated: 2021/09/20 12:45:11 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,12 @@ void	move_pj_map_pos(t_mlx_vars *mlx, t_map *map, int *pos)
 		{
 			if (pos[0] == row && pos[1] == col && map->map[row][col] != '1')
 				map->map[row][col] = 'P';
-			else if (map->map[pos[0]][pos[1]] == 'E'
+			else if ((map->map[pos[0]][pos[1]] == 'E' && mlx->c_count == 0)
 				|| map->map[pos[0]][pos[1]] == 'M')
 				free_manager(mlx);
+			else if (map->map[pos[0]][pos[1]] == 'E' && mlx->c_count > 0
+				&& mlx->mobs_count == -1)
+					print_collectibles_left(mlx->c_count);
 			else if (map->map[row][col] == 'P')
 				map->map[row][col] = '0';
 			col++;

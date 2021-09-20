@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:38:09 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/15 16:36:59 by user42           ###   ########.fr       */
+/*   Updated: 2021/09/20 12:28:37 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	main_manager(char **map)
 	mlx = init_mlx_struct();
 	init_window(mlx, 0);
 	mlx->map->map = map;
+	find_exits(mlx, mlx->map->map);
 	if (map_open_check(map) == -1 || map_chars_check(map) == -1
 		|| map_check_mobs(map) == -1 || find_player(mlx) == -1)
 		free_manager(mlx);

@@ -36,28 +36,28 @@ vpath %.c $(foreach dir, $(SRCS_DIR), $(dir):)
 
 ifndef BONUS
 SRCS = main.c \
-	print_moves.c \
+	print_moves.c print_collectibles.c \
 	error_message.c free_manager.c \
 	map_parsing.c \
 	init_struct.c init_mlx.c \
 	init_anim.c init_sprites.c \
 	init_mobs.c init_mobs_utils.c \
 	init_gameplay.c \
-	pj_move.c mob_move.c \
+	pj_move.c mob_move.c exit_update.c \
 	mlx_printer.c mlx_print_utils.c mlx_event_manager.c \
 	get_sprites.c
 endif
 
 ifdef BONUS
 SRCS = main_bonus.c \
-	print_moves.c \
+	print_moves.c print_collectibles.c \
 	error_message.c free_manager.c \
 	map_parsing.c \
 	init_struct.c init_mlx.c \
 	init_anim.c init_sprites.c \
 	init_mobs.c init_mobs_utils.c \
 	init_gameplay.c \
-	pj_move.c mob_move.c \
+	pj_move.c mob_move.c exit_update.c \
 	mlx_printer.c mlx_print_utils.c mlx_event_manager.c \
 	get_sprites.c
 endif
