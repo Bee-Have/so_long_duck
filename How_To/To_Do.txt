@@ -7,6 +7,8 @@ OK - use '\r' instead of '\n'
 - exit check :
 	OK - don't exit until all 'C' are collected;
 	- print message saying "3/5" || "you still have 2 collectibles to collect"
+		- print only once
+		- player is incrementing collectibles;
 - have "Game Over screen when killed my enemies"
 - print : "well done" when finishing bonus game
 KO - handdle big resolution (bigger then screen)

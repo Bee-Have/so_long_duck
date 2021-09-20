@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:32:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/20 12:47:05 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/20 13:10:21 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,6 @@ void	mlx_print_window(t_mlx_vars *mlx)
 
 int	print_all(t_mlx_vars *mlx)
 {
-	int		txt_x;
-	int		txt_y;
-	char	*moves;
-
 	move_mob_manager(mlx);
 	update_exits(mlx);
 	if (mlx->map->pj_moved > 0)
@@ -44,13 +40,9 @@ int	print_all(t_mlx_vars *mlx)
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img->img, 0, 0);
 	print_map(mlx, 0);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img->img, 0, 0);
-	txt_x = mlx->img->width / 2;
-	txt_y = offset(mlx->map->pxl_img,
-			ft_tablen((const char **)mlx->map->map) + 1, mlx->img->height);
-	moves = ft_itoa(mlx->map->moves);
 	if (mlx->mobs_count > 0)
-		mlx_string_put(mlx->mlx, mlx->mlx_win, txt_x, txt_y, 0x00F8FFFA, moves);
-	free(moves);
+		print_manager(mlx);
+	printf("collectibles-[%d]\n", mlx->c_count);
 	return (1);
 }
 
