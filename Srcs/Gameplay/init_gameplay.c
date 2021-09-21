@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2021/09/20 15:10:57 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/21 15:04:49 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	find_player(t_mlx_vars *mlx)
 
 	row = 0;
 	check = 0;
-	if (mlx->c_count > 0)
+	if (mlx->c > 0)
 		check = 1;
 	while (mlx->map->map[row])
 	{
@@ -33,7 +33,7 @@ void	find_player(t_mlx_vars *mlx)
 				mlx->map->pj_pos[1] = col;
 			}
 			else if (mlx->map->map[row][col] == 'C' && check == 0)
-				++mlx->c_count;
+				++mlx->c;
 			++col;
 		}
 		++row;

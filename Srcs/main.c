@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:38:09 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/21 14:41:36 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/21 16:53:00 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	main_manager(char **map)
 		error_message("MAP is BIGGER then SCREEN SIZE");
 		free_manager(mlx);
 	}
-	print_moves(0);
+	print_moves_console(0);
 	mlx_print_window(mlx);
 	free_manager(mlx);
 }

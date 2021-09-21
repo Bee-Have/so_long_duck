@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 11:08:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/21 11:13:49 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/21 16:47:30 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_mlx_vars	*init_mlx_struct(void)
 	my_mlx->map = init_map();
 	my_mlx->mobs_count = -1;
 	my_mlx->mobs = NULL;
-	my_mlx->c_count = 0;
+	my_mlx->c = 0;
 	my_mlx->ref = NULL;
 	return (my_mlx);
 }

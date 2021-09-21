@@ -3,5 +3,5 @@ OK - Do an EXIT_SUCCESS when the exit is reach or when ESC is pressed
 OK - add if for multiple params for maps
 OK - change rules for bonus to : bonus
 OK - Split the libs rules in the Makefile
-- debug bonus print of "not all collectible have been collected"
+OK - debug bonus print of "not all collectible have been collected"
 

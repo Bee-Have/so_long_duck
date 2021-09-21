@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/21 14:36:46 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/21 17:00:02 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_mlx_vars
 	struct s_map	*map;
 	int				mobs_count;
 	struct s_mob	*mobs;
-	int				c_count;
+	int				c;
 	struct s_refs	*ref;
 }				t_mlx_vars;
 
@@ -170,8 +170,9 @@ void		free_anim(t_mlx_vars *mlx, t_anim **stack, int len);
 void		free_img(t_mlx_vars *mlx, t_img **img);
 
 //PRINTS
-void		print_manager(t_mlx_vars *mlx);
-void		print_moves(int moves);
+void		print_moves(t_mlx_vars *mlx);
+void		print_moves_console(int moves);
+void		print_collectibles(t_mlx_vars *mlx);
 
 //ERROR
 int			error_message(char *msg);

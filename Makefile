@@ -33,7 +33,7 @@ INCLUDES = -I$(LIBFT_DIR)/Includes -I$(GETFILE_DIR)/Includes -I$(MLX_DIR) -I$(IN
 vpath %.c $(foreach dir, $(SRCS_DIR), $(dir):)
 
 SRCS = main.c \
-	print_moves.c \
+	print_manager.c \
 	error_message.c free_manager.c \
 	path_parsing.c map_parsing.c \
 	init_struct.c init_mlx.c \
@@ -45,7 +45,7 @@ SRCS = main.c \
 	get_sprites.c
 
 SRCS_BONUS = main_bonus.c \
-	print_moves.c \
+	print_manager.c \
 	error_message.c free_manager.c \
 	path_parsing.c map_parsing.c \
 	init_struct.c init_mlx.c \
