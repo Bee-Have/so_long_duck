@@ -8,8 +8,6 @@ ifdef DEBUG
 CFLAGS += -fsanitize=address -g3
 endif
 
-BONUS =
-
 SRCS_DIR = $(shell find Srcs -type d)
 
 OBJS_DIR = Objs
@@ -34,7 +32,6 @@ INCLUDES = -I$(LIBFT_DIR)/Includes -I$(GETFILE_DIR)/Includes -I$(MLX_DIR) -I$(IN
 
 vpath %.c $(foreach dir, $(SRCS_DIR), $(dir):)
 
-ifndef BONUS
 SRCS = main.c \
 	print_moves.c \
 	error_message.c free_manager.c \
@@ -46,10 +43,8 @@ SRCS = main.c \
 	pj_move.c mob_move.c exit_update.c \
 	mlx_printer.c mlx_print_utils.c mlx_event_manager.c \
 	get_sprites.c
-endif
 
-ifdef BONUS
-SRCS = main_bonus.c \
+SRCS_BONUS = main_bonus.c \
 	print_moves.c \
 	error_message.c free_manager.c \
 	map_parsing.c \
@@ -60,25 +55,37 @@ SRCS = main_bonus.c \
 	pj_move.c mob_move.c exit_update.c \
 	mlx_printer.c mlx_print_utils.c mlx_event_manager.c \
 	get_sprites.c
-endif
 
 OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 
-all: Libs $(NAME)
+OBJS_BONUS = $(addprefix $(OBJS_DIR)/,$(SRCS_BONUS:.c=.o))
 
-Libs:
+all: $(LIBFT_DIR)/libft.a $(GETFILE_DIR)/libgetfile.a $(MLX_DIR)/libmlx.a $(NAME)
+
+bonus: $(LIBFT_DIR)/libft.a $(GETFILE_DIR)/libgetfile.a $(MLX_DIR)/libmlx.a $(NAME)/bonus
+
+$(LIBFT_DIR)/libft.a:
 	make -C $(LIBFT_DIR) all
+
+$(GETFILE_DIR)/libgetfile.a:
 	make -C $(GETFILE_DIR) all
+
+$(MLX_DIR)/libmlx.a:
 	make -C $(MLX_DIR) all
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $^ -o $@ $(LIBS)
+
+$(NAME)/bonus: $(OBJS_BONUS)
+	$(CC) $(CFLAGS) $^ -o $(NAME) $(LIBS)
 
 $(OBJS_DIR)/%.o: %.c
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 re: fclean all
+
+rebonus: fclean bonus
 
 allre: cleanall all
 
@@ -93,4 +100,4 @@ cleanall: fclean
 	make -C $(GETFILE_DIR) fclean
 	make -C $(MLX_DIR) clean
 
-.PHONY : cleanall fclean clean allre re Libs all
+.PHONY : cleanall fclean clean allre rebonus re bonus all
