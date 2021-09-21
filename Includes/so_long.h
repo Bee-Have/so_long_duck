@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/21 11:22:07 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/21 14:36:46 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ typedef struct s_anim
 void		main_manager(char **map_good);
 
 //PARSING
+int			check_path(char *str);
 int			map_open_check(char **map);
 int			map_chars_check(char **map);
 int			map_check_mobs(char **map);

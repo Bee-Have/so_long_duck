@@ -35,7 +35,7 @@ vpath %.c $(foreach dir, $(SRCS_DIR), $(dir):)
 SRCS = main.c \
 	print_moves.c \
 	error_message.c free_manager.c \
-	map_parsing.c \
+	path_parsing.c map_parsing.c \
 	init_struct.c init_mlx.c \
 	init_anim.c init_sprites.c \
 	init_mobs.c init_mobs_utils.c \
@@ -47,7 +47,7 @@ SRCS = main.c \
 SRCS_BONUS = main_bonus.c \
 	print_moves.c \
 	error_message.c free_manager.c \
-	map_parsing.c \
+	path_parsing.c map_parsing.c \
 	init_struct.c init_mlx.c \
 	init_anim.c init_sprites.c \
 	init_mobs.c init_mobs_utils.c \

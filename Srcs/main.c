@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:38:09 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/20 15:15:25 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/21 14:41:36 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,14 @@ int	main(int ac, char **av)
 
 	if (ac < 2)
 		return (error_message("no MAP in param"));
+	else if (ac > 2)
+		return (error_message("TO MANY param"));
+	if (check_path(av[1]) == -1)
+		return (error_message("MAP is not in '.ber' FORMAT"));
 	test = open(av[1], O_RDONLY);
 	if (test < 0)
 		return (error_message("wrong PATH for MAP"));
 	close(test);
-	map = NULL;
 	test = ft_get_file(av[1], &map);
 	if (test == 0 || test == -1 || ft_tablen((const char **)map) == 1)
 	{
@@ -33,10 +36,9 @@ int	main(int ac, char **av)
 	if (map_rectangle_check(map) == -1)
 	{
 		ft_freetab(map);
-		return (0);
+		return (-1);
 	}
 	main_manager(map);
-	return (0);
 }
 
 void	main_manager(char **map)
