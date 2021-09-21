@@ -36,8 +36,7 @@ vpath %.c $(foreach dir, $(SRCS_DIR), $(dir):)
 
 ifndef BONUS
 SRCS = main.c \
-	print_manager.c \
-	print_moves.c print_collectibles.c \
+	print_moves.c \
 	error_message.c free_manager.c \
 	map_parsing.c \
 	init_struct.c init_mlx.c \
@@ -51,8 +50,7 @@ endif
 
 ifdef BONUS
 SRCS = main_bonus.c \
-	print_manager.c \
-	print_moves.c print_collectibles.c \
+	print_moves.c \
 	error_message.c free_manager.c \
 	map_parsing.c \
 	init_struct.c init_mlx.c \

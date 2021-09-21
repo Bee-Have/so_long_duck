@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/20 15:11:07 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/21 11:22:07 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,6 @@ void		free_img(t_mlx_vars *mlx, t_img **img);
 //PRINTS
 void		print_manager(t_mlx_vars *mlx);
 void		print_moves(int moves);
-void		print_collectibles_left(int collectibles);
 
 //ERROR
 int			error_message(char *msg);
