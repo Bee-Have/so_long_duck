@@ -1,16 +1,6 @@
-OK - change bottom wall so people don't think you can go through it
-OK - check map if rectangle :
-	OK - check if all lines of map are equals
-OK - check if other character at start of lines
-OK - reject if multiple players are found
-OK - use '\r' instead of '\n'
-- exit check :
-	OK - don't exit until all 'C' are collected;
-	- print message saying "3/5" || "you still have 2 collectibles to collect"
-		- print only once
-		- player is incrementing collectibles;
-- have "Game Over screen when killed my enemies"
-- print : "well done" when finishing bonus game
-KO - handdle big resolution (bigger then screen)
-OK - remove '-lz' from makefile for linux build
-?? - sometimes walls at bottom aren't the right walls
+Verify that the extension is .ber
+Do an EXIT_SUCCESS when the exit is reach or when ESC is pressed
+add if for multiple params for maps
+change rules for bonu to : bonus
+Split the libs rules in the Makefile
+debug bonus print of "not all collectible have been collected"
