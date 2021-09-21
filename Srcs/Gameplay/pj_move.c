@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 18:33:28 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/20 13:09:47 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/21 11:19:25 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	move_pj_map_pos(t_mlx_vars *mlx, t_map *map, int *pos)
 	int		col;
 
 	row = 0;
+	if (map->map[pos[0]][pos[1]] == 'C')
+		--mlx->c_count;
 	if (map->map[pos[0]][pos[1]] == 'P' || map->map[pos[0]][pos[1]] == '1')
 		return ;
 	while (map->map[row] != NULL)
@@ -32,7 +34,7 @@ void	move_pj_map_pos(t_mlx_vars *mlx, t_map *map, int *pos)
 				free_manager(mlx);
 			else if (map->map[pos[0]][pos[1]] == 'E' && mlx->c_count > 0
 				&& mlx->mobs_count == -1)
-					print_collectibles_left(mlx->c_count);
+				print_collectibles_left(mlx->c_count);
 			else if (map->map[row][col] == 'P')
 				map->map[row][col] = '0';
 			col++;

@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:32:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/20 13:10:21 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/21 11:06:51 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	print_all(t_mlx_vars *mlx)
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img->img, 0, 0);
 	if (mlx->mobs_count > 0)
 		print_manager(mlx);
-	printf("collectibles-[%d]\n", mlx->c_count);
+	// printf("collectibles-[%d]\n", mlx->c_count);
 	return (1);
 }
 

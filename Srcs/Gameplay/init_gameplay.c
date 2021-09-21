@@ -6,13 +6,13 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2021/09/20 12:34:04 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/20 15:10:57 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/so_long.h"
 
-int	find_player(t_mlx_vars *mlx)
+void	find_player(t_mlx_vars *mlx)
 {
 	int		row;
 	int		col;
@@ -20,6 +20,8 @@ int	find_player(t_mlx_vars *mlx)
 
 	row = 0;
 	check = 0;
+	if (mlx->c_count > 0)
+		check = 1;
 	while (mlx->map->map[row])
 	{
 		col = 0;
@@ -27,19 +29,15 @@ int	find_player(t_mlx_vars *mlx)
 		{
 			if (mlx->map->map[row][col] == 'P')
 			{
-				++check;
 				mlx->map->pj_pos[0] = row;
 				mlx->map->pj_pos[1] = col;
 			}
-			else if (mlx->map->map[row][col] == 'C')
+			else if (mlx->map->map[row][col] == 'C' && check == 0)
 				++mlx->c_count;
 			++col;
 		}
 		++row;
 	}
-	if (check > 1)
-		return (error_message("MAP contains more than ONE PLAYER"));
-	return (0);
 }
 
 void	find_mobs(t_mlx_vars *mlx, char **map)

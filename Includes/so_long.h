@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/20 13:05:00 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/20 15:11:07 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ t_img		*make_img(t_mlx_vars *mlx, char *path);
 void		black_to_transparency(char *addr, size_t len);
 
 //INIT GAMEPLAY
-int			find_player(t_mlx_vars *mlx);
+void		find_player(t_mlx_vars *mlx);
 void		find_mobs(t_mlx_vars *mlx, char **map);
 void		find_exits(t_mlx_vars *mlx, char **map);
 

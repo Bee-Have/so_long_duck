@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 17:50:24 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/15 16:24:03 by user42           ###   ########.fr       */
+/*   Updated: 2021/09/20 15:08:28 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ int	map_open_check(char **map)
 {
 	int	row;
 	int	col;
+	int	check;
 
 	row = 0;
+	check = 0;
 	while (map[row] != NULL)
 	{
 		col = 0;
@@ -29,10 +31,14 @@ int	map_open_check(char **map)
 				&& (col == 0 || col == ft_strlen((const char *)map[row]) - 1
 				|| row == 0 || row == ft_tablen((const char **)map) - 1))
 				return (error_message("MAP is not CLOSED"));
+			if (map[row][col] == 'P')
+				++check;
 			col++;
 		}
 		row++;
 	}
+	if (check > 1)
+		return (error_message("MAP contains more than ONE PLAYER"));
 	return (0);
 }
 
