@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:32:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/21 19:02:05 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/22 11:35:42 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ int	print_all(t_mlx_vars *mlx)
 		mlx->map->pj_moved = 0;
 		if (mlx->map->map[mlx->map->pj_pos[0]][mlx->map->pj_pos[1]] == 'C')
 			--mlx->c;
-		if (mlx->map->map[mlx->map->pj_pos[0]][mlx->map->pj_pos[0]] != '1')
-			move_pj_map_pos(mlx, mlx->map, mlx->map->pj_pos);
+		move_pj_map_pos(mlx, mlx->map, mlx->map->pj_pos);
 	}
 	find_player(mlx);
 	ft_memset(mlx->img->addr, 0, (mlx->img->width * mlx->img->height) * 4);
@@ -44,7 +43,7 @@ int	print_all(t_mlx_vars *mlx)
 	print_map(mlx, 0);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img->img, 0, 0);
 	if (mlx->mobs_count > 0)
-		print_moves(mlx);
+		print_manager(mlx);
 	return (1);
 }
 
