@@ -6,13 +6,13 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 15:28:25 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/22 12:53:19 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/22 18:33:35 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_manager(t_mlx_vars *mlx)
+void	free_manager(t_mlx_vars *mlx, int status)
 {
 	free_img(mlx, &mlx->img);
 	ft_freetab(mlx->map->map);
@@ -22,6 +22,8 @@ void	free_manager(t_mlx_vars *mlx)
 	mlx_destroy_window(mlx->mlx, mlx->mlx_win);
 	free(mlx->mlx);
 	free(mlx);
+	if (status == 0)
+		exit(EXIT_FAILURE);
 	exit(EXIT_SUCCESS);
 }
 

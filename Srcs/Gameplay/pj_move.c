@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:33:56 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/22 14:36:13 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/22 18:31:01 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	move_pj_map_pos(t_mlx_vars *mlx, t_map *map, int *pos)
 				map->map[row][col] = 'P';
 			else if ((map->map[pos[0]][pos[1]] == 'E' && mlx->c == 0)
 				|| map->map[pos[0]][pos[1]] == 'M')
-				free_manager(mlx);
+				free_manager(mlx, 1);
 			else if (map->map[row][col] == 'P')
 				map->map[row][col] = '0';
 			col++;

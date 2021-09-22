@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:36:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/22 14:36:39 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/22 18:30:55 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	move_mob(t_mlx_vars *mlx, t_mob *mob, char **map)
 				&& map[row][col] != '1')
 			{
 				if (map[row][col] == 'P')
-					free_manager(mlx);
+					free_manager(mlx, 1);
 				map[row][col] = 'M';
 			}
 			++col;

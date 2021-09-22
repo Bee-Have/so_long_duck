@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/22 15:51:00 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/22 18:29:56 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_map
 	int		exits;
 	// t_vec2	*exit_pos;
 	// int		*exit_pos[2];
-	int		exit[100][2];
+	int		exit_pos[100][2];
 	int		pxl_img;
 }				t_map;
 
@@ -172,7 +172,7 @@ int			key_hook(int keycode, t_mlx_vars *mlx);
 int			close_window(t_mlx_vars *mlx);
 
 //FREE
-void		free_manager(t_mlx_vars *mlx);
+void		free_manager(t_mlx_vars *mlx, int status);
 void		free_mobs(t_mlx_vars *mlx);
 void		free_sprites(t_mlx_vars *mlx);
 void		free_anim(t_mlx_vars *mlx, t_anim **stack, int len);
