@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/22 11:33:15 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/22 15:51:00 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ typedef struct s_img
 	int		height;
 }				t_img;
 
+typedef struct s_vec2
+{
+	int			x;
+	int			y;
+}				t_vec2;
+
 typedef struct s_map
 {
 	char	**map;
@@ -53,7 +59,9 @@ typedef struct s_map
 	int		pj_moved;
 	int		pj_pos[2];
 	int		exits;
-	int		exit_pos[100][2];
+	// t_vec2	*exit_pos;
+	// int		*exit_pos[2];
+	int		exit[100][2];
 	int		pxl_img;
 }				t_map;
 
@@ -99,6 +107,7 @@ void		main_manager(char **map_good);
 int			check_path(char *str);
 int			map_open_check(char **map);
 int			map_chars_check(char **map);
+int			check_wrong_chars(char c);
 int			map_check_mobs(char **map);
 int			map_rectangle_check(char **map);
 

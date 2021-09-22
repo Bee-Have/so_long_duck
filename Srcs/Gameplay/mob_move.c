@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/23 20:37:26 by user42            #+#    #+#             */
-/*   Updated: 2021/09/20 12:08:11 by amarini-         ###   ########.fr       */
+/*   Created: 2021/09/22 14:36:38 by amarini-          #+#    #+#             */
+/*   Updated: 2021/09/22 14:36:39 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Includes/so_long.h"
+#include "so_long.h"
 
 void	move_mob_manager(t_mlx_vars *mlx)
 {

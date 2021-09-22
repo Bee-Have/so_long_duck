@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/10 18:33:28 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/22 11:36:18 by amarini-         ###   ########.fr       */
+/*   Created: 2021/09/22 14:33:56 by amarini-          #+#    #+#             */
+/*   Updated: 2021/09/22 14:36:13 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Includes/so_long.h"
+#include "so_long.h"
 
 void	move_pj_map_pos(t_mlx_vars *mlx, t_map *map, int *pos)
 {

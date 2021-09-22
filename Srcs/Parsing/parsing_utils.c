@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_message.c                                    :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/04 12:25:37 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/22 12:53:19 by amarini-         ###   ########.fr       */
+/*   Created: 2021/09/22 13:04:41 by amarini-          #+#    #+#             */
+/*   Updated: 2021/09/22 13:27:43 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	error_message(char *msg)
+int	check_wrong_chars(char c)
 {
-	char	*error;
-	char	*full_msg;
-
-	error = ft_strjoin("Error : ", msg);
-	full_msg = ft_strjoin(error, "\n");
-	ft_putstr(full_msg);
-	free(error);
-	free(full_msg);
-	return (-1);
+	if (c != 'P' && c != 'E' && c != 'C' && c != '0' && c != '1' && c != 'M')
+		return (1);
+	return (0);
 }

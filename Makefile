@@ -11,7 +11,7 @@ endif
 SRCS_DIR = $(shell find Srcs -type d)
 
 OBJS_DIR = Objs
-INC_DIR = ./Includes/so_long
+INC_DIR = ./Includes/
 LIBFT_DIR = ./Libs/libft_duck
 GETFILE_DIR = ./Libs/Lib_get_file
 
@@ -35,7 +35,7 @@ vpath %.c $(foreach dir, $(SRCS_DIR), $(dir):)
 SRCS = main.c \
 	print_manager.c \
 	error_message.c free_manager.c \
-	path_parsing.c map_parsing.c \
+	path_parsing.c map_parsing.c parsing_utils.c \
 	init_struct.c init_mlx.c \
 	init_anim.c init_sprites.c \
 	init_mobs.c init_mobs_utils.c \
@@ -47,7 +47,7 @@ SRCS = main.c \
 SRCS_BONUS = main_bonus.c \
 	print_manager.c \
 	error_message.c free_manager.c \
-	path_parsing.c map_parsing.c \
+	path_parsing.c map_parsing.c parsing_utils.c \
 	init_struct.c init_mlx.c \
 	init_anim.c init_sprites.c \
 	init_mobs.c init_mobs_utils.c \

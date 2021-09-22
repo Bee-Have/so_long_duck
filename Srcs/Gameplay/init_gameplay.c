@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2021/09/21 15:04:49 by amarini-         ###   ########.fr       */
+/*   Created: 2021/09/22 14:49:12 by amarini-          #+#    #+#             */
+/*   Updated: 2021/09/22 14:49:13 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Includes/so_long.h"
+#include "so_long.h"
 
 void	find_player(t_mlx_vars *mlx)
 {

@@ -6,11 +6,11 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 17:20:23 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/25 18:54:12 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/22 15:48:32 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Includes/so_long.h"
+#include "so_long.h"
 
 t_mob	*init_mobs(t_mlx_vars *mlx, char **map, int *pos, int mobs_count)
 {

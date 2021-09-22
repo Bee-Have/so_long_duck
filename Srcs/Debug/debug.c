@@ -6,11 +6,11 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 11:47:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/25 19:03:05 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/22 12:53:19 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Includes/so_long.h"
+#include "so_long.h"
 
 //a revoir (les anims sont des addr d'img xpm donc nope nope)
 // void	print_anim(t_anim *stack, int len)

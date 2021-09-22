@@ -6,11 +6,11 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 14:11:48 by amarini-          #+#    #+#             */
-/*   Updated: 2021/08/31 15:49:10 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/22 12:53:19 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Includes/so_long.h"
+#include "so_long.h"
 
 t_anim	*init_anim(t_mlx_vars *mlx, int len, char *path)
 {

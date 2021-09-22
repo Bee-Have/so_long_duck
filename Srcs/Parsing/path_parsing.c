@@ -6,16 +6,16 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 14:33:21 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/21 14:41:04 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/22 12:53:19 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Includes/so_long.h"
+#include "so_long.h"
 
 int	check_path(char *str)
 {
-	int		i;
-	
+	int	i;
+
 	i = ft_strlen(str) - 1;
 	if (str[i] == 'r' && str[--i] == 'e' && str[--i] == 'b')
 		return (0);
