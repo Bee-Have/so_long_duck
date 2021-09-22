@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:36:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/22 18:30:55 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/22 19:37:51 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	move_mob(t_mlx_vars *mlx, t_mob *mob, char **map)
 	row = 0;
 	if (map[mob->pos[0]][mob->pos[1]] == '1'
 		|| map[mob->pos[0]][mob->pos[1]] == 'E')
-		change_mob_dir(mob, map);
+		change_mob_dir(mob);
 	else
 		erase_old_pos(mob, map);
 	while (map[row])
@@ -59,7 +59,7 @@ void	move_mob(t_mlx_vars *mlx, t_mob *mob, char **map)
 	}
 }
 
-void	change_mob_dir(t_mob *mob, char **map)
+void	change_mob_dir(t_mob *mob)
 {
 	if (mob->dir[0] > 0)
 		mob->dir[0] = -1;

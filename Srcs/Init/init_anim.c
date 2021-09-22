@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 14:11:48 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/22 12:53:19 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/22 19:36:35 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	anim_name_managment(char **file, int denominator)
 {
 	char	*sufix;
 	char	*prefix;
-	char	*result;
 
 	sufix = ft_substr(*file, 1, ft_strlen(*file) - 1);
 	free(*file);

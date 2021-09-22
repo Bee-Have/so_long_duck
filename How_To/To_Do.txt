@@ -5,7 +5,7 @@ OK - change rules for bonus to : bonus
 OK - Split the libs rules in the Makefile
 OK - debug bonus print of "not all collectible have been collected"
 
-KO - bonus rule relink (furking stupidity *incoherent swearing*)
+OK - bonus rule relink (furking stupidity *incoherent swearing*)
 OK - 	./so_long Maps/test_mobs.ber
 			Error : ENEMIES on MAP without BONUSES
 		Is returning EXIT_SUCCESS but it's an arg error.

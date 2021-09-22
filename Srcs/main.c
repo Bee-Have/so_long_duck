@@ -6,11 +6,11 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:38:09 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/22 18:30:23 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/22 19:26:17 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/so_long.h"
+#include "so_long.h"
 
 int	main(int ac, char **av)
 {

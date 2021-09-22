@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:32:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/22 12:53:19 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/22 19:38:39 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	mlx_print_window(t_mlx_vars *mlx)
 {
-	int		img_width;
-	int		img_height;
-
 	mlx->map->pj_moved = 0;
 	find_player(mlx);
 	mlx_loop_hook(mlx->mlx, print_all, mlx);
