@@ -5,3 +5,28 @@ OK - change rules for bonus to : bonus
 OK - Split the libs rules in the Makefile
 OK - debug bonus print of "not all collectible have been collected"
 
+KO - bonus rule relink
+KO - 	./so_long Maps/test_mobs.ber
+			Error : ENEMIES on MAP without BONUSES
+		Is returning EXIT_SUCCESS but it's an arg error.
+KO - Segfault when sending this map for bonus:
+	1111111111111111111
+	1CEEEE1EEEEEEEEEEE1
+	1E111E1E1111111E111
+	1EEE1EEE1EEEEE1E1E1
+	11111E1111111E111E1
+	1EEE1EEEEEEE1EEEEE1
+	1E1E1E11111E1E111E1
+	1E11111EEE1E1E1E1E1
+	1PEEEEEE1E1E1E1E1E1
+	11111E111E1E1E1E111
+	1EEEEE1EEEEE1E1EEE1
+	1E111E1E1E1E1E111E1
+	1E1EEE1E1E1E1EEE1E1
+	1E11111E1E11111E1E1
+	1E1EEE1E1EEEEEEE1M1
+	1E111E1E111E111E1E1
+	1EEEEEEEEEEE1EEE1E1
+	1111111111111111111
+KO - Mobs replace the collectibles sprite by a floor one.
+KO - Need to rework get_anim, the time seems to be shared.
