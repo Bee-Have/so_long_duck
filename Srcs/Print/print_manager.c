@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 12:56:56 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/23 12:07:37 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/23 18:41:23 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	print_manager(t_mlx_vars *mlx)
 	int		y;
 
 	moves = ft_itoa(mlx->gp.pj.moves);
-	tmp = ft_itoa(mlx->gp.c_count);
+	tmp = ft_itoa(mlx->gp.coll.count);
 	coll = ft_strjoin("Collectibles : ", tmp);
 	x = mlx->img.width / 2;
 	y = offset(mlx->pxl_img, ft_tablen((const char **)mlx->map) + 1,

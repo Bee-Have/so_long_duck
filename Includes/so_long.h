@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/23 17:50:45 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/23 18:42:01 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ void		black_to_transparency(char *addr, size_t len);
 
 //INIT GAMEPLAY
 void		find_player(t_mlx_vars *mlx);
-void		add_collectibles(t_mlx_vars *mlx, int c_count, int y, int x);
+void		add_objs(t_mlx_vars *mlx, t_objs_parent *objs, int y, int x);
 void		find_mobs(t_mlx_vars *mlx, char **map);
 void		find_exits(t_mlx_vars *mlx, char **map);
 
