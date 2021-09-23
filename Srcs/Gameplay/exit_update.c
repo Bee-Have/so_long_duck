@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 12:06:26 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/22 12:53:19 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/23 12:47:51 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@ void	update_exits(t_mlx_vars *mlx)
 	int		i;
 
 	i = 0;
-	while (i < mlx->map->exits)
+	while (i < mlx->gp.e_count)
 	{
-		if (mlx->map->map[mlx->map->exit_pos[i][0]]
-			[mlx->map->exit_pos[i][1]] == '0')
-			mlx->map->map[mlx->map->exit_pos[i][0]]
-			[mlx->map->exit_pos[i][1]] = 'E';
+		//this is no longer valid since the type of the variable ahs changed
+		// if (mlx->map[mlx->map->exit_pos[i][0]]
+			// [mlx->map->exit_pos[i][1]] == '0')
+			// mlx->map[mlx->map->exit_pos[i][0]]
+			// [mlx->map->exit_pos[i][1]] = 'E';
 		++i;
 	}
 	return ;

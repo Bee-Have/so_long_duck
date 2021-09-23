@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:38:09 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/22 19:25:39 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/23 11:54:40 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	main_manager(char **map)
 
 	mlx = init_mlx_struct();
 	init_window(mlx, 1);
-	mlx->map->map = map;
-	find_exits(mlx, mlx->map->map);
+	mlx->map = map;
+	find_exits(mlx, mlx->map);
 	find_mobs(mlx, map);
 	find_player(mlx);
 	if (map_open_check(map) == -1 || map_chars_check(map) == -1)

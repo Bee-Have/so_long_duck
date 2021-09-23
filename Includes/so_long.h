@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/22 19:37:32 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/23 14:12:44 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,6 @@
 # include "ft_get_file.h"
 # include "mlx.h"
 
-typedef struct s_mlx_vars
-{
-	void			*mlx;
-	void			*mlx_win;
-
-	struct s_img	*img;
-
-	struct s_map	*map;
-	int				mobs_count;
-	struct s_mob	*mobs;
-	int				c;
-	struct s_refs	*ref;
-}				t_mlx_vars;
-
 typedef struct s_img
 {
 	void	*img;
@@ -46,42 +32,30 @@ typedef struct s_img
 	int		height;
 }				t_img;
 
+typedef struct s_anim
+{
+	t_img			img;
+	int				played;
+	struct s_anim	*next;
+}				t_anim;
+
 typedef struct s_vec2
 {
-	int			x;
-	int			y;
+	int		x;
+	int		y;
 }				t_vec2;
 
-typedef struct s_map
+typedef struct s_exits
 {
-	char	**map;
-	int		moves;
-	int		pj_moved;
-	int		pj_pos[2];
-	int		exits;
-	// t_vec2	*exit_pos;
-	// int		*exit_pos[2];
-	int		exit_pos[100][2];
-	int		pxl_img;
-}				t_map;
+	t_anim	*exit;
+	t_vec2	pos;
+}				t_exits;
 
-typedef struct s_refs
+typedef struct s_collectibles
 {
-	struct s_img	*wall;
-	struct s_img	*wall_n;
-	struct s_img	*wall_s;
-	struct s_img	*wall_e;
-	struct s_img	*wall_w;
-	struct s_img	*wall_corner_ne;
-	struct s_img	*wall_corner_nw;
-	struct s_img	*wall_corner_se;
-	struct s_img	*wall_corner_sw;
-
-	struct s_anim	*tile;
-	struct s_anim	*obj;
-	struct s_anim	*exit;
-	struct s_anim	*pj_idle;
-}				t_refs;
+	t_anim	*obj;
+	t_vec2	pos;
+}				t_collectibles;
 
 typedef struct s_mob
 {
@@ -89,16 +63,58 @@ typedef struct s_mob
 	int				dir[2];
 	int				moves;
 	int				wait;
-	struct s_anim	*anim;
+	t_anim			*anim;
 	struct s_mob	*next;
 }				t_mob;
 
-typedef struct s_anim
+typedef struct s_player
 {
-	struct s_img	*img;
-	int				played;
-	struct s_anim	*next;
-}				t_anim;
+	int				moves;
+	int				pj_moved;
+	int				pj_pos[2];
+	t_anim			*pj_idle;
+}			t_player;
+
+typedef struct s_gp
+{
+	t_player		pj;
+	int				mobs_count;
+	t_mob			*mobs;
+	int				c_count;
+	t_collectibles	*coll;
+	int				e_count;
+	t_exits			*exits;
+}				t_gp;
+
+typedef struct s_refs
+{
+	t_img	bad;
+
+	t_img	wall;
+	t_img	wall_n;
+	t_img	wall_s;
+	t_img	wall_e;
+	t_img	wall_w;
+	t_img	wall_corner_ne;
+	t_img	wall_corner_nw;
+	t_img	wall_corner_se;
+	t_img	wall_corner_sw;
+
+	t_anim	*tile;
+}				t_refs;
+
+typedef struct s_mlx_vars
+{
+	void	*mlx;
+	void	*mlx_win;
+
+	t_img	img;
+
+	t_gp	gp;
+	int		pxl_img;
+	char	**map;
+	t_refs	ref;
+}				t_mlx_vars;
 
 //MAIN
 void		main_manager(char **map_good);
@@ -112,8 +128,8 @@ int			map_check_mobs(char **map);
 int			map_rectangle_check(char **map);
 
 //STRUCT INIT
-t_map		*init_map(void);
-t_img		*init_img(void);
+t_gp		init_gameplay(void);
+t_img		init_img(void);
 
 //INIT MLX
 t_mlx_vars	*init_mlx_struct(void);
@@ -126,9 +142,9 @@ t_anim		*lstnew_anim(t_mlx_vars *mlx, char *content);
 void		anim_name_managment(char **file, int denominator);
 
 //INIT SPRITES
-t_refs		*init_refs_paths(t_mlx_vars *mlx, int bonus);
-void		init_refs_anims(t_mlx_vars *mlx, t_refs **ref, int bonus);
-t_img		*make_img(t_mlx_vars *mlx, char *path);
+t_refs		init_refs_paths(t_mlx_vars *mlx, int bonus);
+void		init_refs_anims(t_mlx_vars *mlx, t_refs *ref, int bonus);
+t_img		make_img(t_mlx_vars *mlx, char *path);
 void		black_to_transparency(char *addr, size_t len);
 
 //INIT GAMEPLAY
@@ -144,7 +160,7 @@ void		find_max_x(char **map, int *pos, int (*dir)[2], int *max, int col);
 void		find_max_y(char **map, int *pos, int (*dir)[2], int *max, int row);
 
 //GAMEPLAY
-void		move_pj_map_pos(t_mlx_vars *mlx, t_map *map, int *pos);
+void		move_pj_map_pos(t_mlx_vars *mlx, int *pos);
 void		move_mob_manager(t_mlx_vars *mlx);
 void		move_mob(t_mlx_vars *mlx, t_mob *mob, char **map);
 void		change_mob_dir(t_mob *mob);
@@ -156,16 +172,16 @@ void		mlx_print_window(t_mlx_vars *mlx);
 int			print_all(t_mlx_vars *mlx);
 void		print_map(t_mlx_vars *mlx, int floor);
 void		print_sprites(t_mlx_vars *mlx);
-void		add_img(t_mlx_vars *mlx, t_img *addr, int tot_x, int tot_y);
+void		add_img(t_mlx_vars *mlx, t_img addr, int tot_x, int tot_y);
 
 //MLX PRINT UTILS
 int			offset(int pxl, int max_map, int max_win);
 
 //GET IMGS TO PRINT
-t_img		*get_wall(char **map, t_refs *textures, int row, int col);
-t_img		*get_right_xpm(t_mlx_vars *mlx, int row, int col);
-t_img		*get_mob(int play_time, int x, int y, t_mob *mobs);
-t_img		*get_anim(t_anim **anim, int play_time);
+t_img		get_wall(char **map, t_refs textures, int row, int col);
+t_img		get_right_xpm(t_mlx_vars *mlx, int row, int col);
+t_img		get_mob(int play_time, int x, int y, t_mob *mobs);
+t_img		get_anim(t_anim **anim, int play_time);
 
 //MLX EVENTS
 int			key_hook(int keycode, t_mlx_vars *mlx);
@@ -176,7 +192,7 @@ void		free_manager(t_mlx_vars *mlx, int status);
 void		free_mobs(t_mlx_vars *mlx);
 void		free_sprites(t_mlx_vars *mlx);
 void		free_anim(t_mlx_vars *mlx, t_anim **stack, int len);
-void		free_img(t_mlx_vars *mlx, t_img **img);
+void		free_img(t_mlx_vars *mlx, t_img *img);
 
 //PRINTS
 void		print_manager(t_mlx_vars *mlx);

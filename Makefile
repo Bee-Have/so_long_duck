@@ -58,7 +58,6 @@ OBJS_BONUS = $(addprefix $(OBJS_DIR_BONUS)/,$(SRCS_BONUS:.c=.o))
 all: $(LIBFT_DIR)/libft.a $(GETFILE_DIR)/libgetfile.a $(MLX_DIR)/libmlx.a $(NAME)
 
 bonus: $(LIBFT_DIR)/libft.a $(GETFILE_DIR)/libgetfile.a $(MLX_DIR)/libmlx.a $(NAME_BONUS)
-# bonus: $(LIBFT_DIR)/libft.a $(GETFILE_DIR)/libgetfile.a $(MLX_DIR)/libmlx.a $(NAME_BONUS)
 
 $(LIBFT_DIR)/libft.a:
 	make -C $(LIBFT_DIR) all
@@ -93,7 +92,7 @@ clean:
 	rm -rf $(OBJS_DIR) $(OBJS_DIR_BONUS)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(NAME_BONUS)
 
 cleanall: fclean
 	make -C $(LIBFT_DIR) fclean

@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 15:28:25 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/22 18:33:35 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/23 12:14:12 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	free_manager(t_mlx_vars *mlx, int status)
 {
 	free_img(mlx, &mlx->img);
-	ft_freetab(mlx->map->map);
+	ft_freetab(mlx->map);
 	free(mlx->map);
 	free_sprites(mlx);
 	free_mobs(mlx);
@@ -33,12 +33,12 @@ void	free_mobs(t_mlx_vars *mlx)
 	int		i;
 
 	i = 0;
-	if (!mlx->mobs)
+	if (!mlx->gp.mobs)
 		return ;
-	while (i < mlx->mobs_count)
+	while (i < mlx->gp.mobs_count)
 	{
-		it = mlx->mobs;
-		mlx->mobs = mlx->mobs->next;
+		it = mlx->gp.mobs;
+		mlx->gp.mobs = mlx->gp.mobs->next;
 		free_anim(mlx, &it->anim, 8);
 		free(it);
 		i++;
@@ -48,30 +48,34 @@ void	free_mobs(t_mlx_vars *mlx)
 
 void	free_sprites(t_mlx_vars *mlx)
 {
-	free_img(mlx, &mlx->ref->wall);
-	free_img(mlx, &mlx->ref->wall_n);
-	free_img(mlx, &mlx->ref->wall_s);
-	free_img(mlx, &mlx->ref->wall_e);
-	free_img(mlx, &mlx->ref->wall_w);
-	free_img(mlx, &mlx->ref->wall_corner_ne);
-	free_img(mlx, &mlx->ref->wall_corner_nw);
-	free_img(mlx, &mlx->ref->wall_corner_se);
-	free_img(mlx, &mlx->ref->wall_corner_sw);
-	if (mlx->mobs_count == -1)
+	free_img(mlx, &mlx->ref.wall);
+	free_img(mlx, &mlx->ref.wall_n);
+	free_img(mlx, &mlx->ref.wall_s);
+	free_img(mlx, &mlx->ref.wall_e);
+	free_img(mlx, &mlx->ref.wall_w);
+	free_img(mlx, &mlx->ref.wall_corner_ne);
+	free_img(mlx, &mlx->ref.wall_corner_nw);
+	free_img(mlx, &mlx->ref.wall_corner_se);
+	free_img(mlx, &mlx->ref.wall_corner_sw);
+	if (mlx->gp.mobs_count == -1)
 	{
-		free_anim(mlx, &mlx->ref->tile, 1);
-		free_anim(mlx, &mlx->ref->obj, 1);
-		free_anim(mlx, &mlx->ref->exit, 1);
-		free_anim(mlx, &mlx->ref->pj_idle, 1);
-		free(mlx->ref);
+		free_anim(mlx, &mlx->ref.tile, 1);
+		//this will change since there are multiple collectibles
+		// free_anim(mlx, &mlx->ref->obj, 1);
+		//this will change since there can be multiple exits
+		// free_anim(mlx, &mlx->ref->exit, 1);
+		free_anim(mlx, &mlx->gp.pj.pj_idle, 1);
+		// free(mlx->ref);
 	}
 	else
 	{
-		free_anim(mlx, &mlx->ref->tile, 4);
-		free_anim(mlx, &mlx->ref->obj, 4);
-		free_anim(mlx, &mlx->ref->exit, 2);
-		free_anim(mlx, &mlx->ref->pj_idle, 5);
-		free(mlx->ref);
+		free_anim(mlx, &mlx->ref.tile, 4);
+		//this will change since there are multiple collectibles
+		// free_anim(mlx, &mlx->ref->obj, 4);
+		//this will change since there can be multiple exits
+		// free_anim(mlx, &mlx->ref->exit, 2);
+		free_anim(mlx, &mlx->gp.pj.pj_idle, 5);
+		// free(mlx->ref);
 	}
 }
 
@@ -92,10 +96,10 @@ void	free_anim(t_mlx_vars *mlx, t_anim **stack, int len)
 	}
 }
 
-void	free_img(t_mlx_vars *mlx, t_img **img)
+void	free_img(t_mlx_vars *mlx, t_img *img)
 {
-	if ((*img)->img)
-		mlx_destroy_image(mlx->mlx, (*img)->img);
-	free(*img);
+	if ((*img).img)
+		mlx_destroy_image(mlx->mlx, (*img).img);
+	free(img);
 	return ;
 }

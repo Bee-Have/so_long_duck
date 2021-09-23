@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 17:20:23 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/22 15:48:32 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/23 12:49:47 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ t_mob	*init_mobs(t_mlx_vars *mlx, char **map, int *pos, int mobs_count)
 	int		i;
 
 	i = 0;
-	if (!mlx->mobs)
+	if (!mlx->gp.mobs)
 	{
-		mlx->mobs = new_mob(mlx, map, pos);
-		mlx->mobs->next = mlx->mobs;
-		return (mlx->mobs);
+		mlx->gp.mobs = new_mob(mlx, map, pos);
+		mlx->gp.mobs->next = mlx->gp.mobs;
+		return (mlx->gp.mobs);
 	}
-	it = mlx->mobs;
+	it = mlx->gp.mobs;
 	while (i < mobs_count - 1)
 	{
 		it = it->next;
@@ -32,8 +32,8 @@ t_mob	*init_mobs(t_mlx_vars *mlx, char **map, int *pos, int mobs_count)
 	}
 	it->next = NULL;
 	it->next = new_mob(mlx, map, pos);
-	it->next->next = mlx->mobs;
-	return (mlx->mobs);
+	it->next->next = mlx->gp.mobs;
+	return (mlx->gp.mobs);
 }
 
 t_mob	*new_mob(t_mlx_vars *mlx, char **map, int *pos)

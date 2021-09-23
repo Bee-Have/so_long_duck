@@ -6,24 +6,25 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:36:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/22 19:37:51 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/23 12:49:08 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
 
 void	move_mob_manager(t_mlx_vars *mlx)
 {
 	t_mob	*it;
 	int		i;
 
-	if (!mlx->mobs)
+	if (!mlx->gp.mobs)
 		return ;
-	it = mlx->mobs;
+	it = mlx->gp.mobs;
 	i = 0;
-	while (i < mlx->mobs_count)
+	while (i < mlx->gp.mobs_count)
 	{
-		move_mob(mlx, it, mlx->map->map);
+		move_mob(mlx, it, mlx->map);
 		it = it->next;
 		++i;
 	}

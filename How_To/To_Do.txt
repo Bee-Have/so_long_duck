@@ -4,7 +4,6 @@ OK - add if for multiple params for maps
 OK - change rules for bonus to : bonus
 OK - Split the libs rules in the Makefile
 OK - debug bonus print of "not all collectible have been collected"
-
 OK - bonus rule relink (furking stupidity *incoherent swearing*)
 OK - 	./so_long Maps/test_mobs.ber
 			Error : ENEMIES on MAP without BONUSES
@@ -30,3 +29,5 @@ KO - Segfault when sending this map for bonus:
 	1111111111111111111
 KO - Mobs replace the collectibles sprite by a floor one.
 KO - Need to rework get_anim, the time seems to be shared.
+
+upon picking up a collectible -> find it in vector -> set vector to [-1][-1]

@@ -6,52 +6,54 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 12:29:57 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/22 19:40:06 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/23 14:14:40 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_img	*get_wall(char **map, t_refs *textures, int row, int col)
+t_img	get_wall(char **map, t_refs textures, int row, int col)
 {
 	if (col == 0 && row == 0)
-		return (textures->wall_corner_nw);
+		return (textures.wall_corner_nw);
 	else if (col == ft_strlen(map[row]) - 1 && row == 0)
-		return (textures->wall_corner_ne);
+		return (textures.wall_corner_ne);
 	else if (col > 0 && col < ft_strlen(map[row]) - 1 && row == 0)
-		return (textures->wall_n);
+		return (textures.wall_n);
 	else if (col == 0 && row == ft_tablen((const char **)map) - 1)
-		return (textures->wall_corner_sw);
+		return (textures.wall_corner_sw);
 	else if (col == ft_strlen(map[row]) - 1
 		&& row == ft_tablen((const char **)map) - 1)
-		return (textures->wall_corner_se);
+		return (textures.wall_corner_se);
 	else if (col > 0 && col < ft_strlen(map[row]) - 1
 		&& row == ft_tablen((const char **)map) - 1 )
-		return (textures->wall_s);
+		return (textures.wall_s);
 	else if (col == 0 && row > 0 && row < ft_tablen((const char **)map) - 1)
-		return (textures->wall_w);
+		return (textures.wall_w);
 	else if (col == ft_strlen(map[row]) - 1 && row > 0
 		&& row < ft_tablen((const char **)map) - 1)
-		return (textures->wall_e);
-	return (textures->wall);
+		return (textures.wall_e);
+	return (textures.wall);
 }
 
-t_img	*get_right_xpm(t_mlx_vars *mlx, int row, int col)
+t_img	get_right_xpm(t_mlx_vars *mlx, int row, int col)
 {
-	if (mlx->map->map[row][col] == '1')
-		return (get_wall(mlx->map->map, mlx->ref, row, col));
-	else if (mlx->map->map[row][col] == 'C')
-		return (get_anim(&mlx->ref->obj, 15));
-	else if (mlx->map->map[row][col] == 'E')
-		return (get_anim(&mlx->ref->exit, 15));
-	else if (mlx->map->map[row][col] == 'P')
-		return (get_anim(&mlx->ref->pj_idle, 5));
-	else if (mlx->map->map[row][col] == 'M')
-		return (get_mob(3, col, row, mlx->mobs));
-	return (NULL);
+	if (mlx->map[row][col] == '1')
+		return (get_wall(mlx->map, mlx->ref, row, col));
+	// else if (mlx->map[row][col] == 'C')
+		//replace this line by get collectibles
+		// return (get_anim(&mlx->gp.coll, 15));
+	// else if (mlx->map[row][col] == 'E')
+		//replace this line by get exit
+		// return (get_anim(&mlx->ref->exit, 15));
+	else if (mlx->map[row][col] == 'P')
+		return (get_anim(&mlx->gp.pj.pj_idle, 5));
+	else if (mlx->map[row][col] == 'M')
+		return (get_mob(3, col, row, mlx->gp.mobs));
+	return (mlx->ref.bad);
 }
 
-t_img	*get_mob(int play_time, int x, int y, t_mob *mobs)
+t_img	get_mob(int play_time, int x, int y, t_mob *mobs)
 {
 	int		timer;
 
@@ -69,7 +71,7 @@ t_img	*get_mob(int play_time, int x, int y, t_mob *mobs)
 	return (get_anim(&mobs->anim, play_time));
 }
 
-t_img	*get_anim(t_anim **anim, int play_time)
+t_img	get_anim(t_anim **anim, int play_time)
 {
 	if ((*anim)->played >= play_time)
 	{

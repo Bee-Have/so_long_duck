@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 12:25:35 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/22 18:31:06 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/23 12:55:10 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,19 @@ int	key_hook(int keycode, t_mlx_vars *mlx)
 		close_window(mlx);
 		return (-1);
 	}
-	if (mlx->map->pj_moved == 0)
+	if (mlx->gp.pj.pj_moved == 0)
 	{
-		if (keycode == g_w && mlx->map->pj_pos[0] > 0)
-			mlx->map->pj_pos[0] -= 1;
+		if (keycode == g_w && mlx->gp.pj.pj_pos[0] > 0)
+			mlx->gp.pj.pj_pos[0] -= 1;
 		if (keycode == g_s
-			&& mlx->map->pj_pos[0] < ft_tablen((const char **)mlx->map->map))
-			mlx->map->pj_pos[0] += 1;
-		if (keycode == g_a && mlx->map->pj_pos[1] > 0)
-			mlx->map->pj_pos[1] -= 1;
+			&& mlx->gp.pj.pj_pos[0] < ft_tablen((const char **)mlx->map))
+			mlx->gp.pj.pj_pos[0] += 1;
+		if (keycode == g_a && mlx->gp.pj.pj_pos[1] > 0)
+			mlx->gp.pj.pj_pos[1] -= 1;
 		if (keycode == g_d
-			&& mlx->map->pj_pos[1] < ft_strlen((const char *)mlx->map->map[0]))
-			mlx->map->pj_pos[1] += 1;
-		mlx->map->pj_moved = 1;
+			&& mlx->gp.pj.pj_pos[1] < ft_strlen((const char *)mlx->map[0]))
+			mlx->gp.pj.pj_pos[1] += 1;
+		mlx->gp.pj.pj_moved = 1;
 	}
 	return (0);
 }

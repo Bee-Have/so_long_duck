@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 11:08:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/22 12:53:19 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/23 12:40:29 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,46 +23,60 @@ t_mlx_vars	*init_mlx_struct(void)
 	my_mlx->mlx = mlx_init();
 	my_mlx->mlx_win = NULL;
 	my_mlx->img = init_img();
-	my_mlx->map = init_map();
-	my_mlx->mobs_count = -1;
-	my_mlx->mobs = NULL;
-	my_mlx->c = 0;
-	my_mlx->ref = NULL;
+	my_mlx->gp = init_gameplay();
+	my_mlx->pxl_img = -1;
+	my_mlx->map = NULL;
+	// my_mlx->ref = NULL;
 	return (my_mlx);
 }
 
-t_img	*init_img(void)
+t_img	init_img(void)
 {
-	t_img	*img;
+	t_img	img;
 
-	img = NULL;
-	img = (t_img *)malloc(sizeof(t_img));
-	if (!img)
-		return (NULL);
-	img->img = NULL;
-	img->addr = NULL;
-	img->bits_pxl = 0;
-	img->line_len = 0;
-	img->endian = 0;
-	img->width = 100;
-	img->height = 100;
+	// img = NULL;
+	// img = malloc(sizeof(t_img));
+	// if (!img)
+		// return (NULL);
+	img.img = NULL;
+	img.addr = NULL;
+	img.bits_pxl = 0;
+	img.line_len = 0;
+	img.endian = 0;
+	img.width = 100;
+	img.height = 100;
 	return (img);
 }
 
-t_map	*init_map(void)
+//add fuction to init PJ
+t_player	init_player(void)
 {
-	t_map	*map;
+	t_player	pj;
 
-	map = NULL;
-	map = (t_map *)malloc(sizeof(t_map));
-	if (!map)
-		return (NULL);
-	map->map = NULL;
-	map->moves = 0;
-	map->pj_moved = 0;
-	map->pj_pos[0] = -1;
-	map->pj_pos[1] = -1;
-	map->exits = 0;
-	map->pxl_img = -1;
-	return (map);
+	pj.moves = 0;
+	pj.pj_moved = 0;
+	pj.pj_pos[0] = -1;
+	pj.pj_pos[1] = -1;
+	pj.pj_idle = NULL;
+	return (pj);
+}
+//add fuction to init EXITS
+//	exits will be updated post parsing
+//add fuction to init COLLECTIBLES
+//	same for collectibles
+
+t_gp	init_gameplay(void)
+{
+	t_gp	gp;
+
+	// gp = malloc(sizeof(t_gp));
+	// if (!gp)
+		// return (NULL);
+	gp.mobs_count = -1;
+	gp.mobs = NULL;
+	gp.c_count = 0;
+	gp.coll = NULL;
+	gp.e_count = 0;
+	gp.exits = NULL;
+	return (gp);
 }
