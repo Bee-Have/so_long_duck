@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/23 14:12:44 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/23 14:27:08 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ typedef struct s_player
 {
 	int				moves;
 	int				pj_moved;
-	int				pj_pos[2];
+	t_vec2			pj_pos;
+	// int				pj_pos[2];
 	t_anim			*pj_idle;
 }			t_player;
 
