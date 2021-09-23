@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:38:09 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/23 11:54:40 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/23 16:44:35 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	main_manager(char **map)
 	t_mlx_vars	*mlx;
 
 	mlx = init_mlx_struct();
-	init_window(mlx, 1);
+	init_window(mlx);
 	mlx->map = map;
 	find_exits(mlx, mlx->map);
 	find_mobs(mlx, map);

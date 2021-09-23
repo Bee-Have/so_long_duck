@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:36:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/23 12:49:08 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/23 16:09:30 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	move_mob(t_mlx_vars *mlx, t_mob *mob, char **map)
 	int		col;
 
 	row = 0;
-	if (map[mob->pos[0]][mob->pos[1]] == '1'
-		|| map[mob->pos[0]][mob->pos[1]] == 'E')
+	if (map[mob->pos.y][mob->pos.x] == '1'
+		|| map[mob->pos.y][mob->pos.x] == 'E')
 		change_mob_dir(mob);
 	else
 		erase_old_pos(mob, map);
@@ -47,7 +47,7 @@ void	move_mob(t_mlx_vars *mlx, t_mob *mob, char **map)
 		col = 0;
 		while (map[row][col] != '\0')
 		{
-			if (mob->pos[0] == row && mob->pos[1] == col
+			if (mob->pos.y == row && mob->pos.x == col
 				&& map[row][col] != '1')
 			{
 				if (map[row][col] == 'P')
@@ -62,27 +62,27 @@ void	move_mob(t_mlx_vars *mlx, t_mob *mob, char **map)
 
 void	change_mob_dir(t_mob *mob)
 {
-	if (mob->dir[0] > 0)
-		mob->dir[0] = -1;
-	else if (mob->dir[0] < 0)
-		mob->dir[0] = 1;
-	if (mob->dir[1] > 0)
-		mob->dir[1] = -1;
-	else if (mob->dir[1] < 0)
-		mob->dir[1] = 1;
-	mob->pos[0] += mob->dir[0];
-	mob->pos[1] += mob->dir[1];
+	if (mob->dir.y > 0)
+		mob->dir.y = -1;
+	else if (mob->dir.y < 0)
+		mob->dir.y = 1;
+	if (mob->dir.x > 0)
+		mob->dir.x = -1;
+	else if (mob->dir.x < 0)
+		mob->dir.x = 1;
+	mob->pos.y += mob->dir.y;
+	mob->pos.x += mob->dir.x;
 }
 
 void	erase_old_pos(t_mob *mob, char **map)
 {
-	int		old_pos[2];
+	t_vec2		old_pos;
 
-	old_pos[0] = mob->pos[0];
-	old_pos[1] = mob->pos[1];
-	old_pos[0] = mob->pos[0] - mob->dir[0];
-	old_pos[1] = mob->pos[1] - mob->dir[1];
-	if (map[old_pos[0]][old_pos[1]] != '1'
-		&& map[old_pos[0]][old_pos[1]] != 'P')
-		map[old_pos[0]][old_pos[1]] = '0';
+	old_pos.y = mob->pos.y;
+	old_pos.x = mob->pos.x;
+	old_pos.y = mob->pos.y - mob->dir.y;
+	old_pos.x = mob->pos.x - mob->dir.x;
+	if (map[old_pos.y][old_pos.x] != '1'
+		&& map[old_pos.y][old_pos.x] != 'P')
+		map[old_pos.y][old_pos.x] = '0';
 }

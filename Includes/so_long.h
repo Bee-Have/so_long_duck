@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/23 14:27:08 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/23 17:50:45 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "libft.h"
 # include "ft_get_file.h"
 # include "mlx.h"
+# define NOT_BONUS -2
 
 typedef struct s_img
 {
@@ -45,22 +46,24 @@ typedef struct s_vec2
 	int		y;
 }				t_vec2;
 
-typedef struct s_exits
+typedef struct s_objs
 {
-	t_anim	*exit;
+	t_anim	*anim;
 	t_vec2	pos;
-}				t_exits;
+}				t_objs;
 
-typedef struct s_collectibles
+typedef struct s_objs_parent
 {
-	t_anim	*obj;
-	t_vec2	pos;
-}				t_collectibles;
+	int		count;
+	char	*path;
+	int		sprites;
+	t_objs	*obj;
+}				t_objs_parent;
 
 typedef struct s_mob
 {
-	int				pos[2];
-	int				dir[2];
+	t_vec2			pos;
+	t_vec2			dir;
 	int				moves;
 	int				wait;
 	t_anim			*anim;
@@ -72,7 +75,6 @@ typedef struct s_player
 	int				moves;
 	int				pj_moved;
 	t_vec2			pj_pos;
-	// int				pj_pos[2];
 	t_anim			*pj_idle;
 }			t_player;
 
@@ -81,10 +83,8 @@ typedef struct s_gp
 	t_player		pj;
 	int				mobs_count;
 	t_mob			*mobs;
-	int				c_count;
-	t_collectibles	*coll;
-	int				e_count;
-	t_exits			*exits;
+	t_objs_parent	coll;
+	t_objs_parent	exits;
 }				t_gp;
 
 typedef struct s_refs
@@ -134,7 +134,7 @@ t_img		init_img(void);
 
 //INIT MLX
 t_mlx_vars	*init_mlx_struct(void);
-void		init_window(t_mlx_vars *mlx, int bonus);
+void		init_window(t_mlx_vars *mlx);
 int			mlx_check_size_window(t_mlx_vars *mlx);
 
 //INIT ANIMS
@@ -143,25 +143,26 @@ t_anim		*lstnew_anim(t_mlx_vars *mlx, char *content);
 void		anim_name_managment(char **file, int denominator);
 
 //INIT SPRITES
-t_refs		init_refs_paths(t_mlx_vars *mlx, int bonus);
-void		init_refs_anims(t_mlx_vars *mlx, t_refs *ref, int bonus);
+t_refs		init_refs_paths(t_mlx_vars *mlx);
+void		init_refs_anims(t_mlx_vars *mlx, t_refs *ref);
 t_img		make_img(t_mlx_vars *mlx, char *path);
 void		black_to_transparency(char *addr, size_t len);
 
 //INIT GAMEPLAY
 void		find_player(t_mlx_vars *mlx);
+void		add_collectibles(t_mlx_vars *mlx, int c_count, int y, int x);
 void		find_mobs(t_mlx_vars *mlx, char **map);
 void		find_exits(t_mlx_vars *mlx, char **map);
 
 //MOBS INIT
 t_mob		*init_mobs(t_mlx_vars *mlx, char **map, int *pos, int mobs_count);
 t_mob		*new_mob(t_mlx_vars *mlx, char **map, int *pos);
-void		find_direction(char **map, int *pos, int (*dir)[2], int *max);
-void		find_max_x(char **map, int *pos, int (*dir)[2], int *max, int col);
-void		find_max_y(char **map, int *pos, int (*dir)[2], int *max, int row);
+void		find_direction(char **map, int *pos, t_vec2 *dir, int *max);
+void		find_max_x(char **map, int *pos, t_vec2 (*dir), int *max, int col);
+void		find_max_y(char **map, int *pos, t_vec2 (*dir), int *max, int row);
 
 //GAMEPLAY
-void		move_pj_map_pos(t_mlx_vars *mlx, int *pos);
+void		move_pj_map_pos(t_mlx_vars *mlx, t_vec2 pos);
 void		move_mob_manager(t_mlx_vars *mlx);
 void		move_mob(t_mlx_vars *mlx, t_mob *mob, char **map);
 void		change_mob_dir(t_mob *mob);

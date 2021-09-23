@@ -6,13 +6,13 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:17:06 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/23 12:45:49 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/23 16:44:22 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	init_window(t_mlx_vars *mlx, int bonus)
+void	init_window(t_mlx_vars *mlx)
 {
 	if (mlx->ref.tile)
 		free_sprites(mlx);
@@ -21,7 +21,7 @@ void	init_window(t_mlx_vars *mlx, int bonus)
 	mlx->img.img = mlx_new_image(mlx->mlx, mlx->img.width, mlx->img.height);
 	mlx->img.addr = mlx_get_data_addr(mlx->img.img, &mlx->img.bits_pxl,
 			&mlx->img.line_len, &mlx->img.endian);
-	mlx->ref = init_refs_paths(mlx, bonus);
+	mlx->ref = init_refs_paths(mlx);
 	return ;
 }
 

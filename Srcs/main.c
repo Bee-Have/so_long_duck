@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:38:09 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/23 14:14:58 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/23 17:38:56 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	main_manager(char **map)
 	t_mlx_vars	*mlx;
 
 	mlx = init_mlx_struct();
-	init_window(mlx, 0);
+	mlx->gp.mobs_count = NOT_BONUS;
+	init_window(mlx);
 	mlx->map = map;
 	find_exits(mlx, mlx->map);
 	find_player(mlx);
@@ -57,7 +58,7 @@ void	main_manager(char **map)
 	{
 		mlx_destroy_image(mlx->mlx, mlx->img.img);
 		mlx_destroy_window(mlx->mlx, mlx->mlx_win);
-		init_window(mlx, 0);
+		init_window(mlx);
 	}
 	else if (mlx_check_size_window(mlx) == -1)
 	{

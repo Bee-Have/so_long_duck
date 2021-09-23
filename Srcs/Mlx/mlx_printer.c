@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:32:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/23 12:52:51 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/23 14:33:46 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	print_all(t_mlx_vars *mlx)
 	if (mlx->gp.pj.pj_moved > 0)
 	{
 		mlx->gp.pj.pj_moved = 0;
-		if (mlx->map[mlx->gp.pj.pj_pos[0]][mlx->gp.pj.pj_pos[1]] == 'C')
+		if (mlx->map[mlx->gp.pj.pj_pos.y][mlx->gp.pj.pj_pos.x] == 'C')
 		{
 			// mlx->map->c_pos[i]->x;
 			--mlx->gp.c_count;

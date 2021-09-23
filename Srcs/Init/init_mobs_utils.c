@@ -6,13 +6,13 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 11:32:07 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/22 15:48:53 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/23 16:05:24 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	find_max_x(char **map, int *pos, int (*dir)[2], int *max, int col)
+void	find_max_x(char **map, int *pos, t_vec2 *dir, int *max, int col)
 {
 	while (map[pos[0]][col] != '\0')
 	{
@@ -21,7 +21,7 @@ void	find_max_x(char **map, int *pos, int (*dir)[2], int *max, int col)
 			if (col > pos[1])
 			{
 				(*max) = col - pos[1];
-				(*dir)[1] = 1;
+				(*dir).x = 1;
 				col = pos[1];
 			}
 			else
@@ -29,19 +29,19 @@ void	find_max_x(char **map, int *pos, int (*dir)[2], int *max, int col)
 				if (pos[1] - col > (*max))
 				{
 					(*max) = pos[1] - col;
-					(*dir)[1] = -1;
+					(*dir).x = -1;
 				}
 				return ;
 			}
 		}
-		if ((*dir)[1] == 1)
+		if ((*dir).x == 1)
 			--col;
 		else
 			++col;
 	}
 }
 
-void	find_max_y(char **map, int *pos, int (*dir)[2], int *max, int row)
+void	find_max_y(char **map, int *pos, t_vec2 *dir, int *max, int row)
 {
 	while (map[row])
 	{
@@ -50,7 +50,7 @@ void	find_max_y(char **map, int *pos, int (*dir)[2], int *max, int row)
 			if (row > pos[0])
 			{
 				(*max) = row - pos[0];
-				(*dir)[0] = 1;
+				(*dir).y = 1;
 				row = pos[0];
 			}
 			else
@@ -58,12 +58,12 @@ void	find_max_y(char **map, int *pos, int (*dir)[2], int *max, int row)
 				if (pos[0] - row > (*max))
 				{
 					(*max) = pos[0] - row;
-					(*dir)[0] = -1;
+					(*dir).y = -1;
 				}
 				return ;
 			}
 		}
-		if ((*dir)[0] == 1)
+		if ((*dir).y == 1)
 			--row;
 		else
 			++row;

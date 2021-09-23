@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 12:29:57 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/23 14:14:40 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/23 16:12:20 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,15 @@ t_img	get_mob(int play_time, int x, int y, t_mob *mobs)
 	int		timer;
 
 	timer = 50;
-	while (mobs->pos[0] != y && mobs->pos[1] != x)
+	while (mobs->pos.y != y && mobs->pos.x != x)
 		mobs = mobs->next;
 	if (mobs->wait < timer)
 		mobs->wait++;
 	else
 	{
 		mobs->wait = 0;
-		mobs->pos[0] += mobs->dir[0];
-		mobs->pos[1] += mobs->dir[1];
+		mobs->pos.y += mobs->dir.y;
+		mobs->pos.x += mobs->dir.x;
 	}
 	return (get_anim(&mobs->anim, play_time));
 }

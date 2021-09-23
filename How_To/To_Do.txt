@@ -30,4 +30,5 @@ KO - Segfault when sending this map for bonus:
 KO - Mobs replace the collectibles sprite by a floor one.
 KO - Need to rework get_anim, the time seems to be shared.
 
+upon counting 'C' -> at the end of the function -> call function to make collectible list
 upon picking up a collectible -> find it in vector -> set vector to [-1][-1]

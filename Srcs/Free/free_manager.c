@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 15:28:25 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/23 12:14:12 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/23 17:39:51 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	free_sprites(t_mlx_vars *mlx)
 	free_img(mlx, &mlx->ref.wall_corner_nw);
 	free_img(mlx, &mlx->ref.wall_corner_se);
 	free_img(mlx, &mlx->ref.wall_corner_sw);
-	if (mlx->gp.mobs_count == -1)
+	if (mlx->gp.mobs_count == NOT_BONUS)
 	{
 		free_anim(mlx, &mlx->ref.tile, 1);
 		//this will change since there are multiple collectibles
