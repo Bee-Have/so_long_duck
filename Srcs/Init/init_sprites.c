@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 16:47:30 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/23 18:13:22 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/24 18:46:12 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,6 @@ t_refs	init_refs_paths(t_mlx_vars *mlx)
 {
 	t_refs	ref;
 
-	// ref = NULL;
-	// ref = (t_refs *)malloc(sizeof(t_refs));
-	// if (!ref)
-		// return (NULL);
 	ref.bad = make_img(mlx, "./Sprites/Error/bad.xpm");
 	ref.wall = make_img(mlx, "./Sprites/Walls/Pond/wall.xpm");
 	ref.wall_n = make_img(mlx, "./Sprites/Walls/Pond/wall_n.xpm");
@@ -36,17 +32,19 @@ t_refs	init_refs_paths(t_mlx_vars *mlx)
 
 void	init_refs_anims(t_mlx_vars *mlx, t_refs *ref)
 {
-	if (mlx->gp.mobs_count == NOT_BONUS)
+	if (mlx->gp.mobs_count > NOT_BONUS)
 	{
 		(*ref).tile = init_anim(mlx, 4, "./Sprites/Floor_Tiles/");
-		// (*ref).pj_idle = init_anim(mlx, 5, "./Sprites/Characters/Frog/Idle/");
+		mlx->gp.pj.pj_idle = init_anim(mlx, 5
+			, "./Sprites/Characters/Frog/Idle/");
 	}
 	else
 	{
 		(*ref).tile = init_anim(mlx, 0, "./Sprites/Floor_Tiles/");
 		mlx->gp.coll.sprites = 0;
 		mlx->gp.exits.sprites = 0;
-		// (*ref).pj_idle = init_anim(mlx, 0, "./Sprites/Characters/Frog/Idle/");
+		mlx->gp.pj.pj_idle = init_anim(mlx, 0
+			, "./Sprites/Characters/Frog/Idle/");
 	}
 	return ;
 }

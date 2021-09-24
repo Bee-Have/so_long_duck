@@ -41,7 +41,7 @@ COMMON_SRCS = print_manager.c \
 	init_anim.c init_sprites.c \
 	init_mobs.c init_mobs_utils.c \
 	init_gameplay.c \
-	pj_move.c mob_move.c exit_update.c \
+	pj_move.c mob_move.c update_objs.c \
 	mlx_printer.c mlx_print_utils.c mlx_event_manager.c \
 	get_sprites.c
 

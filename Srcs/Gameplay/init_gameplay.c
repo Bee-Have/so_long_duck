@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:49:12 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/23 18:40:47 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/24 17:01:00 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,18 @@ void	add_objs(t_mlx_vars *mlx, t_objs_parent *objs, int y, int x)
 	res = (t_objs *)malloc((*objs).count * sizeof(t_objs));
 	if (!res)
 		return ;
-	while (i < (*objs).count)
+	while (i < (*objs).count - 1)
 	{
 			res[i].anim = (*objs).obj[i].anim;
 			res[i].pos = (*objs).obj[i].pos;
 		++i;
 	}
+	res[i].anim = init_anim(mlx, (*objs).sprites, (*objs).path);
 	res[i].pos.y = y;
 	res[i].pos.x = x;
-		res[i].anim = init_anim(mlx, (*objs).sprites, (*objs).path);
-		res[i].anim = init_anim(mlx, (*objs).sprites, (*objs).path);
-	free((*objs).obj);
-	mlx->gp.coll.obj = res;
+	if ((*objs).obj)
+		free((*objs).obj);
+	(*objs).obj = res;
 }
 
 void	find_exits(t_mlx_vars *mlx, char **map)

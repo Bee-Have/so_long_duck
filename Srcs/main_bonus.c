@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:38:09 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/23 16:44:35 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/24 16:59:55 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ void	main_manager(char **map)
 		free_manager(mlx, 0);
 	if (mlx_check_size_window(mlx) == 1)
 	{
-		mlx_destroy_image(mlx->mlx, mlx->img->img);
+		mlx_destroy_image(mlx->mlx, mlx->img.img);
 		mlx_destroy_window(mlx->mlx, mlx->mlx_win);
-		init_window(mlx, 1);
+		init_window(mlx);
 	}
 	else if (mlx_check_size_window(mlx) == -1)
 	{

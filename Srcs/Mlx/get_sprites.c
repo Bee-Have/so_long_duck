@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 12:29:57 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/23 16:12:20 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/24 16:52:10 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,10 @@ t_img	get_right_xpm(t_mlx_vars *mlx, int row, int col)
 {
 	if (mlx->map[row][col] == '1')
 		return (get_wall(mlx->map, mlx->ref, row, col));
-	// else if (mlx->map[row][col] == 'C')
-		//replace this line by get collectibles
-		// return (get_anim(&mlx->gp.coll, 15));
-	// else if (mlx->map[row][col] == 'E')
-		//replace this line by get exit
-		// return (get_anim(&mlx->ref->exit, 15));
+	else if (mlx->map[row][col] == 'C')
+		return (get_obj_sprite(mlx, mlx->gp.coll, row, col));
+	else if (mlx->map[row][col] == 'E')
+		return (get_obj_sprite(mlx, mlx->gp.exits, row, col));
 	else if (mlx->map[row][col] == 'P')
 		return (get_anim(&mlx->gp.pj.pj_idle, 5));
 	else if (mlx->map[row][col] == 'M')

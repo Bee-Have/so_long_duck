@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/23 18:42:01 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/24 18:57:35 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,12 @@ typedef struct s_objs
 
 typedef struct s_objs_parent
 {
+	// t_anim	*anim;
 	int		count;
 	char	*path;
 	int		sprites;
 	t_objs	*obj;
+	// t_vec2	*obj;
 }				t_objs_parent;
 
 typedef struct s_mob
@@ -161,13 +163,19 @@ void		find_direction(char **map, int *pos, t_vec2 *dir, int *max);
 void		find_max_x(char **map, int *pos, t_vec2 (*dir), int *max, int col);
 void		find_max_y(char **map, int *pos, t_vec2 (*dir), int *max, int row);
 
-//GAMEPLAY
+//GAMEPLAY PJ
 void		move_pj_map_pos(t_mlx_vars *mlx, t_vec2 pos);
+void		erase_old_pos(t_mob *mob, char **map);
+
+//GAMEPLAY MOBS
 void		move_mob_manager(t_mlx_vars *mlx);
 void		move_mob(t_mlx_vars *mlx, t_mob *mob, char **map);
 void		change_mob_dir(t_mob *mob);
-void		erase_old_pos(t_mob *mob, char **map);
-void		update_exits(t_mlx_vars *mlx);
+
+//AGEMPLAY EXITS/COLLECTIBLES
+t_img		get_obj_sprite(t_mlx_vars *mlx, t_objs_parent parent, int y, int x);
+void		update_objs(t_mlx_vars *mlx);
+void		delete_collectible(t_mlx_vars *mlx, t_vec2 pos);
 
 //PRINTING
 void		mlx_print_window(t_mlx_vars *mlx);

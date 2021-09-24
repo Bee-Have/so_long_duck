@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:32:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/23 14:33:46 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/24 16:12:01 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,12 @@ void	mlx_print_window(t_mlx_vars *mlx)
 int	print_all(t_mlx_vars *mlx)
 {
 	move_mob_manager(mlx);
-	update_exits(mlx);
+	update_objs(mlx);
 	if (mlx->gp.pj.pj_moved > 0)
 	{
 		mlx->gp.pj.pj_moved = 0;
 		if (mlx->map[mlx->gp.pj.pj_pos.y][mlx->gp.pj.pj_pos.x] == 'C')
-		{
-			// mlx->map->c_pos[i]->x;
-			--mlx->gp.c_count;
-		}
+			delete_collectible(mlx, mlx->gp.pj.pj_pos);
 		move_pj_map_pos(mlx, mlx->gp.pj.pj_pos);
 	}
 	find_player(mlx);
