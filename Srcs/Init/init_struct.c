@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 11:08:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/27 12:45:37 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/27 17:16:41 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ t_gp	init_gameplay(void)
 	gp.coll.count = 0;
 	gp.coll.path =  "./Sprites/Objects/Flowers/";
 	gp.coll.sprites = 4;
-	gp.coll.obj = NULL;
+	gp.coll.pos = NULL;
 	gp.exits.count = 0;
 	gp.exits.path =  "./Sprites/Exit/Typhoon/";
 	gp.exits.sprites = 2;
-	gp.exits.obj = NULL;
+	gp.exits.pos = NULL;
 	return (gp);
 }

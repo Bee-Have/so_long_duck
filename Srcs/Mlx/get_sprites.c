@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 12:29:57 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/27 16:31:15 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/27 17:11:59 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,17 @@ t_img	get_right_xpm(t_mlx_vars *mlx, int row, int col)
 	if (mlx->map[row][col] == '1')
 		return (get_wall(mlx->map, mlx->ref, row, col));
 	else if (mlx->map[row][col] == 'C')
-		return (get_obj_sprite(mlx, mlx->gp.coll, row, col));
+	{
+		if (mlx->gp.mobs_count == NOT_BONUS)
+			return (mlx->gp.coll.anim->img);
+		return (get_anim(&mlx->gp.coll.anim, ANIM_OBJS));
+	}
 	else if (mlx->map[row][col] == 'E')
-		return (get_obj_sprite(mlx, mlx->gp.exits, row, col));
+	{
+		if (mlx->gp.mobs_count == NOT_BONUS)
+			return (mlx->gp.exits.anim->img);
+		return (get_anim(&mlx->gp.exits.anim, ANIM_OBJS));
+	}
 	else if (mlx->map[row][col] == 'P')
 	{
 		if (mlx->gp.mobs_count == NOT_BONUS)
@@ -51,27 +59,27 @@ t_img	get_right_xpm(t_mlx_vars *mlx, int row, int col)
 		return (get_anim(&mlx->gp.pj.pj_idle, ANIM_PJ));
 	}
 	else if (mlx->map[row][col] == 'M')
-		return (get_mob(ANIM_MOB, col, row, mlx->gp.mobs));
+		return (get_anim(&mlx->gp.anim_mob, ANIM_MOB));
 	return (mlx->ref.bad);
 }
 
-t_img	get_mob(int max_time, int x, int y, t_mob *mobs)
-{
-	int		timer;
+// t_img	get_mob(int max_time, int x, int y, t_mob *mobs)
+// {
+// 	int		timer;
 
-	timer = 50;
-	while (mobs->pos.y != y && mobs->pos.x != x)
-		mobs = mobs->next;
-	if (mobs->wait < timer)
-		mobs->wait++;
-	else
-	{
-		mobs->wait = 0;
-		mobs->pos.y += mobs->dir.y;
-		mobs->pos.x += mobs->dir.x;
-	}
-	return (get_anim(&mobs->anim, max_time));
-}
+// 	timer = 50;
+// 	while (mobs->pos.y != y && mobs->pos.x != x)
+// 		mobs = mobs->next;
+// 	if (mobs->wait < timer)
+// 		mobs->wait++;
+// 	else
+// 	{
+// 		mobs->wait = 0;
+// 		mobs->pos.y += mobs->dir.y;
+// 		mobs->pos.x += mobs->dir.x;
+// 	}
+// 	return (get_anim(&mobs->anim, max_time));
+// }
 
 t_img	get_anim(t_anim **anim, int max_time)
 {

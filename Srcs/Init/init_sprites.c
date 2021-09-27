@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 16:47:30 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/24 18:46:12 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/27 17:02:56 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	init_refs_anims(t_mlx_vars *mlx, t_refs *ref)
 		(*ref).tile = init_anim(mlx, 4, "./Sprites/Floor_Tiles/");
 		mlx->gp.pj.pj_idle = init_anim(mlx, 5
 			, "./Sprites/Characters/Frog/Idle/");
+		mlx->gp.anim_mob = init_anim(mlx, 8, "./Sprites/Characters/Slime/");
 	}
 	else
 	{
@@ -45,7 +46,11 @@ void	init_refs_anims(t_mlx_vars *mlx, t_refs *ref)
 		mlx->gp.exits.sprites = 0;
 		mlx->gp.pj.pj_idle = init_anim(mlx, 0
 			, "./Sprites/Characters/Frog/Idle/");
+		mlx->gp.anim_mob = NULL;
 	}
+	mlx->gp.exits.anim = init_anim(mlx, mlx->gp.exits.sprites
+		, mlx->gp.exits.path);
+	mlx->gp.coll.anim = init_anim(mlx, mlx->gp.coll.sprites, mlx->gp.coll.path);
 	return ;
 }
 

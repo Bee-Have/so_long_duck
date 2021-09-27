@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:49:12 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/24 17:01:00 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/27 17:17:54 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	find_player(t_mlx_vars *mlx)
 			else if (mlx->map[row][col] == 'C' && check == 0)
 			{
 				++mlx->gp.coll.count;
-				add_objs(mlx, &mlx->gp.coll, row, col);
+				add_objs(&mlx->gp.coll, row, col);
 			}
 			++col;
 		}
@@ -43,27 +43,25 @@ void	find_player(t_mlx_vars *mlx)
 	}
 }
 
-void	add_objs(t_mlx_vars *mlx, t_objs_parent *objs, int y, int x)
+void	add_objs(t_objs_parent *objs, int y, int x)
 {
-	t_objs	*res;
+	t_vec2	*res;
 	int		i;
 
 	i = 0;
-	res = (t_objs *)malloc((*objs).count * sizeof(t_objs));
+	res = (t_vec2 *)malloc((*objs).count * sizeof(t_vec2));
 	if (!res)
 		return ;
 	while (i < (*objs).count - 1)
 	{
-			res[i].anim = (*objs).obj[i].anim;
-			res[i].pos = (*objs).obj[i].pos;
+			res[i] = (*objs).pos[i];
 		++i;
 	}
-	res[i].anim = init_anim(mlx, (*objs).sprites, (*objs).path);
-	res[i].pos.y = y;
-	res[i].pos.x = x;
-	if ((*objs).obj)
-		free((*objs).obj);
-	(*objs).obj = res;
+	res[i].y = y;
+	res[i].x = x;
+	if ((*objs).pos)
+		free((*objs).pos);
+	(*objs).pos = res;
 }
 
 void	find_exits(t_mlx_vars *mlx, char **map)
@@ -80,7 +78,7 @@ void	find_exits(t_mlx_vars *mlx, char **map)
 			if (map[row][col] == 'E')
 			{
 				++mlx->gp.exits.count;
-				add_objs(mlx, &mlx->gp.exits, row, col);
+				add_objs(&mlx->gp.exits, row, col);
 			}
 			++col;
 		}

@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/27 16:30:30 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/27 17:17:38 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,13 @@ typedef struct s_vec2
 	int		y;
 }				t_vec2;
 
-typedef struct s_objs
-{
-	t_anim	*anim;
-	t_vec2	pos;
-}				t_objs;
-
 typedef struct s_objs_parent
 {
-	// t_anim	*anim;
 	int		count;
 	char	*path;
 	int		sprites;
-	t_objs	*obj;
-	// t_vec2	*obj;
+	t_anim	*anim;
+	t_vec2	*pos;
 }				t_objs_parent;
 
 typedef struct s_mob
@@ -73,7 +66,6 @@ typedef struct s_mob
 	t_vec2			dir;
 	int				moves;
 	int				wait;
-	t_anim			*anim;
 	struct s_mob	*next;
 }				t_mob;
 
@@ -89,6 +81,7 @@ typedef struct s_gp
 {
 	t_player		pj;
 	int				mobs_count;
+	t_anim			*anim_mob;
 	t_mob			*mobs;
 	t_objs_parent	coll;
 	t_objs_parent	exits;
@@ -157,13 +150,13 @@ void		black_to_transparency(char *addr, size_t len);
 
 //INIT GAMEPLAY
 void		find_player(t_mlx_vars *mlx);
-void		add_objs(t_mlx_vars *mlx, t_objs_parent *objs, int y, int x);
+void		add_objs(t_objs_parent *objs, int y, int x);
 void		find_mobs(t_mlx_vars *mlx, char **map);
 void		find_exits(t_mlx_vars *mlx, char **map);
 
 //MOBS INIT
 t_mob		*init_mobs(t_mlx_vars *mlx, char **map, int *pos, int mobs_count);
-t_mob		*new_mob(t_mlx_vars *mlx, char **map, int *pos);
+t_mob		*new_mob(char **map, int *pos);
 void		find_direction(char **map, int *pos, t_vec2 *dir, int *max);
 void		find_max_x(char **map, int *pos, t_vec2 (*dir), int *max, int col);
 void		find_max_y(char **map, int *pos, t_vec2 (*dir), int *max, int row);

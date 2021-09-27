@@ -32,3 +32,4 @@ OK - move count in BONUS isn't working anymore
 OK - upon picking up sprites the wrong one is 'deleted'
 OK - Add <time.h> to have regular speed on all anims
 KO - refacto anims so it's one central one for elements with same anims
+KO - everything is compiling but it exits for no reasons on an error that does not exists

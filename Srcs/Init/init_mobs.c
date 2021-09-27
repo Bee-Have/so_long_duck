@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 17:20:23 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/23 14:47:54 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/27 17:05:57 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_mob	*init_mobs(t_mlx_vars *mlx, char **map, int *pos, int mobs_count)
 	i = 0;
 	if (!mlx->gp.mobs)
 	{
-		mlx->gp.mobs = new_mob(mlx, map, pos);
+		mlx->gp.mobs = new_mob(map, pos);
 		mlx->gp.mobs->next = mlx->gp.mobs;
 		return (mlx->gp.mobs);
 	}
@@ -31,12 +31,12 @@ t_mob	*init_mobs(t_mlx_vars *mlx, char **map, int *pos, int mobs_count)
 		i++;
 	}
 	it->next = NULL;
-	it->next = new_mob(mlx, map, pos);
+	it->next = new_mob(map, pos);
 	it->next->next = mlx->gp.mobs;
 	return (mlx->gp.mobs);
 }
 
-t_mob	*new_mob(t_mlx_vars *mlx, char **map, int *pos)
+t_mob	*new_mob(char **map, int *pos)
 {
 	t_mob	*mob;
 
@@ -49,7 +49,7 @@ t_mob	*new_mob(t_mlx_vars *mlx, char **map, int *pos)
 	mob->wait = 0;
 	find_direction(map, pos, &mob->dir, &mob->wait);
 	mob->moves = 0;
-	mob->anim = init_anim(mlx, 8, "./Sprites/Characters/Slime/");
+	// mob->anim = init_anim(mlx, 8, "./Sprites/Characters/Slime/");
 	mob->next = NULL;
 	return (mob);
 }

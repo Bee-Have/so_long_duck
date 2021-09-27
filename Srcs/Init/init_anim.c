@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 14:11:48 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/27 16:26:16 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/27 16:40:00 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ t_anim	*lstnew_anim(t_mlx_vars *mlx, char *content)
 	head->img = make_img(mlx, content);
 	head->played.tv_sec = 0;
 	head->played.tv_usec = 0;
-	// gettimeofday(&head->played, NULL);
 	head->next = NULL;
 	free(content);
 	return (head);

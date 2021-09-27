@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 15:28:25 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/24 16:58:43 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/27 17:16:13 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ void	free_mobs(t_mlx_vars *mlx)
 	int		i;
 
 	i = 0;
-	if (!mlx->gp.mobs)
+	if (mlx->gp.mobs_count == NOT_BONUS)
 		return ;
+	free_anim(mlx, &mlx->gp.anim_mob, 8);
 	while (i < mlx->gp.mobs_count)
 	{
 		it = mlx->gp.mobs;
 		mlx->gp.mobs = mlx->gp.mobs->next;
-		free_anim(mlx, &it->anim, 8);
 		free(it);
 		i++;
 	}

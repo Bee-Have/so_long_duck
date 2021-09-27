@@ -10,11 +10,6 @@ int	main(void)
 
 	gettimeofday(&old, NULL);
 	current = old;
-
-	//ok so, we want to switch animation every x seconds
-	//said seconds will be given in the struct of the anim
-	//time in anim will be timeval struct (old)
-
 	while (1)
 	{
 		test = ((current.tv_sec - old.tv_sec) * 1000)
