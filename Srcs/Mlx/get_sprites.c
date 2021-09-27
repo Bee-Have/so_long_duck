@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 12:29:57 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/24 16:52:10 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/27 16:31:15 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,17 @@ t_img	get_right_xpm(t_mlx_vars *mlx, int row, int col)
 	else if (mlx->map[row][col] == 'E')
 		return (get_obj_sprite(mlx, mlx->gp.exits, row, col));
 	else if (mlx->map[row][col] == 'P')
-		return (get_anim(&mlx->gp.pj.pj_idle, 5));
+	{
+		if (mlx->gp.mobs_count == NOT_BONUS)
+			return (mlx->gp.pj.pj_idle->img);
+		return (get_anim(&mlx->gp.pj.pj_idle, ANIM_PJ));
+	}
 	else if (mlx->map[row][col] == 'M')
-		return (get_mob(3, col, row, mlx->gp.mobs));
+		return (get_mob(ANIM_MOB, col, row, mlx->gp.mobs));
 	return (mlx->ref.bad);
 }
 
-t_img	get_mob(int play_time, int x, int y, t_mob *mobs)
+t_img	get_mob(int max_time, int x, int y, t_mob *mobs)
 {
 	int		timer;
 
@@ -66,17 +70,23 @@ t_img	get_mob(int play_time, int x, int y, t_mob *mobs)
 		mobs->pos.y += mobs->dir.y;
 		mobs->pos.x += mobs->dir.x;
 	}
-	return (get_anim(&mobs->anim, play_time));
+	return (get_anim(&mobs->anim, max_time));
 }
 
-t_img	get_anim(t_anim **anim, int play_time)
+t_img	get_anim(t_anim **anim, int max_time)
 {
-	if ((*anim)->played >= play_time)
+	struct timeval	current;
+	long int		playing_time;
+
+	gettimeofday(&current, NULL);
+	playing_time = ((current.tv_sec - (*anim)->played.tv_sec) * 1000)
+		- ((current.tv_usec - (*anim)->played.tv_usec) / 1000);
+	if (playing_time >= max_time)
 	{
-		(*anim)->played = 0;
 		(*anim) = (*anim)->next;
+		(*anim)->played = current;
 	}
-	else
-		(*anim)->played++;
+	// else
+		// (*anim)->played++;
 	return ((*anim)->img);
 }

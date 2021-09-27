@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/24 18:57:35 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/27 16:30:30 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,15 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <sys/time.h>
 # include "libft.h"
 # include "ft_get_file.h"
 # include "mlx.h"
+
 # define NOT_BONUS -2
+# define ANIM_PJ 3
+# define ANIM_MOB 10
+# define ANIM_OBJS 10
 
 typedef struct s_img
 {
@@ -36,7 +41,7 @@ typedef struct s_img
 typedef struct s_anim
 {
 	t_img			img;
-	int				played;
+	struct timeval	played;
 	struct s_anim	*next;
 }				t_anim;
 

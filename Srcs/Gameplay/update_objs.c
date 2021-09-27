@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 12:06:26 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/27 12:47:33 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/27 16:07:00 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,11 @@ t_img	get_obj_sprite(t_mlx_vars *mlx, t_objs_parent parent, int y, int x)
 	while (i < parent.count)
 	{
 		if (parent.obj[i].pos.y == y && parent.obj[i].pos.x == x)
-			return (get_anim(&parent.obj[i].anim, 15));
+		{
+			if (mlx->gp.mobs_count == NOT_BONUS)
+				return (parent.obj[i].anim->img);
+			return (get_anim(&parent.obj[i].anim, ANIM_OBJS));
+		}
 		++i;
 	}
 	return (mlx->ref.bad);
