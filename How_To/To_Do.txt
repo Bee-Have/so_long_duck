@@ -28,5 +28,6 @@ OK - Segfault when sending this map for bonus:
 	1EEEEEEEEEEE1EEE1E1
 	1111111111111111111
 OK - Mobs replace the collectibles sprite by a floor one.
-KO - move count in BONUS isn't working anymore
-KO - upon picking up sprites the wrong one is 'deleted'
+OK - move count in BONUS isn't working anymore
+OK - upon picking up sprites the wrong one is 'deleted'
+KO - Add <time.h> to have regular speed on all anims

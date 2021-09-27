@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 11:08:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/24 17:59:58 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/27 12:45:37 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ t_gp	init_gameplay(void)
 {
 	t_gp	gp;
 
+	gp.pj = init_player();
 	gp.mobs_count = -1;
 	gp.mobs = NULL;
 	gp.coll.count = 0;

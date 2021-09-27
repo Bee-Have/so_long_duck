@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 12:06:26 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/24 16:53:38 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/27 12:47:33 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	update_objs(t_mlx_vars *mlx)
 	while (i < mlx->gp.coll.count)
 	{
 		pos = mlx->gp.coll.obj[i].pos;
-		if (pos.x != -1 && pos.y != -1 && mlx->map[pos.y][pos.x] == '0')
+		if (mlx->map[pos.y][pos.x] == '0')
 			mlx->map[pos.y][pos.x] = 'C';
 		++i;
 	}
@@ -52,20 +52,34 @@ t_img	get_obj_sprite(t_mlx_vars *mlx, t_objs_parent parent, int y, int x)
 
 void	delete_collectible(t_mlx_vars *mlx, t_vec2 pos)
 {
-	int		i;
-	t_objs	coll;
+	t_objs	*new;
+	int		i_old;
+	int		i_new;
+	int		len;
 
-	i = 0;
-	while (i < mlx->gp.coll.count)
+	i_old = 0;
+	i_new = 0;
+	len = mlx->gp.coll.count - 1;
+	new = (t_objs *)malloc(len * sizeof(t_objs));
+	if (!new)
+		return ;
+	while (i_old < mlx->gp.coll.count)
 	{
-		coll = mlx->gp.coll.obj[i];
-		if (coll.pos.y == pos.y && coll.pos.y == pos.y)
+		if (mlx->gp.coll.obj[i_old].pos.y == pos.y
+			&& mlx->gp.coll.obj[i_old].pos.x == pos.x)
 		{
-			coll.pos.y = -1;
-			coll.pos.x = -1;
+			mlx->gp.coll.obj[i_old].pos.y = -1;
+			mlx->gp.coll.obj[i_old].pos.x = -1;
 		}
-		++i;
+		else
+		{
+			new[i_new] = mlx->gp.coll.obj[i_old];
+			++i_new;
+		}
+		++i_old;
 	}
+	free(mlx->gp.coll.obj);
+	mlx->gp.coll.obj = new;
 	--mlx->gp.coll.count;
 	return ;
 }
