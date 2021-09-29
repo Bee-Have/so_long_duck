@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 12:29:57 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/27 17:11:59 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/29 22:40:37 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,57 +44,52 @@ t_img	get_right_xpm(t_mlx_vars *mlx, int row, int col)
 	{
 		if (mlx->gp.mobs_count == NOT_BONUS)
 			return (mlx->gp.coll.anim->img);
-		return (get_anim(&mlx->gp.coll.anim, ANIM_OBJS));
+		return (get_anim(&mlx->gp.coll.anim, ANIM_COLL, mlx->time));
 	}
 	else if (mlx->map[row][col] == 'E')
 	{
 		if (mlx->gp.mobs_count == NOT_BONUS)
 			return (mlx->gp.exits.anim->img);
-		return (get_anim(&mlx->gp.exits.anim, ANIM_OBJS));
+		return (get_anim(&mlx->gp.exits.anim, ANIM_EXIT, mlx->time));
 	}
 	else if (mlx->map[row][col] == 'P')
 	{
 		if (mlx->gp.mobs_count == NOT_BONUS)
 			return (mlx->gp.pj.pj_idle->img);
-		return (get_anim(&mlx->gp.pj.pj_idle, ANIM_PJ));
+		return (get_anim(&mlx->gp.pj.pj_idle, ANIM_PJ, mlx->time));
 	}
 	else if (mlx->map[row][col] == 'M')
-		return (get_anim(&mlx->gp.anim_mob, ANIM_MOB));
+		return (get_mob(mlx, row, col));
 	return (mlx->ref.bad);
 }
 
-// t_img	get_mob(int max_time, int x, int y, t_mob *mobs)
-// {
-// 	int		timer;
-
-// 	timer = 50;
-// 	while (mobs->pos.y != y && mobs->pos.x != x)
-// 		mobs = mobs->next;
-// 	if (mobs->wait < timer)
-// 		mobs->wait++;
-// 	else
-// 	{
-// 		mobs->wait = 0;
-// 		mobs->pos.y += mobs->dir.y;
-// 		mobs->pos.x += mobs->dir.x;
-// 	}
-// 	return (get_anim(&mobs->anim, max_time));
-// }
-
-t_img	get_anim(t_anim **anim, int max_time)
+t_img	get_mob(t_mlx_vars *mlx, int y, int x)
 {
-	struct timeval	current;
+	long int	timer;
+
+	while (mlx->gp.mobs->pos.y != y && mlx->gp.mobs->pos.x != x)
+		mlx->gp.mobs = mlx->gp.mobs->next;
+	timer = ((mlx->time.tv_sec - mlx->gp.mobs->wait.tv_sec) * 1000)
+		+ ((mlx->time.tv_usec - mlx->gp.mobs->wait.tv_usec) / 1000);
+	if (timer > MOVE_MOB)
+	{
+		mlx->gp.mobs->wait = mlx->time;
+		mlx->gp.mobs->pos.y += mlx->gp.mobs->dir.y;
+		mlx->gp.mobs->pos.x += mlx->gp.mobs->dir.x;
+	}
+	return (get_anim(&mlx->gp.anim_mob, ANIM_MOB, mlx->time));
+}
+
+t_img	get_anim(t_anim **anim, int max_time, struct timeval current)
+{
 	long int		playing_time;
 
-	gettimeofday(&current, NULL);
 	playing_time = ((current.tv_sec - (*anim)->played.tv_sec) * 1000)
-		- ((current.tv_usec - (*anim)->played.tv_usec) / 1000);
+		+ ((current.tv_usec - (*anim)->played.tv_usec) / 1000);
 	if (playing_time >= max_time)
 	{
 		(*anim) = (*anim)->next;
 		(*anim)->played = current;
 	}
-	// else
-		// (*anim)->played++;
 	return ((*anim)->img);
 }

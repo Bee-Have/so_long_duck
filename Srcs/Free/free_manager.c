@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 15:28:25 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/27 17:16:13 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/29 11:50:41 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,9 @@ void	free_anim(t_mlx_vars *mlx, t_anim **stack, int len)
 
 void	free_img(t_mlx_vars *mlx, t_img *img)
 {
+	#ifdef __unix__
+	mlx_destroy_display(mlx->mlx);
+	#endif
 	if ((*img).img)
 		mlx_destroy_image(mlx->mlx, (*img).img);
 	// free(img);

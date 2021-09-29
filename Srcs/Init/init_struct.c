@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 11:08:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/27 17:16:41 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/29 22:39:12 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ t_mlx_vars	*init_mlx_struct(void)
 	my_mlx->mlx_win = NULL;
 	my_mlx->img = init_img();
 	my_mlx->gp = init_gameplay();
+	my_mlx->time.tv_sec = 0;
+	my_mlx->time.tv_usec = 0;
 	my_mlx->pxl_img = -1;
 	my_mlx->map = NULL;
 	return (my_mlx);

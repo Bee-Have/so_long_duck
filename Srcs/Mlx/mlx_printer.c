@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:32:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/27 12:42:24 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/29 11:41:22 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	mlx_print_window(t_mlx_vars *mlx)
 
 int	print_all(t_mlx_vars *mlx)
 {
+	if (mlx->gp.mobs_count != NOT_BONUS)
+		gettimeofday(&mlx->time, NULL);
 	move_mob_manager(mlx);
 	update_objs(mlx);
 	if (mlx->gp.pj.pj_moved > 0)
@@ -61,7 +63,7 @@ void	print_map(t_mlx_vars *mlx, int floor)
 		while (mlx->map[row][col] != '\0')
 		{
 			if (floor == 1)
-				add_img(mlx, get_anim(&mlx->ref.tile, 800), tot_x * 4, tot_y);
+				add_img(mlx, get_anim(&mlx->ref.tile, ANIM_TILE, mlx->time), tot_x * 4, tot_y);
 			else if (floor == 0 && mlx->map[row][col] != '0')
 				add_img(mlx, get_right_xpm(mlx, row, col), tot_x * 4, tot_y);
 			tot_x += mlx->pxl_img;

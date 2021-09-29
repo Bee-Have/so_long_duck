@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 17:20:23 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/27 17:05:57 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/29 22:39:50 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,16 @@ t_mob	*new_mob(char **map, int *pos)
 		return (NULL);
 	mob->pos.y = pos[0];
 	mob->pos.x = pos[1];
-	mob->wait = 0;
-	find_direction(map, pos, &mob->dir, &mob->wait);
+	mob->wait.tv_sec = 0;
+	mob->wait.tv_usec = 0;
+	find_direction(map, pos, &mob->dir);
 	mob->moves = 0;
 	// mob->anim = init_anim(mlx, 8, "./Sprites/Characters/Slime/");
 	mob->next = NULL;
 	return (mob);
 }
 
-void	find_direction(char **map, int *pos, t_vec2 *dir, int *max)
+void	find_direction(char **map, int *pos, t_vec2 *dir)
 {
 	t_vec2	result;
 	t_vec2	dir_x;
@@ -70,13 +71,11 @@ void	find_direction(char **map, int *pos, t_vec2 *dir, int *max)
 	find_max_x(map, pos, &dir_x, &result.x, pos[1]);
 	if (result.x > result.y)
 	{
-		*max = result.x;
 		(*dir).y = dir_x.y;
 		(*dir).x = dir_x.x;
 	}
 	else
 	{
-		*max = result.y;
 		(*dir).y = dir_y.y;
 		(*dir).x = dir_y.x;
 	}

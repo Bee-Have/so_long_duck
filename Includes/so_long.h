@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/27 17:17:38 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/29 22:41:12 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,12 @@
 # include "mlx.h"
 
 # define NOT_BONUS -2
-# define ANIM_PJ 3
-# define ANIM_MOB 10
-# define ANIM_OBJS 10
+# define ANIM_PJ 100
+# define ANIM_COLL 550
+# define ANIM_EXIT 200
+# define ANIM_TILE 250
+# define ANIM_MOB 150
+# define MOVE_MOB 400
 
 typedef struct s_img
 {
@@ -64,8 +67,8 @@ typedef struct s_mob
 {
 	t_vec2			pos;
 	t_vec2			dir;
+	struct timeval	wait;
 	int				moves;
-	int				wait;
 	struct s_mob	*next;
 }				t_mob;
 
@@ -112,6 +115,7 @@ typedef struct s_mlx_vars
 	t_img	img;
 
 	t_gp	gp;
+	struct timeval	time;
 	int		pxl_img;
 	char	**map;
 	t_refs	ref;
@@ -157,7 +161,7 @@ void		find_exits(t_mlx_vars *mlx, char **map);
 //MOBS INIT
 t_mob		*init_mobs(t_mlx_vars *mlx, char **map, int *pos, int mobs_count);
 t_mob		*new_mob(char **map, int *pos);
-void		find_direction(char **map, int *pos, t_vec2 *dir, int *max);
+void		find_direction(char **map, int *pos, t_vec2 *dir);
 void		find_max_x(char **map, int *pos, t_vec2 (*dir), int *max, int col);
 void		find_max_y(char **map, int *pos, t_vec2 (*dir), int *max, int row);
 
@@ -188,8 +192,8 @@ int			offset(int pxl, int max_map, int max_win);
 //GET IMGS TO PRINT
 t_img		get_wall(char **map, t_refs textures, int row, int col);
 t_img		get_right_xpm(t_mlx_vars *mlx, int row, int col);
-t_img		get_mob(int play_time, int x, int y, t_mob *mobs);
-t_img		get_anim(t_anim **anim, int play_time);
+t_img		get_mob(t_mlx_vars *mlx, int y, int x);
+t_img		get_anim(t_anim **anim, int play_time, struct timeval current);
 
 //MLX EVENTS
 int			key_hook(int keycode, t_mlx_vars *mlx);
