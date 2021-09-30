@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:32:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/29 11:41:22 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/30 17:04:28 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,24 +77,40 @@ void	print_map(t_mlx_vars *mlx, int floor)
 void	add_img(t_mlx_vars *mlx, t_img sprite, int tot_x, int tot_y)
 {
 	int		i;
+	int		y;
+	int		x;
 	int		size;
 	int		j;
 
-	i = 0;
+	y = 0;
 	size = sprite.line_len * 36;
-	while (i < size)
+	x = 0;
+	// i = 0;
+	while (y < size)
 	{
 		j = 0;
+		if (sprite.rev_print == 1)
+			x = sprite.line_len - 1;
+		// else
+		i = 0;
 		while (j < sprite.line_len)
 		{
-			if (sprite.addr[i] != 0x00)
+			if (sprite.addr[y + x + i] != 0x00)
 			{
 				mlx->img.addr[(tot_y * mlx->img.line_len) + tot_x + j]
-					= sprite.addr[i];
+					= sprite.addr[y + x + i];
 			}
+			if (sprite.rev_print == 1 && i == 4)
+			{
+				x -= 4;
+				i = 0;
+			}
+			else
+				++i;
 			++j;
-			++i;
 		}
+		y += sprite.line_len;
 		++tot_y;
 	}
+	sprite.rev_print = 0;
 }

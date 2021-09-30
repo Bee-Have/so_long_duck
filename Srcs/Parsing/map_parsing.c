@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 17:50:24 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/22 14:29:47 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/30 14:17:51 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ int	map_chars_check(char **map)
 	int		col;
 
 	row = 0;
+	mandatory[0] = '\0';
+	mandatory[1] = '\0';
+	mandatory[2] = '\0';
+	mandatory[3] = '\0';
 	while (map[row] != NULL)
 	{
 		col = 0;

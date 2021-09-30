@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/29 22:41:12 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/30 16:38:28 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,13 @@
 # include "mlx.h"
 
 # define NOT_BONUS -2
+
 # define ANIM_PJ 100
 # define ANIM_COLL 550
 # define ANIM_EXIT 200
 # define ANIM_TILE 250
 # define ANIM_MOB 150
+
 # define MOVE_MOB 400
 
 typedef struct s_img
@@ -39,6 +41,7 @@ typedef struct s_img
 	int		endian;
 	int		width;
 	int		height;
+	int		rev_print;
 }				t_img;
 
 typedef struct s_anim
@@ -184,7 +187,7 @@ void		mlx_print_window(t_mlx_vars *mlx);
 int			print_all(t_mlx_vars *mlx);
 void		print_map(t_mlx_vars *mlx, int floor);
 void		print_sprites(t_mlx_vars *mlx);
-void		add_img(t_mlx_vars *mlx, t_img addr, int tot_x, int tot_y);
+void		add_img(t_mlx_vars *mlx, t_img sprite, int tot_x, int tot_y);
 
 //MLX PRINT UTILS
 int			offset(int pxl, int max_map, int max_win);

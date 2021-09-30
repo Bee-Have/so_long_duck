@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 11:08:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/29 22:39:12 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/30 13:02:30 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_mlx_vars	*init_mlx_struct(void)
 	my_mlx->mlx = mlx_init();
 	my_mlx->mlx_win = NULL;
 	my_mlx->img = init_img();
+	// my_mlx->rev_print = 0;
 	my_mlx->gp = init_gameplay();
 	my_mlx->time.tv_sec = 0;
 	my_mlx->time.tv_usec = 0;
@@ -42,6 +43,7 @@ t_img	init_img(void)
 	img.endian = 0;
 	img.width = 100;
 	img.height = 100;
+	img.rev_print = 0;
 	return (img);
 }
 

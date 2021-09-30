@@ -6,11 +6,13 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 11:47:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/22 12:53:19 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/30 14:13:16 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+//EVERYTHING IS WRONG
 
 //a revoir (les anims sont des addr d'img xpm donc nope nope)
 // void	print_anim(t_anim *stack, int len)
@@ -38,16 +40,16 @@
 // 	return ;
 // }
 
-void	print_mobs(t_mob *mobs, int len)
-{
-	int		i;
+// void	print_mobs(t_mob *mobs, int len)
+// {
+// 	int		i;
 
-	i = 0;
-	while (i < len)
-	{
-		printf("MOB->pos[%d][%d]\n", mobs->pos[0], mobs->pos[1]);
-		mobs = mobs->next;
-		i++;
-	}
-	return ;
-}
+// 	i = 0;
+// 	while (i < len)
+// 	{
+// 		printf("MOB->pos[%d][%d]\n", mobs->pos[0], mobs->pos[1]);
+// 		mobs = mobs->next;
+// 		i++;
+// 	}
+// 	return ;
+// }

@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 12:29:57 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/29 22:40:37 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/09/30 13:11:00 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ t_img	get_mob(t_mlx_vars *mlx, int y, int x)
 		mlx->gp.mobs->wait = mlx->time;
 		mlx->gp.mobs->pos.y += mlx->gp.mobs->dir.y;
 		mlx->gp.mobs->pos.x += mlx->gp.mobs->dir.x;
+		if (mlx->gp.mobs->dir.x == -1)
+			mlx->gp.anim_mob->img.rev_print = 1;
 	}
 	return (get_anim(&mlx->gp.anim_mob, ANIM_MOB, mlx->time));
 }

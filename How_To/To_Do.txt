@@ -35,3 +35,29 @@ OK - refacto anims so it's one central one for elements with same anims
 OK - everything is compiling but it exits for no reasons on an error that does not exists
 KO - Fix leaks
 KO - make sprites switch sides depending on direction
+
+
+dissociate i into : y & x
+while (y < size)
+{
+	j = 0;
+	if (sprite.rev_print == 1)
+		x = line_len;
+	else
+		x = 0;
+	while (j < sprite.line_len)
+	{
+		if (sprite.addr[i] != 0x00)
+		{
+			mlx->img.addr[(tot_y * mlx->img.line_len) + tot_x + j]
+					= sprite.addr[y + x];
+		}
+		if (sprite.rev_print == 1)
+				--x;
+			else
+				++x;
+		++j;
+	}
+	y += j;
+}
+(au choix pour la ligne au dessus)
