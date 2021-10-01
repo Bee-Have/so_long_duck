@@ -43,7 +43,7 @@ COMMON_SRCS = print_manager.c \
 	init_gameplay.c \
 	pj_move.c mob_move.c update_objs.c \
 	mlx_printer.c mlx_print_utils.c mlx_event_manager.c \
-	get_sprites.c
+	get_sprites.c rev_print.c
 
 SRCS = $(COMMON_SRCS)
 SRCS += main.c

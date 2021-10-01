@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/30 16:38:28 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/10/01 11:59:30 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,7 @@ void		add_img(t_mlx_vars *mlx, t_img sprite, int tot_x, int tot_y);
 int			offset(int pxl, int max_map, int max_win);
 
 //GET IMGS TO PRINT
+void		rev_anim(t_anim **anim, int rev);
 t_img		get_wall(char **map, t_refs textures, int row, int col);
 t_img		get_right_xpm(t_mlx_vars *mlx, int row, int col);
 t_img		get_mob(t_mlx_vars *mlx, int y, int x);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_event_manager.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 12:25:35 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/30 13:15:16 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/10/01 12:01:52 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,16 @@ int	key_hook(int keycode, t_mlx_vars *mlx)
 			mlx->gp.pj.pj_pos.y += 1;
 		if (keycode == g_a && mlx->gp.pj.pj_pos.x > 0)
 		{
-			mlx->gp.pj.pj_idle->img.rev_print = 1;
+			rev_anim(&mlx->gp.pj.pj_idle, 1);
 			mlx->gp.pj.pj_pos.x -= 1;
 		}
 		if (keycode == g_d
 			&& mlx->gp.pj.pj_pos.x < ft_strlen((const char *)mlx->map[0]))
+		{
+			if (mlx->gp.pj.pj_idle->img.rev_print == 1)
+				rev_anim(&mlx->gp.pj.pj_idle, 0);
 			mlx->gp.pj.pj_pos.x += 1;
+		}
 		mlx->gp.pj.pj_moved = 1;
 	}
 	return (0);

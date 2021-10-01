@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_printer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:32:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/30 17:04:28 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/10/01 11:39:34 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,11 @@ void	add_img(t_mlx_vars *mlx, t_img sprite, int tot_x, int tot_y)
 	y = 0;
 	size = sprite.line_len * 36;
 	x = 0;
-	// i = 0;
 	while (y < size)
 	{
 		j = 0;
 		if (sprite.rev_print == 1)
-			x = sprite.line_len - 1;
-		// else
+			x = sprite.line_len - 4;
 		i = 0;
 		while (j < sprite.line_len)
 		{
@@ -100,7 +98,7 @@ void	add_img(t_mlx_vars *mlx, t_img sprite, int tot_x, int tot_y)
 				mlx->img.addr[(tot_y * mlx->img.line_len) + tot_x + j]
 					= sprite.addr[y + x + i];
 			}
-			if (sprite.rev_print == 1 && i == 4)
+			if (sprite.rev_print == 1 && i == 3)
 			{
 				x -= 4;
 				i = 0;
@@ -112,5 +110,4 @@ void	add_img(t_mlx_vars *mlx, t_img sprite, int tot_x, int tot_y)
 		y += sprite.line_len;
 		++tot_y;
 	}
-	sprite.rev_print = 0;
 }
