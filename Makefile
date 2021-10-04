@@ -35,7 +35,8 @@ INCLUDES = -I$(LIBFT_DIR)/Includes -I$(GETFILE_DIR)/Includes -I$(MLX_DIR) -I$(IN
 vpath %.c $(foreach dir, $(SRCS_DIR), $(dir):)
 
 COMMON_SRCS = print_manager.c \
-	error_message.c free_manager.c \
+	error_message.c \
+	free_manager.c free_gameplay.c \
 	path_parsing.c map_parsing.c parsing_utils.c \
 	init_struct.c init_mlx.c \
 	init_anim.c init_sprites.c \

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 15:28:25 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/04 15:42:57 by user42           ###   ########.fr       */
+/*   Updated: 2021/10/04 17:10:49 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	free_manager(t_mlx_vars *mlx, int status)
 	ft_freetab(mlx->map);
 	free_sprites(mlx);
 	free_mobs(mlx);
+	free_objs(mlx);
 	mlx_destroy_window(mlx->mlx, mlx->mlx_win);
 	#ifdef __unix__
 	mlx_destroy_display(mlx->mlx);
@@ -27,25 +28,6 @@ void	free_manager(t_mlx_vars *mlx, int status)
 	if (status == 0)
 		exit(EXIT_FAILURE);
 	exit(EXIT_SUCCESS);
-}
-
-void	free_mobs(t_mlx_vars *mlx)
-{
-	t_mob	*it;
-	int		i;
-
-	i = 0;
-	if (mlx->gp.mobs_count == NOT_BONUS)
-		return ;
-	free_anim(mlx, &mlx->gp.anim_mob, 8);
-	while (i < mlx->gp.mobs_count)
-	{
-		it = mlx->gp.mobs;
-		mlx->gp.mobs = mlx->gp.mobs->next;
-		free(it);
-		i++;
-	}
-	return ;
 }
 
 void	free_sprites(t_mlx_vars *mlx)
