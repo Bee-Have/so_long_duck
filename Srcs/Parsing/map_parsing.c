@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 17:50:24 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/30 14:17:51 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/10/04 15:38:57 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,26 @@
 
 int	map_open_check(char **map)
 {
-	int	row;
-	int	col;
+	int	y;
+	int	x;
 	int	check;
 
-	row = 0;
+	y = 0;
 	check = 0;
-	while (map[row] != NULL)
+	while (map[y] != NULL)
 	{
-		col = 0;
-		while (map[row][col] != '\0')
+		x = 0;
+		while (map[y][x] != '\0')
 		{
-			if (map[row][col] != '1' && (col == 0
-				|| col == ft_strlen(map[row] - 1) || row == 0
-				|| row == ft_tablen((const char **)map) - 1))
+			if (map[y][x] != '1' && (x == 0
+				|| x == ft_strlen(map[y]) - 1 || y == 0
+				|| y == ft_tablen((const char **)map) - 1))
 				return (error_message("MAP is not CLOSED"));
-			if (map[row][col] == 'P')
+			if (map[y][x] == 'P')
 				++check;
-			col++;
+			x++;
 		}
-		row++;
+		y++;
 	}
 	if (check > 1)
 		return (error_message("MAP contains more than ONE PLAYER"));

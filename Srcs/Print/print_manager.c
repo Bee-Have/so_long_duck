@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_manager.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 12:56:56 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/23 18:41:23 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/10/04 16:39:57 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ void	print_manager(t_mlx_vars *mlx)
 	free(coll);
 }
 
-void	print_manager_console(int moves)
+void	print_console(t_mlx_vars *mlx)
 {
 	char	*tmp;
 	char	*final;
 
-	tmp = ft_itoa(moves);
+	tmp = ft_itoa(mlx->gp.pj.moves);
 	final = ft_strjoin(tmp, "\r");
 	ft_putstr(final);
 	free(tmp);

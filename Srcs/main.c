@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:38:09 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/24 16:59:27 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/10/04 16:12:48 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ int	main(int ac, char **av)
 	close(test);
 	test = ft_get_file(av[1], &map);
 	if (test == 0 || test == -1 || ft_tablen((const char **)map) == 1)
-	{
-		ft_freetab(map);
 		return (error_message("MAP file is EMPTY"));
-	}
 	if (map_rectangle_check(map) == -1)
 	{
 		ft_freetab(map);
@@ -65,7 +62,7 @@ void	main_manager(char **map)
 		error_message("MAP is BIGGER then SCREEN SIZE");
 		free_manager(mlx, 0);
 	}
-	print_manager_console(0);
+	print_console(mlx);
 	mlx_print_window(mlx);
 	free_manager(mlx, 0);
 }

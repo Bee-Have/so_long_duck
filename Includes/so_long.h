@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/01 11:59:30 by user42           ###   ########.fr       */
+/*   Updated: 2021/10/04 16:11:22 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,7 +212,7 @@ void		free_img(t_mlx_vars *mlx, t_img *img);
 
 //PRINTS
 void		print_manager(t_mlx_vars *mlx);
-void		print_manager_console(int moves);
+void		print_console(t_mlx_vars *mlx);
 void		print_collectibles(t_mlx_vars *mlx);
 
 //ERROR

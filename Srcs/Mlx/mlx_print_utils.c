@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_print_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 18:17:07 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/24 19:02:34 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/10/04 15:16:55 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int	offset(int pxl, int map_len, int max_win)
 {
 	int		offset;
 	int		max_pxl_win;
-	int		midd_pxl;
+	// int		midd_pxl;
 
-	midd_pxl = (pxl * map_len) / 2;
+	// midd_pxl = (pxl * map_len) / 2;
 	max_pxl_win = pxl * map_len;
 	offset = (max_win - max_pxl_win) / 2;
 	return (offset);

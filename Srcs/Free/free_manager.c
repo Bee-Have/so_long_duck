@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 15:28:25 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/01 11:28:02 by user42           ###   ########.fr       */
+/*   Updated: 2021/10/04 15:42:57 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ void	free_manager(t_mlx_vars *mlx, int status)
 {
 	free_img(mlx, &mlx->img);
 	ft_freetab(mlx->map);
-	//something here to free exits and collectibles
 	free_sprites(mlx);
 	free_mobs(mlx);
 	mlx_destroy_window(mlx->mlx, mlx->mlx_win);
+	#ifdef __unix__
+	mlx_destroy_display(mlx->mlx);
+	#endif
 	free(mlx->mlx);
 	free(mlx);
 	if (status == 0)
@@ -98,11 +100,8 @@ void	free_anim(t_mlx_vars *mlx, t_anim **stack, int len)
 
 void	free_img(t_mlx_vars *mlx, t_img *img)
 {
-	#ifdef __unix__
-	// mlx_destroy_display(mlx->mlx);
-	#endif
-	// if ((*img).img)
-		// mlx_destroy_image(mlx->mlx, (*img).img);
+	if ((*img).img)
+		mlx_destroy_image(mlx->mlx, (*img).img);
 	// free(img);
 	return ;
 }

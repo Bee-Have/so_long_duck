@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pj_move.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:33:56 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/24 18:45:12 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/10/04 16:39:40 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ void	move_pj_map_pos(t_mlx_vars *mlx, t_vec2 pos)
 		row++;
 	}
 	mlx->gp.pj.moves++;
-	if (mlx->gp.mobs_count > NOT_BONUS)
-		print_manager_console(mlx->gp.pj.moves);
+	if (mlx->gp.mobs_count == NOT_BONUS)
+		print_console(mlx);
 }
