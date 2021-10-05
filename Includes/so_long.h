@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/04 17:10:32 by user42           ###   ########.fr       */
+/*   Updated: 2021/10/05 18:04:20 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@
 # include "mlx.h"
 
 # define NOT_BONUS -2
+
+# define SPRITES_PJ 5
+# define SPRITES_COLL 4
+# define SPRITES_EXIT 2
+# define SPRITES_TILE 4
+# define SPRITES_MOB 8
 
 # define ANIM_PJ 100
 # define ANIM_COLL 550
@@ -61,7 +67,6 @@ typedef struct s_objs_parent
 {
 	int		count;
 	char	*path;
-	int		sprites;
 	t_anim	*anim;
 	t_vec2	*pos;
 }				t_objs_parent;
@@ -208,7 +213,7 @@ void		free_manager(t_mlx_vars *mlx, int status);
 void		free_sprites(t_mlx_vars *mlx);
 void		free_anim(t_mlx_vars *mlx, t_anim **stack, int len);
 void		free_img(t_mlx_vars *mlx, t_img *img);
-void		free_objs(t_mlx_vars *mlx);
+void		free_anim_manager(t_mlx_vars *mlx);
 void		free_mobs(t_mlx_vars *mlx);
 
 //PRINTS

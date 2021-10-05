@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 17:20:23 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/30 12:20:07 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/10/05 18:17:58 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_mob	*new_mob(char **map, int *pos)
 	mob->wait.tv_usec = 0;
 	find_direction(map, pos, &mob->dir);
 	mob->moves = 0;
-	// mob->anim = init_anim(mlx, 8, "./Sprites/Characters/Slime/");
+	// mob->anim = init_anim(mlx, SPRITES_MOB, "./Sprites/Characters/Slime/");
 	mob->next = NULL;
 	return (mob);
 }

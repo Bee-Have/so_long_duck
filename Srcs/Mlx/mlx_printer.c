@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_printer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:32:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/04 15:56:01 by user42           ###   ########.fr       */
+/*   Updated: 2021/10/05 18:14:28 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	print_all(t_mlx_vars *mlx)
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img.img, 0, 0);
 	print_map(mlx, 0);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img.img, 0, 0);
-	if (mlx->gp.mobs_count != NOT_BONUS)
+	if (mlx->gp.mobs_count > NOT_BONUS)
 		print_manager(mlx);
 	return (1);
 }

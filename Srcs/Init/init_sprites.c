@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 16:47:30 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/27 17:02:56 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/10/05 17:43:24 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,26 +32,28 @@ t_refs	init_refs_paths(t_mlx_vars *mlx)
 
 void	init_refs_anims(t_mlx_vars *mlx, t_refs *ref)
 {
-	if (mlx->gp.mobs_count > NOT_BONUS)
-	{
-		(*ref).tile = init_anim(mlx, 4, "./Sprites/Floor_Tiles/");
-		mlx->gp.pj.pj_idle = init_anim(mlx, 5
-			, "./Sprites/Characters/Frog/Idle/");
-		mlx->gp.anim_mob = init_anim(mlx, 8, "./Sprites/Characters/Slime/");
-	}
-	else
+	if (mlx->gp.mobs_count == NOT_BONUS)
 	{
 		(*ref).tile = init_anim(mlx, 0, "./Sprites/Floor_Tiles/");
-		mlx->gp.coll.sprites = 0;
-		mlx->gp.exits.sprites = 0;
+		mlx->gp.exits.anim = init_anim(mlx, 0, mlx->gp.exits.path);
+		mlx->gp.coll.anim = init_anim(mlx, 0, mlx->gp.coll.path);
 		mlx->gp.pj.pj_idle = init_anim(mlx, 0
 			, "./Sprites/Characters/Frog/Idle/");
 		mlx->gp.anim_mob = NULL;
 	}
-	mlx->gp.exits.anim = init_anim(mlx, mlx->gp.exits.sprites
-		, mlx->gp.exits.path);
-	mlx->gp.coll.anim = init_anim(mlx, mlx->gp.coll.sprites, mlx->gp.coll.path);
-	return ;
+	else
+	{
+		(*ref).tile = init_anim(mlx, SPRITES_TILE, "./Sprites/Floor_Tiles/");
+		mlx->gp.pj.pj_idle = init_anim(mlx, SPRITES_PJ
+			, "./Sprites/Characters/Frog/Idle/");
+		mlx->gp.exits.anim = init_anim(mlx, SPRITES_EXIT, mlx->gp.exits.path);
+		mlx->gp.coll.anim = init_anim(mlx, SPRITES_COLL, mlx->gp.coll.path);
+		if (mlx->gp.mobs_count > -1)
+			mlx->gp.anim_mob = init_anim(mlx, SPRITES_MOB
+				, "./Sprites/Characters/Slime/");
+		else
+			mlx->gp.anim_mob = NULL;
+	}
 }
 
 t_img	make_img(t_mlx_vars *mlx, char *path)

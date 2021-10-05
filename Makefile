@@ -2,11 +2,11 @@ NAME = so_long
 NAME_BONUS = so_long_bonus
 
 CC = gcc
-CFLAGS = -Wall -Wextra #-Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 
 DEBUG =
 ifdef DEBUG
-CFLAGS += -fsanitize=address -g3
+CFLAGS += -fsanitize=address
 endif
 
 SRCS_DIR = $(shell find Srcs -type d)
