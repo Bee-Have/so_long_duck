@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_sprites.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: notcampeur <notcampeur@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 16:47:30 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/05 17:43:24 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/10/18 15:23:22 by notcampeur       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ void	init_refs_anims(t_mlx_vars *mlx, t_refs *ref)
 	else
 	{
 		(*ref).tile = init_anim(mlx, SPRITES_TILE, "./Sprites/Floor_Tiles/");
-		mlx->gp.pj.pj_idle = init_anim(mlx, SPRITES_PJ
-			, "./Sprites/Characters/Frog/Idle/");
 		mlx->gp.exits.anim = init_anim(mlx, SPRITES_EXIT, mlx->gp.exits.path);
 		mlx->gp.coll.anim = init_anim(mlx, SPRITES_COLL, mlx->gp.coll.path);
-		if (mlx->gp.mobs_count > -1)
+		mlx->gp.pj.pj_idle = init_anim(mlx, SPRITES_PJ
+			, "./Sprites/Characters/Frog/Idle/");
+		if (mlx->gp.mobs_count >= -1)
 			mlx->gp.anim_mob = init_anim(mlx, SPRITES_MOB
 				, "./Sprites/Characters/Slime/");
 		else
