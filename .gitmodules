@@ -1,0 +1,9 @@
+[submodule "Libs/libft_duck"]
+	path = Libs/libft_duck
+	url = https://github.com/Bee-Have/libft_duck.git
+[submodule "Libs/Lib_get_file"]
+	path = Libs/Lib_get_file
+	url = https://github.com/Bee-Have/Lib_get_file.git
+[submodule "Libs/minilibx-linux"]
+	path = Libs/minilibx-linux
+	url = https://github.com/42Paris/minilibx-linux.git
