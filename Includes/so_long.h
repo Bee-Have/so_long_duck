@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/05 18:04:20 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/10/25 11:03:57 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,16 +117,16 @@ typedef struct s_refs
 
 typedef struct s_mlx_vars
 {
-	void	*mlx;
-	void	*mlx_win;
+	void			*mlx;
+	void			*mlx_win;
 
-	t_img	img;
+	t_img			img;
 
-	t_gp	gp;
+	t_gp			gp;
 	struct timeval	time;
-	int		pxl_img;
-	char	**map;
-	t_refs	ref;
+	int				pxl_img;
+	char			**map;
+	t_refs			ref;
 }				t_mlx_vars;
 
 //MAIN
