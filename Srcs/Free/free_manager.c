@@ -6,11 +6,15 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 15:28:25 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/05 18:08:13 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/10/25 11:49:44 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#ifdef __unix__
+
+mlx_destroy_display(mlx->mlx);
+#endif
 
 void	free_manager(t_mlx_vars *mlx, int status)
 {
@@ -20,9 +24,6 @@ void	free_manager(t_mlx_vars *mlx, int status)
 		free_mobs(mlx);
 	free_sprites(mlx);
 	mlx_destroy_window(mlx->mlx, mlx->mlx_win);
-	#ifdef __unix__
-	mlx_destroy_display(mlx->mlx);
-	#endif
 	free(mlx->mlx);
 	free(mlx);
 	if (status == 0)

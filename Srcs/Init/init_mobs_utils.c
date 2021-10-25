@@ -6,66 +6,66 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 11:32:07 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/23 16:05:24 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/10/25 12:03:26 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	find_max_x(char **map, int *pos, t_vec2 *dir, int *max, int col)
+void	find_max_x(char **map, int *pos, t_vec2 *dir, int *max)
 {
-	while (map[pos[0]][col] != '\0')
+	int	i;
+
+	i = pos[1];
+	while (map[pos[0]][i] != '\0')
 	{
-		if (map[pos[0]][col] == '1')
+		if (map[pos[0]][i] == '1' && i > pos[1])
 		{
-			if (col > pos[1])
+			(*max) = i - pos[1];
+			(*dir).x = 1;
+			i = pos[1];
+		}
+		else if (map[pos[0]][i] == '1')
+		{
+			if (pos[1] - i > (*max))
 			{
-				(*max) = col - pos[1];
-				(*dir).x = 1;
-				col = pos[1];
+				(*max) = pos[1] - i;
+				(*dir).x = -1;
 			}
-			else
-			{
-				if (pos[1] - col > (*max))
-				{
-					(*max) = pos[1] - col;
-					(*dir).x = -1;
-				}
-				return ;
-			}
+			return ;
 		}
 		if ((*dir).x == 1)
-			--col;
+			--i;
 		else
-			++col;
+			++i;
 	}
 }
 
-void	find_max_y(char **map, int *pos, t_vec2 *dir, int *max, int row)
+void	find_max_y(char **map, int *pos, t_vec2 *dir, int *max)
 {
-	while (map[row])
+	int	i;
+
+	i = pos[0];
+	while (map[i])
 	{
-		if (map[row][pos[1]] == '1')
+		if (map[i][pos[1]] == '1' && i > pos[0])
 		{
-			if (row > pos[0])
+			(*max) = i - pos[0];
+			(*dir).y = 1;
+			i = pos[0];
+		}
+		else if (map[i][pos[1]] == '1')
+		{
+			if (pos[0] - i > (*max))
 			{
-				(*max) = row - pos[0];
-				(*dir).y = 1;
-				row = pos[0];
+				(*max) = pos[0] - i;
+				(*dir).y = -1;
 			}
-			else
-			{
-				if (pos[0] - row > (*max))
-				{
-					(*max) = pos[0] - row;
-					(*dir).y = -1;
-				}
-				return ;
-			}
+			return ;
 		}
 		if ((*dir).y == 1)
-			--row;
+			--i;
 		else
-			++row;
+			++i;
 	}
 }

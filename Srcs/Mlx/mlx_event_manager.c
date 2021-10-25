@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_event_manager.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 12:25:35 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/01 12:01:52 by user42           ###   ########.fr       */
+/*   Updated: 2021/10/25 11:15:34 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ static const int	g_esc = 53;
 int	key_hook(int keycode, t_mlx_vars *mlx)
 {
 	if (keycode == g_esc)
-	{
 		close_window(mlx);
-		return (-1);
-	}
 	if (mlx->gp.pj.pj_moved == 0)
 	{
 		if (keycode == g_w && mlx->gp.pj.pj_pos.y > 0)

@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 11:08:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/05 15:18:33 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/10/25 11:16:37 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ t_mlx_vars	*init_mlx_struct(void)
 	my_mlx->mlx = mlx_init();
 	my_mlx->mlx_win = NULL;
 	my_mlx->img = init_img();
-	// my_mlx->rev_print = 0;
 	my_mlx->gp = init_gameplay();
 	my_mlx->time.tv_sec = 0;
 	my_mlx->time.tv_usec = 0;
@@ -67,10 +66,10 @@ t_gp	init_gameplay(void)
 	gp.mobs_count = -1;
 	gp.mobs = NULL;
 	gp.coll.count = 0;
-	gp.coll.path =  "./Sprites/Objects/Flowers/";
+	gp.coll.path = "./Sprites/Objects/Flowers/";
 	gp.coll.pos = NULL;
 	gp.exits.count = 0;
-	gp.exits.path =  "./Sprites/Exit/Typhoon/";
+	gp.exits.path = "./Sprites/Exit/Typhoon/";
 	gp.exits.pos = NULL;
 	return (gp);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 17:50:24 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/04 15:38:57 by user42           ###   ########.fr       */
+/*   Updated: 2021/10/25 11:11:52 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,7 @@ int	map_chars_check(char **map)
 	int		col;
 
 	row = 0;
-	mandatory[0] = '\0';
-	mandatory[1] = '\0';
-	mandatory[2] = '\0';
-	mandatory[3] = '\0';
+	ft_bzero(mandatory, 4);
 	while (map[row] != NULL)
 	{
 		col = 0;
@@ -58,14 +55,11 @@ int	map_chars_check(char **map)
 			mandatory[0] = 'e';
 		if (ft_strchr(map[row], 'C'))
 			mandatory[1] = 'c';
+		if (ft_strchr(map[row], 'P'))
+			mandatory[2] = 'p';
 		while (map[row][col] != '\0')
-		{
-			if (check_wrong_chars(map[row][col]) == 1)
+			if (check_wrong_chars(map[row][col++]) == 1)
 				return (error_message("WRONG CHARACTER in MAP"));
-			if (map[row][col] == 'P')
-				mandatory[2] = 'p';
-			col++;
-		}
 		row++;
 	}
 	if (ft_strncmp(mandatory, "ecp", 4) != 0)

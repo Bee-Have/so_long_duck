@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 17:20:23 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/05 18:17:58 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/10/25 11:57:24 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ t_mob	*new_mob(char **map, int *pos)
 	mob->wait.tv_usec = 0;
 	find_direction(map, pos, &mob->dir);
 	mob->moves = 0;
-	// mob->anim = init_anim(mlx, SPRITES_MOB, "./Sprites/Characters/Slime/");
 	mob->next = NULL;
 	return (mob);
 }
@@ -67,8 +66,8 @@ void	find_direction(char **map, int *pos, t_vec2 *dir)
 	dir_x.x = 0;
 	dir_y.y = 0;
 	dir_y.x = 0;
-	find_max_y(map, pos, &dir_y, &result.y, pos[0]);
-	find_max_x(map, pos, &dir_x, &result.x, pos[1]);
+	find_max_x(map, pos, &dir_x, &result.x);
+	find_max_y(map, pos, &dir_y, &result.y);
 	if (result.x > result.y)
 	{
 		(*dir).y = dir_x.y;
