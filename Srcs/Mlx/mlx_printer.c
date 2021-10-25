@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:32:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/05 18:14:28 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/10/25 17:21:48 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ void	print_map(t_mlx_vars *mlx, int floor)
 		while (mlx->map[row][col] != '\0')
 		{
 			if (floor == 1)
-				add_img(mlx, get_anim(&mlx->ref.tile, ANIM_TILE, mlx->time), tot_x * 4, tot_y);
+				add_img(mlx, get_anim(&mlx->ref.tile, ANIM_TILE, mlx->time),
+					tot_x * 4, tot_y);
 			else if (floor == 0 && mlx->map[row][col] != '0')
 				add_img(mlx, get_right_xpm(mlx, row, col), tot_x * 4, tot_y);
 			tot_x += mlx->pxl_img;
@@ -74,40 +75,35 @@ void	print_map(t_mlx_vars *mlx, int floor)
 	}
 }
 
+/*
+** Here, pos[0] = the position inside the sprite
+** Here, pos[1] = the position inside the window image (in which we are copying)
+*/
 void	add_img(t_mlx_vars *mlx, t_img sprite, int tot_x, int tot_y)
 {
-	int		i;
-	int		y;
-	int		x;
-	int		size;
-	int		j;
+	t_vec2	pos[2];
 
-	y = 0;
-	size = sprite.line_len * 36;
-	x = 0;
-	while (y < size)
+	set_vec2(&pos[1], 0);
+	while (pos[1].y < (sprite.line_len * 36))
 	{
-		j = 0;
+		set_vec2(&pos[1], 0);
 		if (sprite.rev_print == 1)
-			x = sprite.line_len - 4;
-		i = 0;
-		while (j < sprite.line_len)
+			pos[1].x = sprite.line_len - 4;
+		while (pos[1].y < sprite.line_len)
 		{
-			if (sprite.addr[y + x + i] != 0x00)
+			if (sprite.addr[pos[1].y + pos[1].x + pos[1].x] != 0x00)
+				mlx->img.addr[(tot_y * mlx->img.line_len) + tot_x + pos[1].y]
+					= sprite.addr[pos[1].y + pos[1].x + pos[1].x];
+			if (sprite.rev_print == 1 && pos[1].x == 3)
 			{
-				mlx->img.addr[(tot_y * mlx->img.line_len) + tot_x + j]
-					= sprite.addr[y + x + i];
-			}
-			if (sprite.rev_print == 1 && i == 3)
-			{
-				x -= 4;
-				i = 0;
+				pos[1].x -= 4;
+				pos[1].x = 0;
 			}
 			else
-				++i;
-			++j;
+				++pos[1].x;
+			++pos[1].y;
 		}
-		y += sprite.line_len;
+		pos[1].y += sprite.line_len;
 		++tot_y;
 	}
 }

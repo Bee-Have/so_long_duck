@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 17:20:23 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/25 11:57:24 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/10/25 13:35:22 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,9 @@ void	find_direction(char **map, int *pos, t_vec2 *dir)
 	t_vec2	dir_x;
 	t_vec2	dir_y;
 
-	result.x = 0;
-	result.y = 0;
-	dir_x.y = 0;
-	dir_x.x = 0;
-	dir_y.y = 0;
-	dir_y.x = 0;
+	set_vec2(&result, 0);
+	set_vec2(&dir_x, 0);
+	set_vec2(&dir_y, 0);
 	find_max_x(map, pos, &dir_x, &result.x);
 	find_max_y(map, pos, &dir_y, &result.y);
 	if (result.x > result.y)

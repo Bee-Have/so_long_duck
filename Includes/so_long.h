@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/25 11:57:15 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/10/25 13:33:47 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ int			map_rectangle_check(char **map);
 //STRUCT INIT
 t_gp		init_gameplay(void);
 t_img		init_img(void);
+void		set_vec2(t_vec2 *vec, int value);
 
 //INIT MLX
 t_mlx_vars	*init_mlx_struct(void);

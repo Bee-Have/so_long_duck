@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 11:08:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/25 11:16:37 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/10/25 13:34:21 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ t_player	init_player(void)
 
 	pj.moves = 0;
 	pj.pj_moved = 0;
-	pj.pj_pos.y = -1;
-	pj.pj_pos.x = -1;
+	set_vec2(&pj.pj_pos, -1);
 	pj.pj_idle = NULL;
 	return (pj);
 }
@@ -72,4 +71,10 @@ t_gp	init_gameplay(void)
 	gp.exits.path = "./Sprites/Exit/Typhoon/";
 	gp.exits.pos = NULL;
 	return (gp);
+}
+
+void	set_vec2(t_vec2 *vec, int value)
+{
+	(*vec).x = value;
+	(*vec).y = value;
 }
