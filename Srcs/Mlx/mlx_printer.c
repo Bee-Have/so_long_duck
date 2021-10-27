@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_printer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:32:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/25 17:21:48 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/10/27 17:04:50 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,27 +83,27 @@ void	add_img(t_mlx_vars *mlx, t_img sprite, int tot_x, int tot_y)
 {
 	t_vec2	pos[2];
 
-	set_vec2(&pos[1], 0);
-	while (pos[1].y < (sprite.line_len * 36))
+	set_vec2(&pos[0], 0);
+	while (pos[0].y < (sprite.line_len * 36))
 	{
 		set_vec2(&pos[1], 0);
 		if (sprite.rev_print == 1)
-			pos[1].x = sprite.line_len - 4;
+			pos[0].x = sprite.line_len - 4;
 		while (pos[1].y < sprite.line_len)
 		{
-			if (sprite.addr[pos[1].y + pos[1].x + pos[1].x] != 0x00)
+			if (sprite.addr[pos[0].y + pos[0].x + pos[1].x] != 0x00)
 				mlx->img.addr[(tot_y * mlx->img.line_len) + tot_x + pos[1].y]
-					= sprite.addr[pos[1].y + pos[1].x + pos[1].x];
+					= sprite.addr[pos[0].y + pos[0].x + pos[1].x];
 			if (sprite.rev_print == 1 && pos[1].x == 3)
 			{
-				pos[1].x -= 4;
+				pos[0].x -= 4;
 				pos[1].x = 0;
 			}
 			else
 				++pos[1].x;
 			++pos[1].y;
 		}
-		pos[1].y += sprite.line_len;
+		pos[0].y += sprite.line_len;
 		++tot_y;
 	}
 }
