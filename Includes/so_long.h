@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/27 17:36:47 by user42           ###   ########.fr       */
+/*   Updated: 2021/10/27 17:50:49 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,11 @@
 # include "ft_get_file.h"
 # include "mlx.h"
 
-#ifdef __unix__
-
-#define NOT_LINUX 0
-#elif
-
-# define NOT_LINUX 1
-#endif
+# ifdef __unix__
+#  define NOT_LINUX 0
+# elif
+#  define NOT_LINUX 1
+# endif
 
 # define NOT_BONUS -2
 

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:36:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/27 17:38:51 by user42           ###   ########.fr       */
+/*   Updated: 2021/10/27 17:51:28 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,9 @@ void	erase_old_pos(t_mob *mob, char **map)
 
 int	check_mob_pos(t_mlx_vars *mlx, t_mob **mob)
 {
-	t_mob *it;
-	int	i;
-	int	check;
+	t_mob	*it;
+	int		i;
+	int		check;
 
 	it = *mob;
 	i = 0;
