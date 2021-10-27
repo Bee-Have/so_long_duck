@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mob_move.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:36:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/25 11:47:09 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/10/27 17:38:51 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	move_mob(t_mlx_vars *mlx, t_mob *mob, char **map)
 	int		col;
 
 	row = 0;
-	if (map[mob->pos.y][mob->pos.x] == '1'
+	if (map[mob->pos.y][mob->pos.x] == '1' || check_mob_pos(mlx, &mob) == 1
 		|| map[mob->pos.y][mob->pos.x] == 'E')
 		change_mob_dir(mob);
 	else
@@ -84,4 +84,25 @@ void	erase_old_pos(t_mob *mob, char **map)
 	if (map[old_pos.y][old_pos.x] != '1'
 		&& map[old_pos.y][old_pos.x] != 'P')
 		map[old_pos.y][old_pos.x] = '0';
+}
+
+int	check_mob_pos(t_mlx_vars *mlx, t_mob **mob)
+{
+	t_mob *it;
+	int	i;
+	int	check;
+
+	it = *mob;
+	i = 0;
+	check = 0;
+	while (i < mlx->gp.mobs_count)
+	{
+		if (it->pos.y == (*mob)->pos.y && it->pos.x == (*mob)->pos.x)
+			++check;
+		it = it->next;
+		++i;
+	}
+	if (check > 1)
+		return (1);
+	return (0);
 }

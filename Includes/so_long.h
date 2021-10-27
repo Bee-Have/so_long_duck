@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/27 17:00:55 by user42           ###   ########.fr       */
+/*   Updated: 2021/10/27 17:36:47 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,6 +185,7 @@ void		find_max_y(char **map, int *pos, t_vec2 (*dir), int *max);
 //GAMEPLAY PJ
 void		move_pj_map_pos(t_mlx_vars *mlx, t_vec2 pos);
 void		erase_old_pos(t_mob *mob, char **map);
+int			check_mob_pos(t_mlx_vars *mlx, t_mob **mob);
 
 //GAMEPLAY MOBS
 void		move_mob_manager(t_mlx_vars *mlx);
