@@ -2,7 +2,7 @@ NAME = so_long
 NAME_BONUS = so_long_bonus
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror -g -g3
 
 DEBUG =
 ifdef DEBUG
@@ -56,7 +56,9 @@ OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 
 OBJS_BONUS = $(addprefix $(OBJS_DIR_BONUS)/,$(SRCS_BONUS:.c=.o))
 
-all: $(LIBFT_DIR)/libft.a $(GETFILE_DIR)/libgetfile.a $(MLX_DIR)/libmlx.a $(NAME)
+all: $(LIBFT_DIR)/libft.a $(GETFILE_DIR)/libgetfile.a $(MLX_DIR)/libmlx.a $(NAME) $(NAME_BONUS)
+
+mandatory: $(LIBFT_DIR)/libft.a $(GETFILE_DIR)/libgetfile.a $(MLX_DIR)/libmlx.a $(NAME)
 
 bonus: $(LIBFT_DIR)/libft.a $(GETFILE_DIR)/libgetfile.a $(MLX_DIR)/libmlx.a $(NAME_BONUS)
 
@@ -86,6 +88,8 @@ $(OBJS_DIR_BONUS)/%.o: %.c
 re: fclean all
 
 rebonus: fclean bonus
+
+remandatory: fclean mandatory
 
 allre: cleanall all
 
