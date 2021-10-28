@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 17:20:23 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/25 13:35:22 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/10/28 16:56:39 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ t_mob	*init_mobs(t_mlx_vars *mlx, char **map, int *pos, int mobs_count)
 	it->next->next = mlx->gp.mobs;
 	return (mlx->gp.mobs);
 }
-
 t_mob	*new_mob(char **map, int *pos)
 {
 	t_mob	*mob;
@@ -54,6 +53,7 @@ t_mob	*new_mob(char **map, int *pos)
 	return (mob);
 }
 
+//here, add check of maxes to set direction to 0
 void	find_direction(char **map, int *pos, t_vec2 *dir)
 {
 	t_vec2	result;
