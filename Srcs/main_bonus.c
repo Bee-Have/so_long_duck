@@ -6,11 +6,16 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:38:09 by amarini-          #+#    #+#             */
-/*   Updated: 2021/09/24 16:59:55 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/10/28 11:26:01 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+// void __attribute__ ((destructor)) quitting(void)
+// {
+// 	system("leaks $(ps -ef | grep ./so_long_bonus | grep -v \"grep\" | awk '{print $2}')");
+// }
 
 int	main(int ac, char **av)
 {

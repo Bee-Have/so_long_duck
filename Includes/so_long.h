@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/27 17:50:49 by user42           ###   ########.fr       */
+/*   Updated: 2021/10/28 11:02:15 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@
 # include <sys/time.h>
 # include "libft.h"
 # include "ft_get_file.h"
-# include "mlx.h"
 
 # ifdef __unix__
+#  include "mlx.h"
 #  define NOT_LINUX 0
-# elif
+# else
+#  include "../Libs/minilibx-mac/mlx.h"
 #  define NOT_LINUX 1
+void	mlx_destroy_display(void *);
 # endif
 
 # define NOT_BONUS -2
