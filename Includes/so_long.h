@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/28 15:07:00 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/11/01 11:44:18 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,11 +176,11 @@ void		find_mobs(t_mlx_vars *mlx, char **map);
 void		find_exits(t_mlx_vars *mlx, char **map);
 
 //MOBS INIT
-t_mob		*init_mobs(t_mlx_vars *mlx, char **map, int *pos, int mobs_count);
-t_mob		*new_mob(char **map, int *pos);
-void		find_direction(char **map, int *pos, t_vec2 *dir);
-void		find_max_x(char **map, int *pos, t_vec2 (*dir), int *max);
-void		find_max_y(char **map, int *pos, t_vec2 (*dir), int *max);
+t_mob		*init_mobs(t_mlx_vars *mlx, char **map, t_vec2 pos, int mobs_count);
+t_mob		*new_mob(char **map, t_vec2 pos);
+void		find_direction(char **map, t_vec2 pos, t_vec2 *dir);
+void		find_max_x(char **map, t_vec2 pos, t_vec2 (*dir), int *max);
+void		find_max_y(char **map, t_vec2 pos, t_vec2 (*dir), int *max);
 
 //GAMEPLAY PJ
 void		move_pj_map_pos(t_mlx_vars *mlx, t_vec2 pos);

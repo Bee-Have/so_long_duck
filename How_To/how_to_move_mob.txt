@@ -1,0 +1,12 @@
+itterate through map with position of mob
+in Y :
+	++i;
+	if find -> 'E' '1' 'M' (while ++i)
+		- set tmp value of dir to pos[mob] - i
+		- switch to --i
+	if find -> 'E' '1' 'M' (while ++i)
+		- if (i - pos[mob]) > tmp value
+		- return ;
+	switch to --i after finding direction
+
+in X :

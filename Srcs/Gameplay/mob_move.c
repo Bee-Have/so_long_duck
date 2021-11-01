@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:36:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/28 16:53:05 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/11/01 11:05:52 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void	move_mob(t_mlx_vars *mlx, t_mob *mob, char **map)
 
 void	change_mob_dir(t_mob *mob, char **map)
 {
+	if (mob->dir.y == 0 && mob->dir.x == 0)
+		return ;
 	erase_old_pos(mob, map);
 	// if (mob->dir.y > 0)
 		// mob->dir.y = -1;
