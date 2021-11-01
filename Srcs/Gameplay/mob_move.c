@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:36:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/11/01 11:05:52 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/11/01 18:58:46 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,21 @@ void	move_mob(t_mlx_vars *mlx, t_mob *mob, char **map)
 {
 	int		row;
 	int		col;
+	int		pos_y;
+	int		pos_x;
 
 	row = 0;
-	if (check_mob_pos(mlx, &mob) == 1
-		|| mob->pos.y + mob->dir.y > ft_tablen((const char **)map)
-		|| mob->pos.x + mob->dir.x >= ft_strlen(map[0])
-		|| mob->pos.y + mob->dir.y < 0
-		|| mob->pos.x + mob->dir.x < 0)
+	pos_y = mob->pos.y + mob->dir.y;
+	pos_x = mob->pos.x + mob->dir.x;
+	printf("0_[%d][%d]->dir->[%d][%d]\n", mob->pos.y, mob->pos.x, mob->dir.y, mob->dir.x);
+	if (mob->dir.y == 0 && mob->dir.x == 0)
+		return ;
+	if (check_mob_pos(mlx, mob) == 1
+		|| map[pos_y][pos_x] == 'M'
+		|| map[pos_y][pos_x] == '1'
+		|| map[pos_y][pos_x] == 'E')
 		change_mob_dir(mob, map);
-	else if (mob->pos.y + mob->dir.y > ft_tablen((const char **)map)
-		|| mob->pos.x + mob->dir.x >= ft_strlen(map[0])
-		|| mob->pos.y + mob->dir.y < 0
-		|| mob->pos.x + mob->dir.x < 0
-		|| map[mob->pos.y + mob->dir.y][mob->pos.x + mob->dir.x] == '1'
-		|| map[mob->pos.y + mob->dir.y][mob->pos.x + mob->dir.x] == 'E')
-		change_mob_dir(mob, map);
-	// else
+	printf("1_[%d][%d]->dir->[%d][%d]\n", mob->pos.y, mob->pos.x, mob->dir.y, mob->dir.x);
 	while (map[row])
 	{
 		col = 0;
@@ -71,25 +70,23 @@ void	move_mob(t_mlx_vars *mlx, t_mob *mob, char **map)
 
 void	change_mob_dir(t_mob *mob, char **map)
 {
-	if (mob->dir.y == 0 && mob->dir.x == 0)
-		return ;
 	erase_old_pos(mob, map);
 	// if (mob->dir.y > 0)
 		// mob->dir.y = -1;
 	// else if (mob->dir.y < 0)
-		mob->dir.y *= -1;
+		mob->dir.y = mob->dir.y * -1;
 	// if (mob->dir.x > 0)
-		mob->dir.x *= -1;
+		mob->dir.x = mob->dir.x * -1;
 	// else if (mob->dir.x < 0)
 		// mob->dir.x = 1;
-		return ;
 	// if (map[mob->pos.y + mob->dir.y][mob->pos.x + mob->dir.x] != 'M'
-		// || map[mob->pos.y + mob->dir.y][mob->pos.x + mob->dir.x] == '1'
-		// || map[mob->pos.y + mob->dir.y][mob->pos.x + mob->dir.x] == 'E')
+	// 	|| map[mob->pos.y + mob->dir.y][mob->pos.x + mob->dir.x] == '1'
+	// 	|| map[mob->pos.y + mob->dir.y][mob->pos.x + mob->dir.x] == 'E')
 	// {
 		// mob->pos.y += mob->dir.y;
 		// mob->pos.x += mob->dir.x;
 	// }
+	return ;
 }
 
 void	erase_old_pos(t_mob *mob, char **map)
@@ -100,34 +97,38 @@ void	erase_old_pos(t_mob *mob, char **map)
 	// old_pos.x = mob->pos.x;
 	old_pos.y = mob->pos.y - mob->dir.y;
 	old_pos.x = mob->pos.x - mob->dir.x;
-	if (old_pos.y >= ft_tablen((const char **)map)
-		|| old_pos.x >= ft_strlen(map[0]) || old_pos.y < 0 || old_pos.x < 0)
-		return ;
+	// if (old_pos.y >= ft_tablen((const char **)map)
+		// || old_pos.x >= ft_strlen(map[0]) || old_pos.y < 0 || old_pos.x < 0)
+		// return ;
 	if (map[old_pos.y][old_pos.x] != '1'
 		&& map[old_pos.y][old_pos.x] != 'P')
 		map[old_pos.y][old_pos.x] = '0';
 }
 
-int	check_mob_pos(t_mlx_vars *mlx, t_mob **mob)
+int	check_mob_pos(t_mlx_vars *mlx, t_mob *mob)
 {
 	t_mob	*it;
 	int		i;
 	int		check;
 
-	it = *mob;
+	it = mob;
 	i = 0;
 	check = 0;
-	if ((*mob)->pos.y + (*mob)->dir.y >= ft_tablen((const char **)mlx->map)
-		|| (*mob)->pos.x + (*mob)->dir.x >= ft_strlen(mlx->map[0]))
+	if (mob->pos.y + mob->dir.y >= ft_tablen((const char **)mlx->map)
+		|| mob->pos.x + mob->dir.x >= ft_strlen(mlx->map[0])
+		|| mob->pos.y + mob->dir.y <= 0
+		|| mob->pos.x + mob->dir.x <= 0)
 		return (1);
-	while (i < mlx->gp.mobs_count)
+	while (i <= mlx->gp.mobs_count)
 	{
-		if (it->pos.y == (*mob)->pos.y + (*mob)->dir.y && it->pos.x == (*mob)->pos.x + (*mob)->dir.x)
+		if (it->pos.y == mob->pos.y + mob->dir.y
+			&& it->pos.x == mob->pos.x + mob->dir.x)
 			++check;
+			// return (1);
 		it = it->next;
 		++i;
 	}
-	if (check > 0)
+	if (check > 1)
 		return (1);
 	return (0);
 }

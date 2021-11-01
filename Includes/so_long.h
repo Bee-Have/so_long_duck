@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/11/01 11:44:18 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/11/01 18:46:37 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ void	mlx_destroy_display(void *);
 # endif
 
 # define NOT_BONUS -2
+
+# define PRINT_FLOOR 1
+# define PRINT_REST 0
 
 # define SPRITES_PJ 5
 # define SPRITES_COLL 4
@@ -84,7 +87,6 @@ typedef struct s_mob
 	t_vec2			pos;
 	t_vec2			dir;
 	struct timeval	wait;
-	int				moves;
 	struct s_mob	*next;
 }				t_mob;
 
@@ -179,13 +181,13 @@ void		find_exits(t_mlx_vars *mlx, char **map);
 t_mob		*init_mobs(t_mlx_vars *mlx, char **map, t_vec2 pos, int mobs_count);
 t_mob		*new_mob(char **map, t_vec2 pos);
 void		find_direction(char **map, t_vec2 pos, t_vec2 *dir);
-void		find_max_x(char **map, t_vec2 pos, t_vec2 (*dir), int *max);
-void		find_max_y(char **map, t_vec2 pos, t_vec2 (*dir), int *max);
+void		find_max_x(char **map, t_vec2 pos, int *dir, int *max);
+void		find_max_y(char **map, t_vec2 pos, int *dir, int *max);
 
 //GAMEPLAY PJ
 void		move_pj_map_pos(t_mlx_vars *mlx, t_vec2 pos);
 void		erase_old_pos(t_mob *mob, char **map);
-int			check_mob_pos(t_mlx_vars *mlx, t_mob **mob);
+int			check_mob_pos(t_mlx_vars *mlx, t_mob *mob);
 
 //GAMEPLAY MOBS
 void		move_mob_manager(t_mlx_vars *mlx);

@@ -10,3 +10,10 @@ in Y :
 	switch to --i after finding direction
 
 in X :
+
+
+
+
+1111111111
+1000100M01
+1111111111

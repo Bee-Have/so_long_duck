@@ -6,13 +6,13 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 11:32:07 by amarini-          #+#    #+#             */
-/*   Updated: 2021/11/01 11:56:15 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/11/01 14:09:31 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	find_max_x(char **map, t_vec2 pos, t_vec2 *dir, int *max)
+void	find_max_x(char **map, t_vec2 pos, int *dir, int *max)
 {
 	int	i;
 	int	tmp_dir;
@@ -28,13 +28,21 @@ void	find_max_x(char **map, t_vec2 pos, t_vec2 *dir, int *max)
 		{
 			if (rev == 0)
 			{
-				tmp_dir = i - pos.x;
+				if ((i - pos.x) > 1)
+				{
+					tmp_dir = i - pos.x;
+					(*dir) = 1;
+				}
+				i = pos.x + 1;
 				rev = 1;
 			}
-			else
+			else if (rev == 1)
 			{
-				if ((pos.x - i) > tmp_dir)
+				if ((pos.x - i) > tmp_dir && (pos.x - i) > 1)
+				{
 					tmp_dir = pos.x - i;
+					(*dir) = -1;
+				}
 				break ;
 			}
 		}
@@ -43,78 +51,51 @@ void	find_max_x(char **map, t_vec2 pos, t_vec2 *dir, int *max)
 		else
 			++i;
 	}
-	if (tmp_dir > 0)
-	{
-		
-	}
+	if (tmp_dir == 0)
+		(*dir) = 0;
 	(*max) = tmp_dir;
 }
-// void	find_max_x(char **map, int *pos, t_vec2 *dir, int *max)
-// {
-// 	int	i;
 
-// 	i = pos[1];
-// 	while (map[pos[0]][i] != '\0')
-// 	{
-// 		if (map[pos[0]][i] == '1'  || map[pos[0]][i] == 'E'
-// 		|| map[pos[0]][i] == 'P' || (map[pos[0]][i] == 'M' && pos[1] != i))
-// 		{
-// 			if (i > pos[1])
-// 			{
-// 				(*max) = i - pos[1];
-// 				(*dir).x = 1;
-// 				i = pos[1];
-// 			}
-// 			if (pos[1] - i > (*max))
-// 			{
-// 				(*max) = pos[1] - i;
-// 				(*dir).x = -1;
-// 			}
-// 			if (i == pos[1])
-// 			{
-// 				(*max) = pos[1];
-// 				(*dir).x = 0;
-// 			}
-// 			return ;
-// 		}
-// 		if ((*dir).x == 1)
-// 			--i;
-// 		else
-// 			++i;
-// 	}
-// }
-
-void	find_max_y(char **map, int *pos, t_vec2 *dir, int *max)
+void	find_max_y(char **map, t_vec2 pos, int *dir, int *max)
 {
 	int	i;
+	int	tmp_dir;
+	int	rev;
 
-	i = pos[0];
+	i = pos.y;
+	tmp_dir = 0;
+	rev = 0;
 	while (map[i])
 	{
-		if ((map[i][pos[1]] == '1' || map[i][pos[1]] == 'E'
-		|| map[i][pos[1]] == 'P' || (map[i][pos[1]] == 'M' && pos[0] != i)))
+		if (map[i][pos.x] == '1' || map[i][pos.x] == 'E'
+			|| (map[i][pos.x] == 'M' && i != pos.y))
 		{
-			if (i > pos[0] && i > (*max))
+			if (rev == 0)
 			{
-				(*max) = i - pos[0];
-				(*dir).y = 1;
-				i = pos[0];
+				if ((i - pos.y) > 1)
+				{
+					tmp_dir = i - pos.y;
+					(*dir) = 1;
+				}
+				i = pos.y + 1;
+				rev = 1;
 			}
-			else if (pos[0] - i > (*max))
+			else
 			{
-				(*max) = pos[0] - i;
-				(*dir).y = -1;
+				if ((pos.y - i) > tmp_dir && (pos.y - i) > 1)
+				{
+					tmp_dir = pos.y - i;
+					(*dir) = -1;
+				}
+				break ;
 			}
-			else if (pos[0] == i)
-			{
-				(*max) = pos[0];
-				(*dir).y = 0;
-			}
-			break ;
 		}
-		if ((*dir).y == 1)
+		if (rev == 1)
 			--i;
 		else
 			++i;
 	}
+	if (tmp_dir == 0)
+		(*dir) = 0;
+	(*max) = tmp_dir;
 }

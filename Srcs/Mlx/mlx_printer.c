@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_printer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:32:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/27 17:04:50 by user42           ###   ########.fr       */
+/*   Updated: 2021/11/01 18:46:35 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int	print_all(t_mlx_vars *mlx)
 	}
 	find_player(mlx);
 	ft_memset(mlx->img.addr, 0, (mlx->img.width * mlx->img.height) * 4);
-	print_map(mlx, 1);
+	print_map(mlx, PRINT_FLOOR);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img.img, 0, 0);
-	print_map(mlx, 0);
+	print_map(mlx, PRINT_REST);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img.img, 0, 0);
 	if (mlx->gp.mobs_count > NOT_BONUS)
 		print_manager(mlx);
@@ -62,10 +62,10 @@ void	print_map(t_mlx_vars *mlx, int floor)
 		tot_x = offset(mlx->pxl_img, ft_strlen(mlx->map[0]), mlx->img.width);
 		while (mlx->map[row][col] != '\0')
 		{
-			if (floor == 1)
+			if (floor == PRINT_FLOOR)
 				add_img(mlx, get_anim(&mlx->ref.tile, ANIM_TILE, mlx->time),
 					tot_x * 4, tot_y);
-			else if (floor == 0 && mlx->map[row][col] != '0')
+			else if (floor == PRINT_REST && mlx->map[row][col] != '0')
 				add_img(mlx, get_right_xpm(mlx, row, col), tot_x * 4, tot_y);
 			tot_x += mlx->pxl_img;
 			col++;

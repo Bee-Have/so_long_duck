@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_sprites.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 12:29:57 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/01 12:51:55 by user42           ###   ########.fr       */
+/*   Updated: 2021/11/01 19:12:11 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,21 +65,26 @@ t_img	get_right_xpm(t_mlx_vars *mlx, int row, int col)
 
 t_img	get_mob(t_mlx_vars *mlx, int y, int x)
 {
+	t_mob		*mobs;
 	t_img		result;
 	long int	timer;
 
-	while (mlx->gp.mobs->pos.y != y && mlx->gp.mobs->pos.x != x)
-		mlx->gp.mobs = mlx->gp.mobs->next;
-	timer = ((mlx->time.tv_sec - mlx->gp.mobs->wait.tv_sec) * 1000)
-		+ ((mlx->time.tv_usec - mlx->gp.mobs->wait.tv_usec) / 1000);
-	if (timer > MOVE_MOB)
+	printf("mob_pos_[%d][%d]\n", y, x);
+	mobs = mlx->gp.mobs;
+	while (mobs->pos.y != y && mobs->pos.x != x)
+		mobs = mobs->next;
+	timer = ((mlx->time.tv_sec - mobs->wait.tv_sec) * 1000)
+		+ ((mlx->time.tv_usec - mobs->wait.tv_usec) / 1000);
+	if (timer >= MOVE_MOB)
 	{
-		mlx->gp.mobs->wait = mlx->time;
-		mlx->gp.mobs->pos.y += mlx->gp.mobs->dir.y;
-		mlx->gp.mobs->pos.x += mlx->gp.mobs->dir.x;
+		mobs->wait = mlx->time;
+		mobs->pos.y = mobs->pos.y + mobs->dir.y;
+		mobs->pos.x = mobs->pos.x + mobs->dir.x;
+		printf("2_[%d][%d]->dir->[%d][%d]\n", mobs->pos.y, mobs->pos.x, mobs->dir.y, mobs->dir.x);
 	}
+	printf("3_[%d][%d]->dir->[%d][%d]\n", mobs->pos.y, mobs->pos.x, mobs->dir.y, mobs->dir.x);
 	result = get_anim(&mlx->gp.anim_mob, ANIM_MOB, mlx->time);
-	if (mlx->gp.mobs->dir.x == 1)
+	if (mobs->dir.x == 1)
 		result.rev_print = 1;
 	else
 		result.rev_print = 0;

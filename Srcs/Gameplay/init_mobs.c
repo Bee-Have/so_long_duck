@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 17:20:23 by amarini-          #+#    #+#             */
-/*   Updated: 2021/11/01 11:45:14 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/11/01 18:53:51 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_mob	*init_mobs(t_mlx_vars *mlx, char **map, t_vec2 pos, int mobs_count)
 	it = mlx->gp.mobs;
 	while (i < mobs_count - 1)
 	{
+		gettimeofday(&it->wait, NULL);
 		it = it->next;
 		i++;
 	}
@@ -48,7 +49,6 @@ t_mob	*new_mob(char **map, t_vec2 pos)
 	mob->wait.tv_sec = 0;
 	mob->wait.tv_usec = 0;
 	find_direction(map, pos, &mob->dir);
-	mob->moves = 0;
 	mob->next = NULL;
 	return (mob);
 }
@@ -57,23 +57,25 @@ t_mob	*new_mob(char **map, t_vec2 pos)
 void	find_direction(char **map, t_vec2 pos, t_vec2 *dir)
 {
 	t_vec2	result;
-	t_vec2	dir_x;
-	t_vec2	dir_y;
+	int		dir_x;
+	int		dir_y;
 
 	set_vec2(&result, 0);
-	set_vec2(&dir_x, 0);
-	set_vec2(&dir_y, 0);
+	dir_x = 0;
+	dir_y = 0;
 	find_max_x(map, pos, &dir_x, &result.x);
 	find_max_y(map, pos, &dir_y, &result.y);
-	printf("dir_y_[%d][%d]_dir_x_[%d][%d]\n", dir_y.y, dir_y.x, dir_x.y, dir_x.x);
+	// printf("dir_y_[%d]_x_[%d]\n", dir_y, dir_x);
+	// printf("res_y_[%d]_x_[%d]\n", result.y, result.x);
 	if (result.x > result.y)
 	{
-		(*dir).y = dir_x.y;
-		(*dir).x = dir_x.x;
+		(*dir).y = 0;
+		(*dir).x = dir_x;
 	}
 	else
 	{
-		(*dir).y = dir_y.y;
-		(*dir).x = dir_y.x;
+		(*dir).y = dir_y;
+		(*dir).x = 0;
 	}
+	printf("dir_y_[%d]_x_[%d]\n", (*dir).y, (*dir).x);
 }
