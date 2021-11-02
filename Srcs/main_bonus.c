@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:38:09 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/28 12:42:22 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/11/02 18:05:21 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ int	main(int ac, char **av)
 	close(test);
 	test = ft_get_file(av[1], &map);
 	if (test == 0 || test == -1 || ft_tablen((const char **)map) == 1)
-	{
-		ft_freetab(map);
 		return (error_message("MAP file is EMPTY"));
-	}
 	if (map_rectangle_check(map) == -1)
 	{
 		ft_freetab(map);
