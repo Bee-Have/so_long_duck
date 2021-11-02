@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:36:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/11/02 12:36:32 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/11/02 12:51:47 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,35 +32,32 @@ void	move_mob_manager(t_mlx_vars *mlx)
 
 void	move_mob(t_mlx_vars *mlx, t_mob *mob, char **map)
 {
-	int		row;
-	int		col;
-	int		pos_y;
-	int		pos_x;
+	t_vec2	pos_map;
 
-	row = 0;
-	pos_y = mob->pos.y + mob->dir.y;
-	pos_x = mob->pos.x + mob->dir.x;
 	if (mob->dir.y == 0 && mob->dir.x == 0)
 		return ;
-	if (check_mob_pos(mlx, mob) == 1 || map[pos_y][pos_x] == 'M'
-		|| map[pos_y][pos_x] == '1' || map[pos_y][pos_x] == 'E')
+	set_vec2(&pos_map, 0);
+	if (check_mob_pos(mlx, mob) == 1
+		|| map[mob->pos.y + mob->dir.y][mob->pos.x + mob->dir.x] == 'M'
+		|| map[mob->pos.y + mob->dir.y][mob->pos.x + mob->dir.x] == '1'
+		|| map[mob->pos.y + mob->dir.y][mob->pos.x + mob->dir.x] == 'E')
 		change_mob_dir(mob, map);
-	while (map[row])
+	while (map[pos_map.y])
 	{
-		col = 0;
-		while (map[row][col] != '\0')
+		pos_map.x = 0;
+		while (map[pos_map.y][pos_map.x] != '\0')
 		{
-			if (mob->pos.y == row && mob->pos.x == col
-				&& map[row][col] != '1')
+			if (mob->pos.y == pos_map.y && mob->pos.x == pos_map.x
+				&& map[pos_map.y][pos_map.x] != '1')
 			{
-				if (map[row][col] == 'P')
+				if (map[pos_map.y][pos_map.x] == 'P')
 					free_manager(mlx, 1);
-				map[row][col] = 'M';
+				map[pos_map.y][pos_map.x] = 'M';
 				erase_old_pos(mob, map);
 			}
-			++col;
+			++pos_map.x;
 		}
-		++row;
+		++pos_map.y;
 	}
 }
 

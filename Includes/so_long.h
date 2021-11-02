@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/11/01 18:46:37 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/11/02 12:44:36 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@
 # else
 #  include "../Libs/minilibx-mac/mlx.h"
 #  define NOT_LINUX 1
-void	mlx_destroy_display(void *);
+
+void		mlx_destroy_display(void *mlx_ptr);
 # endif
 
 # define NOT_BONUS -2
