@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 12:29:57 by amarini-          #+#    #+#             */
-/*   Updated: 2021/11/01 19:12:11 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/11/02 11:53:55 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,20 +69,17 @@ t_img	get_mob(t_mlx_vars *mlx, int y, int x)
 	t_img		result;
 	long int	timer;
 
-	printf("mob_pos_[%d][%d]\n", y, x);
 	mobs = mlx->gp.mobs;
-	while (mobs->pos.y != y && mobs->pos.x != x)
+	while (mobs->pos.y != y || mobs->pos.x != x)
 		mobs = mobs->next;
 	timer = ((mlx->time.tv_sec - mobs->wait.tv_sec) * 1000)
 		+ ((mlx->time.tv_usec - mobs->wait.tv_usec) / 1000);
 	if (timer >= MOVE_MOB)
 	{
-		mobs->wait = mlx->time;
-		mobs->pos.y = mobs->pos.y + mobs->dir.y;
-		mobs->pos.x = mobs->pos.x + mobs->dir.x;
-		printf("2_[%d][%d]->dir->[%d][%d]\n", mobs->pos.y, mobs->pos.x, mobs->dir.y, mobs->dir.x);
+		gettimeofday(&mobs->wait, NULL);
+		mobs->pos.x += mobs->dir.x;
+		mobs->pos.y += mobs->dir.y;
 	}
-	printf("3_[%d][%d]->dir->[%d][%d]\n", mobs->pos.y, mobs->pos.x, mobs->dir.y, mobs->dir.x);
 	result = get_anim(&mlx->gp.anim_mob, ANIM_MOB, mlx->time);
 	if (mobs->dir.x == 1)
 		result.rev_print = 1;
