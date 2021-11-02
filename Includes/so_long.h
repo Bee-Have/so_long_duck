@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/11/02 15:17:02 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/11/02 17:51:58 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,13 +188,11 @@ int			assign_dir_max(int *max, int *dir, int i, int pos);
 
 //GAMEPLAY PJ
 void		move_pj_map_pos(t_mlx_vars *mlx, t_vec2 pos);
-void		erase_old_pos(t_mob *mob, char **map);
-int			check_mob_pos(t_mlx_vars *mlx, t_mob *mob);
 
 //GAMEPLAY MOBS
 void		move_mob_manager(t_mlx_vars *mlx);
+int			check_mob_stuck(char **map, t_mob *mob);
 void		move_mob(t_mlx_vars *mlx, t_mob *mob, char **map);
-void		change_mob_dir(t_mob *mob, char **map);
 
 //AGEMPLAY EXITS/COLLECTIBLES
 t_img		get_obj_sprite(t_mlx_vars *mlx, t_objs_parent parent, int y, int x);

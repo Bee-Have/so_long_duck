@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 12:29:57 by amarini-          #+#    #+#             */
-/*   Updated: 2021/11/02 12:16:47 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/11/02 17:51:32 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,7 @@ t_img	get_mob(t_mlx_vars *mlx, int y, int x)
 	if (timer >= MOVE_MOB)
 	{
 		gettimeofday(&mobs->wait, NULL);
-		mobs->pos.y += mobs->dir.y;
-		mobs->pos.x += mobs->dir.x;
+		move_mob(mlx, mobs, mlx->map);
 	}
 	result = get_anim(&mlx->gp.anim_mob, ANIM_MOB, mlx->time);
 	if (mobs->dir.x == 1)
