@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 11:32:07 by amarini-          #+#    #+#             */
-/*   Updated: 2021/11/02 12:53:07 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/11/02 15:26:35 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 void	find_max_x(char **map, t_vec2 pos, int *dir, int *max)
 {
 	int	i;
-	int	tmp_dir;
 	int	rev;
 
 	i = pos.x;
-	tmp_dir = 0;
 	rev = 0;
 	while (map[pos.y][i] != '\0')
 	{
@@ -27,23 +25,11 @@ void	find_max_x(char **map, t_vec2 pos, int *dir, int *max)
 			|| (map[pos.y][i] == 'M' && i != pos.x))
 		{
 			if (rev == 0)
-			{
-				if ((i - pos.x) > 1)
-				{
-					tmp_dir = i - pos.x;
-					(*dir) = 1;
-				}
-				i = pos.x + 1;
-				rev = 1;
-			}
+				rev = assign_dir_max(max, dir, i, pos.x);
 			else if (rev == 1)
 			{
-				if ((pos.x - i) > tmp_dir && (pos.x - i) > 1)
-				{
-					tmp_dir = pos.x - i;
-					(*dir) = -1;
-				}
-				break ;
+				assign_dir_max(max, dir, i, pos.x);
+				return ;
 			}
 		}
 		if (rev == 1)
@@ -51,19 +37,14 @@ void	find_max_x(char **map, t_vec2 pos, int *dir, int *max)
 		else
 			++i;
 	}
-	if (tmp_dir == 0)
-		(*dir) = 0;
-	(*max) = tmp_dir;
 }
 
 void	find_max_y(char **map, t_vec2 pos, int *dir, int *max)
 {
 	int	i;
-	int	tmp_dir;
 	int	rev;
 
 	i = pos.y;
-	tmp_dir = 0;
 	rev = 0;
 	while (map[i])
 	{
@@ -71,23 +52,11 @@ void	find_max_y(char **map, t_vec2 pos, int *dir, int *max)
 			|| (map[i][pos.x] == 'M' && i != pos.y))
 		{
 			if (rev == 0)
-			{
-				if ((i - pos.y) > 1)
-				{
-					tmp_dir = i - pos.y;
-					(*dir) = 1;
-				}
-				i = pos.y + 1;
-				rev = 1;
-			}
+				rev = assign_dir_max(max, dir, i, pos.y);
 			else
 			{
-				if ((pos.y - i) > tmp_dir && (pos.y - i) > 1)
-				{
-					tmp_dir = pos.y - i;
-					(*dir) = -1;
-				}
-				break ;
+				assign_dir_max(max, dir, i, pos.y);
+				return ;
 			}
 		}
 		if (rev == 1)
@@ -95,7 +64,19 @@ void	find_max_y(char **map, t_vec2 pos, int *dir, int *max)
 		else
 			++i;
 	}
-	if (tmp_dir == 0)
-		(*dir) = 0;
-	(*max) = tmp_dir;
+}
+
+int	assign_dir_max(int *max, int *dir, int i, int pos)
+{
+	if (i > pos && (i - pos) > 1)
+	{
+		*max = i - pos;
+		*dir = 1;
+	}
+	else if (pos > i && (pos - i) > *max && (pos - i) > 1)
+	{
+		*max = pos - i;
+		*dir = -1;
+	}
+	return (1);
 }

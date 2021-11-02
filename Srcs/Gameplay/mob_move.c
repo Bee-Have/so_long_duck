@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:36:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/11/02 12:51:47 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/11/02 15:29:49 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	move_mob_manager(t_mlx_vars *mlx)
 	i = 0;
 	while (i < mlx->gp.mobs_count)
 	{
-		move_mob(mlx, it, mlx->map);
+		if (it->dir.y != 0 || it->dir.x != 0)
+			move_mob(mlx, it, mlx->map);
 		it = it->next;
 		++i;
 	}
@@ -34,8 +35,6 @@ void	move_mob(t_mlx_vars *mlx, t_mob *mob, char **map)
 {
 	t_vec2	pos_map;
 
-	if (mob->dir.y == 0 && mob->dir.x == 0)
-		return ;
 	set_vec2(&pos_map, 0);
 	if (check_mob_pos(mlx, mob) == 1
 		|| map[mob->pos.y + mob->dir.y][mob->pos.x + mob->dir.x] == 'M'

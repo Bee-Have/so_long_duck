@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 17:20:23 by amarini-          #+#    #+#             */
-/*   Updated: 2021/11/02 11:54:30 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/11/02 14:05:33 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_mob	*init_mobs(t_mlx_vars *mlx, char **map, t_vec2 pos, int mobs_count)
 	it->next->next = mlx->gp.mobs;
 	return (mlx->gp.mobs);
 }
+
 t_mob	*new_mob(char **map, t_vec2 pos)
 {
 	t_mob	*mob;
