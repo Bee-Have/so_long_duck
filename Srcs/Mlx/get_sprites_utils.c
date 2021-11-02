@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 20:18:10 by user42            #+#    #+#             */
-/*   Updated: 2021/11/02 20:50:08 by user42           ###   ########.fr       */
+/*   Updated: 2021/11/02 21:22:42 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,3 +25,8 @@ int	check_for_obj(t_objs_parent obj, t_vec2 pos)
 	}
 	return (0);
 }
+
+// int	check_1ce(t_mlx_vars *mlx, t_vec2 pos)
+// {
+	// if ()
+// }
