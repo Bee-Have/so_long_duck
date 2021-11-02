@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_printer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:32:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/11/02 17:39:36 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/11/02 20:51:52 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,39 +39,44 @@ int	print_all(t_mlx_vars *mlx)
 	ft_memset(mlx->img.addr, 0, (mlx->img.width * mlx->img.height) * 4);
 	print_map(mlx, PRINT_FLOOR);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img.img, 0, 0);
-	print_map(mlx, PRINT_REST);
+	print_map(mlx, PRINT_1CE);
+	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img.img, 0, 0);
+	print_map(mlx, PRINT_PM);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img.img, 0, 0);
 	if (mlx->gp.mobs_count > NOT_BONUS)
 		print_manager(mlx);
 	return (1);
 }
 
-void	print_map(t_mlx_vars *mlx, int floor)
+void	print_map(t_mlx_vars *mlx, int print)
 {
-	int		row;
-	int		col;
-	int		tot_x;
-	int		tot_y;
+	t_vec2	pos;
+	t_vec2	tot;
 
-	row = 0;
-	tot_y = offset(mlx->pxl_img,
+	pos.y = 0;
+	tot.y = offset(mlx->pxl_img,
 			ft_tablen((const char **)mlx->map), mlx->img.height);
-	while (mlx->map[row] != NULL)
+	while (mlx->map[pos.y] != NULL)
 	{
-		col = 0;
-		tot_x = offset(mlx->pxl_img, ft_strlen(mlx->map[0]), mlx->img.width);
-		while (mlx->map[row][col] != '\0')
+		pos.x = 0;
+		tot.x = offset(mlx->pxl_img, ft_strlen(mlx->map[0]), mlx->img.width);
+		while (mlx->map[pos.y][pos.x] != '\0')
 		{
-			if (floor == PRINT_FLOOR)
+			if (print == PRINT_FLOOR)
 				add_img(mlx, get_anim(&mlx->ref.tile, ANIM_TILE, mlx->time),
-					tot_x * 4, tot_y);
-			else if (floor == PRINT_REST && mlx->map[row][col] != '0')
-				add_img(mlx, get_right_xpm(mlx, row, col), tot_x * 4, tot_y);
-			tot_x += mlx->pxl_img;
-			col++;
+					tot.x * 4, tot.y);
+			else if (print == PRINT_1CE && (mlx->map[pos.y][pos.x] == '1'
+				|| check_for_obj(mlx->gp.coll, pos) == 1
+				|| check_for_obj(mlx->gp.exits, pos) == 1))
+				add_img(mlx, get_1ce_xpm(mlx, pos), tot.x * 4, tot.y);
+			else if (print == PRINT_PM && (mlx->map[pos.y][pos.x] == 'P'
+				|| mlx->map[pos.y][pos.x] == 'M'))
+				add_img(mlx, get_pm_xpm(mlx, pos), tot.x * 4, tot.y);
+			tot.x += mlx->pxl_img;
+			pos.x++;
 		}
-		tot_y += mlx->pxl_img;
-		row++;
+		tot.y += mlx->pxl_img;
+		pos.y++;
 	}
 }
 

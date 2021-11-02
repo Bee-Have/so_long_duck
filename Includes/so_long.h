@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/11/02 17:51:58 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/11/02 20:50:18 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ void		mlx_destroy_display(void *mlx_ptr);
 
 # define NOT_BONUS -2
 
-# define PRINT_FLOOR 1
-# define PRINT_REST 0
+# define PRINT_FLOOR 0
+# define PRINT_1CE 1
+# define PRINT_PM 2
 
 # define SPRITES_PJ 5
 # define SPRITES_COLL 4
@@ -212,9 +213,13 @@ int			offset(int pxl, int max_map, int max_win);
 //GET IMGS TO PRINT
 void		rev_anim(t_anim **anim, int rev);
 t_img		get_wall(char **map, t_refs textures, int row, int col);
-t_img		get_right_xpm(t_mlx_vars *mlx, int row, int col);
+t_img		get_1ce_xpm(t_mlx_vars *mlx, t_vec2 pos);
+t_img		get_pm_xpm(t_mlx_vars *mlx, t_vec2 pos);
 t_img		get_mob(t_mlx_vars *mlx, int y, int x);
 t_img		get_anim(t_anim **anim, int play_time, struct timeval current);
+
+//GET IMGS UTILS
+int			check_for_obj(t_objs_parent obj, t_vec2 pos);
 
 //MLX EVENTS
 int			key_hook(int keycode, t_mlx_vars *mlx);

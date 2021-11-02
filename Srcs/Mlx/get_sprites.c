@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_sprites.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 12:29:57 by amarini-          #+#    #+#             */
-/*   Updated: 2021/11/02 17:51:32 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/11/02 20:50:55 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,30 +36,37 @@ t_img	get_wall(char **map, t_refs textures, int row, int col)
 	return (textures.wall);
 }
 
-t_img	get_right_xpm(t_mlx_vars *mlx, int row, int col)
+t_img	get_1ce_xpm(t_mlx_vars *mlx, t_vec2 pos)
 {
-	if (mlx->map[row][col] == '1')
-		return (get_wall(mlx->map, mlx->ref, row, col));
-	else if (mlx->map[row][col] == 'C')
+	if (mlx->map[pos.y][pos.x] == '1')
+		return (get_wall(mlx->map, mlx->ref, pos.y, pos.x));
+	else if (mlx->map[pos.y][pos.x] == 'C'
+			|| check_for_obj(mlx->gp.coll, pos) == 1)
 	{
 		if (mlx->gp.mobs_count == NOT_BONUS)
 			return (mlx->gp.coll.anim->img);
 		return (get_anim(&mlx->gp.coll.anim, ANIM_COLL, mlx->time));
 	}
-	else if (mlx->map[row][col] == 'E')
+	else if (mlx->map[pos.y][pos.x] == 'E'
+			|| check_for_obj(mlx->gp.exits, pos) == 1)
 	{
 		if (mlx->gp.mobs_count == NOT_BONUS)
 			return (mlx->gp.exits.anim->img);
 		return (get_anim(&mlx->gp.exits.anim, ANIM_EXIT, mlx->time));
 	}
-	else if (mlx->map[row][col] == 'P')
+	return (mlx->ref.bad);
+}
+
+t_img	get_pm_xpm(t_mlx_vars *mlx, t_vec2 pos)
+{
+	if (mlx->map[pos.y][pos.x] == 'P')
 	{
 		if (mlx->gp.mobs_count == NOT_BONUS)
 			return (mlx->gp.pj.pj_idle->img);
 		return (get_anim(&mlx->gp.pj.pj_idle, ANIM_PJ, mlx->time));
 	}
-	else if (mlx->map[row][col] == 'M')
-		return (get_mob(mlx, row, col));
+	else if (mlx->map[pos.y][pos.x] == 'M')
+		return (get_mob(mlx, pos.y, pos.x));
 	return (mlx->ref.bad);
 }
 
