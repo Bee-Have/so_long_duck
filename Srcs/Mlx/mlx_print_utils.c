@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_print_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 18:17:07 by amarini-          #+#    #+#             */
-/*   Updated: 2021/10/25 11:13:35 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/11/03 11:21:53 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	black_to_transparency(char *addr, size_t len)
 				break ;
 		}
 		if (j == 3)
-			addr[i] = -1;
+			addr[i] = 0;
 		i += 4;
 	}
 }

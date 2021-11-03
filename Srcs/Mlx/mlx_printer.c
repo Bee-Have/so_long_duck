@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:32:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/11/02 20:51:52 by user42           ###   ########.fr       */
+/*   Updated: 2021/11/03 11:18:27 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,9 @@ void	print_map(t_mlx_vars *mlx, int print)
 			if (print == PRINT_FLOOR)
 				add_img(mlx, get_anim(&mlx->ref.tile, ANIM_TILE, mlx->time),
 					tot.x * 4, tot.y);
-			else if (print == PRINT_1CE && (mlx->map[pos.y][pos.x] == '1'
-				|| check_for_obj(mlx->gp.coll, pos) == 1
-				|| check_for_obj(mlx->gp.exits, pos) == 1))
+			else if (check_1cepm(mlx, pos, print) == 1)
 				add_img(mlx, get_1ce_xpm(mlx, pos), tot.x * 4, tot.y);
-			else if (print == PRINT_PM && (mlx->map[pos.y][pos.x] == 'P'
-				|| mlx->map[pos.y][pos.x] == 'M'))
+			else if (check_1cepm(mlx, pos, print) == 2)
 				add_img(mlx, get_pm_xpm(mlx, pos), tot.x * 4, tot.y);
 			tot.x += mlx->pxl_img;
 			pos.x++;

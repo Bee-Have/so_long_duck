@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:35:00 by amarini-          #+#    #+#             */
-/*   Updated: 2021/11/02 20:50:18 by user42           ###   ########.fr       */
+/*   Updated: 2021/11/03 11:17:25 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,6 +219,7 @@ t_img		get_mob(t_mlx_vars *mlx, int y, int x);
 t_img		get_anim(t_anim **anim, int play_time, struct timeval current);
 
 //GET IMGS UTILS
+int			check_1cepm(t_mlx_vars *mlx, t_vec2 pos, int print);
 int			check_for_obj(t_objs_parent obj, t_vec2 pos);
 
 //MLX EVENTS
