@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_printer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 14:32:29 by amarini-          #+#    #+#             */
-/*   Updated: 2021/11/03 11:18:27 by user42           ###   ########.fr       */
+/*   Updated: 2021/11/04 16:51:25 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,11 @@ int	print_all(t_mlx_vars *mlx)
 	ft_memset(mlx->img.addr, 0, (mlx->img.width * mlx->img.height) * 4);
 	print_map(mlx, PRINT_FLOOR);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img.img, 0, 0);
-	print_map(mlx, PRINT_1CE);
-	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img.img, 0, 0);
+	if (NOT_LINUX == 0)
+	{
+		print_map(mlx, PRINT_1CE);
+		mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img.img, 0, 0);
+	}
 	print_map(mlx, PRINT_PM);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img.img, 0, 0);
 	if (mlx->gp.mobs_count > NOT_BONUS)
@@ -65,10 +68,10 @@ void	print_map(t_mlx_vars *mlx, int print)
 			if (print == PRINT_FLOOR)
 				add_img(mlx, get_anim(&mlx->ref.tile, ANIM_TILE, mlx->time),
 					tot.x * 4, tot.y);
-			else if (check_1cepm(mlx, pos, print) == 1)
-				add_img(mlx, get_1ce_xpm(mlx, pos), tot.x * 4, tot.y);
-			else if (check_1cepm(mlx, pos, print) == 2)
-				add_img(mlx, get_pm_xpm(mlx, pos), tot.x * 4, tot.y);
+			else if ((print == PRINT_ALL && mlx->map[pos.y][pos.x] != '0')
+				|| check_1cepm(mlx, pos, print) == PRINT_1CE
+				|| check_1cepm(mlx, pos, print) == PRINT_PM)
+				add_img(mlx, get_1cepm_xpm(mlx, pos, print), tot.x * 4, tot.y);
 			tot.x += mlx->pxl_img;
 			pos.x++;
 		}
